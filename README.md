@@ -144,6 +144,8 @@ Commit using gitmoji
 
 > Make sure your app perform fast.
 
+Also it's recommended to check package size before installing using [bundlephobia](https://bundlephobia.com/)
+
 Install bundle analyzer
 `npm -i -D @next/bundle-analyzer`
 
