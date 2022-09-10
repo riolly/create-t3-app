@@ -100,9 +100,39 @@ Install commitlint
 `npm install -D @commitlint/cli @commitlint/config-conventional`
 
 Add config file `commitlint.config.cjs`
-`module.exports = {extends: ['@commitlint/config-conventional']}`
+
+```json
+module.exports = {
+	extends: ['@commitlint/config-conventional'],
+}
+```
 
 Add to commit-message hook
 `npx husky add .husky/commit-msg "npx commitlint --edit \"\$1\""`
 
 Test by making a commit
+`git commit -m "foo: bar"`
+
+#### Adding Emoji 🤯🚀
+
+Install [gitmoji](https://github.com/carloscuesta/gitmoji)
+`npm i -g gitmoji-cli`
+
+Install gitmoji config for commitlint
+`npm i -D commitlint-config-gitmoji`
+
+Update commitlint config file
+
+```diff
+module.exports = {
+-	extends: ['@commitlint/config-conventional'],
++	extends: ['gitmoji'],
++	rules: {
++		'header-max-length': [0, 'always', 100],
++		'scope-case': [0, 'always', 'pascal-case']
++ 	}
+}
+```
+
+Commit using gitmoji
+`gitmoji -c`
