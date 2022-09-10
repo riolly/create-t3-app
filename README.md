@@ -49,3 +49,12 @@ module.exports = {
 +	}
 }
 ```
+
+### 4. Add more plugin when you needed
+
+I personally love [unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn)
+
+### 5. Lint & format all of your file
+
+`npx prettier --write .`
+`npx eslint .`
