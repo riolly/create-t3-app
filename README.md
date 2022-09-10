@@ -61,6 +61,7 @@ I personally love [unicorn](https://github.com/sindresorhus/eslint-plugin-unicor
 `npx eslint .`
 
 <br />
+
 ## Git hooks
 
 Adding pre-commit check (lint, format), commit message check, and emoji 😄
@@ -136,3 +137,36 @@ module.exports = {
 
 Commit using gitmoji
 `gitmoji -c`
+
+<br />
+
+## Bundle Analyzer 📈
+
+> Make sure your app perform fast.
+
+Install bundle analyzer
+`npm -i -D @next/bundle-analyzer`
+
+Edit next.config.cjs
+
+```diff
++ import bundleAnalyzer from '@next/bundle-analyzer'
+
++ const withBundleAnalyzer = bundleAnalyzer({
++ 	enabled: process.env.ANALYZE === 'true',
++ })
+
+function defineNextConfig(config) {
+-	return config
++	return withBundleAnalyzer(config)
+}
+```
+
+Add bundle analyzer build script
+
+```diff
++	"build-stats": "ANALYZE=true npm run build"
+```
+
+Run build with bundle analyzer
+`npm run build-stats`

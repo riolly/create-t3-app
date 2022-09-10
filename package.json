@@ -8,7 +8,8 @@
 		"postinstall": "prisma generate",
 		"lint": "next lint",
 		"start": "next start",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"build-stats": "ANALYZE=true npm run build"
 	},
 	"dependencies": {
 		"@next-auth/prisma-adapter": "^1.0.4",
@@ -28,6 +29,7 @@
 	"devDependencies": {
 		"@commitlint/cli": "^17.1.2",
 		"@commitlint/config-conventional": "^17.1.0",
+		"@next/bundle-analyzer": "^12.3.0",
 		"@types/node": "18.0.0",
 		"@types/react": "18.0.14",
 		"@types/react-dom": "18.0.5",
