@@ -172,3 +172,25 @@ Add bundle analyzer build script
 
 Run build with bundle analyzer
 `npm run build-stats`
+
+<br />
+
+## CSS 💅
+
+> Optimize it and make it easy to style
+
+Optimize tailwind for production
+
+`npm -i -D cssnano`
+
+Edit postcss.config.cjs
+
+```diff
+module.exports = {
+	plugins: {
+		tailwindcss: {},
+		autoprefixer: {},
++		...(process.env.NODE_ENV === 'production' ? {cssnano: {}} : {}),
+	},
+}
+```
