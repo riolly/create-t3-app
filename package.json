@@ -1,5 +1,5 @@
 {
-	"name": "starter-t3",
+	"name": "create-t3-enhanced",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
@@ -7,7 +7,8 @@
 		"dev": "next dev",
 		"postinstall": "prisma generate",
 		"lint": "next lint",
-		"start": "next start"
+		"start": "next start",
+		"prepare": "husky install"
 	},
 	"dependencies": {
 		"@next-auth/prisma-adapter": "^1.0.4",
@@ -36,6 +37,8 @@
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.2.1",
 		"eslint-plugin-unicorn": "^43.0.2",
+		"husky": "^8.0.0",
+		"lint-staged": "^13.0.3",
 		"postcss": "^8.4.14",
 		"prettier": "2.7.1",
 		"prettier-plugin-tailwindcss": "^0.1.13",

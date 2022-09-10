@@ -2,6 +2,7 @@
 
 More tools to enhance your experience while develop your app.
 
+<br />
 ## Lint & Format
 
 Detect error by enforcing some rule & beautifully format it.
@@ -58,3 +59,37 @@ I personally love [unicorn](https://github.com/sindresorhus/eslint-plugin-unicor
 
 `npx prettier --write .`
 `npx eslint .`
+
+<br />
+## Git hooks
+
+Adding pre-commit check (lint, format), commit message check, and emoji 😄
+
+### 1. Pre-commit check
+
+Add husky to the project
+`npx husky-init && npm install`
+
+Install lint-staged
+`npm install --save-dev lint-staged`
+
+Add config file `.lintstagedrc`
+
+```json
+{
+	"*.{js,jsx,cjs,ts,tsx}": "eslint --fix",
+	"*.{md,json}": "prettier --write"
+}
+```
+
+Edit pre-commit husky hook to run lint-staged
+
+```diff
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+- npm test
++ npx lint-staged
+```
+
+If the log message doesn't show correctly, see this [issue](https://github.com/typicode/husky/issues/968#issuecomment-1176848345)
