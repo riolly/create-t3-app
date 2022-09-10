@@ -138,6 +138,11 @@ module.exports = {
 Commit using gitmoji
 `gitmoji -c`
 
+#### Pre-push hook
+
+Usually I make sure the build is success before push to remote repo
+`npx husky add .husky/pre-push "npm run build" `
+
 <br />
 
 ## Bundle Analyzer 📈
@@ -206,3 +211,11 @@ These css animation collection very usefull our website stand out
 [Auto animate](https://github.com/formkit/auto-animate) also really helpful
 
 For svg animation use [GSAP](https://github.com/greensock/GSAP) [Sarah Drasnes](https://github.com/sdras) and other pro recommend it. It's the most mature and reliable library.
+
+<br />
+
+## Next to cover
+
+1. Favicon
+2. SVG
+3. Form
