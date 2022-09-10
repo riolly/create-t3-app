@@ -177,7 +177,7 @@ Run build with bundle analyzer
 
 ## CSS 💅
 
-> Optimize it and make it easy to style
+> Small and beautiful
 
 Optimize tailwind for production
 
@@ -194,3 +194,15 @@ module.exports = {
 	},
 }
 ```
+
+### Animation 🌟
+
+These css animation collection very usefull our website stand out
+
+- [animate.css](https://animate.style/)
+- [magic](https://www.minimamente.com/project/magic/)
+- [hover](https://github.com/IanLunn/Hover)
+
+[Auto animate](https://github.com/formkit/auto-animate) also really helpful
+
+For svg animation use [GSAP](https://github.com/greensock/GSAP) [Sarah Drasnes](https://github.com/sdras) and other pro recommend it. It's the most mature and reliable library.
