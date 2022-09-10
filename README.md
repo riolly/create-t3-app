@@ -93,3 +93,16 @@ Edit pre-commit husky hook to run lint-staged
 ```
 
 If the log message doesn't show correctly, see this [issue](https://github.com/typicode/husky/issues/968#issuecomment-1176848345)
+
+### 2. Commit message
+
+Install commitlint
+`npm install -D @commitlint/cli @commitlint/config-conventional`
+
+Add config file `commitlint.config.cjs`
+`module.exports = {extends: ['@commitlint/config-conventional']}`
+
+Add to commit-message hook
+`npx husky add .husky/commit-msg "npx commitlint --edit \"\$1\""`
+
+Test by making a commit
