@@ -1,11 +1,15 @@
 # [create-T3-app](https://github.com/t3-oss/create-t3-app) with extra tools out of the box
 
 create-t3-app is one of the fastest and easiest way to scaffold fullstack app.
+
 create-t3-extended make it even **faster for my case.** 🏃💨
+
 Make sure you understand create-t3-app first. ⚠️
 
 :smiley: If you find it helpful, feel free to use.
+
 🥰 If you have opinion that you think better, feel free to discuss.
+
 🤓 _I'm not consider myself an expert. Just learn & share_.
 
 <br />
@@ -79,7 +83,7 @@ I personally love [unicorn](https://github.com/sindresorhus/eslint-plugin-unicor
 
 #### 🧹 Pre-commit
 
-&emsp; &nbsp; _Make sure everything is clean before commit it._
+&emsp; _Make sure everything is clean before commit it._
 
 Add husky to the project
 `npx husky-init && npm i`
@@ -110,7 +114,7 @@ If the log message doesn't show correctly, see this [issue](https://github.com/t
 
 #### 📨 Commit message
 
-&emsp; &nbsp; _Give clear message by following the [convention][1]_
+&emsp; _Give clear message by following the [convention][1]_
 
 [1]: https://www.conventionalcommits.org/en/v1.0.0/
 
@@ -133,7 +137,7 @@ Test by making a commit
 
 #### 🤯 Commit emoji
 
-&emsp; &nbsp; _Who don't like emoji??_
+&emsp; _Who don't like emoji??_
 
 Install [gitmoji](https://github.com/carloscuesta/gitmoji)
 `npm i -g gitmoji-cli`
@@ -159,7 +163,7 @@ Commit using gitmoji
 
 #### 🏗️ Pre-push
 
-&emsp; &nbsp; _Clean doesn't mean it's not break_
+&emsp; _Clean doesn't mean it's not break_
 
 `npx husky add .husky/pre-push "npm run build" `
 
@@ -173,7 +177,7 @@ Hosting provider usually charge money if you exceed the build time limit. It can
 
 #### 📦 Bundle Analyzer
 
-&emsp; &nbsp; _Consider package bundle size before add it to your arsenal._
+&emsp; _Consider package bundle size before add it to your arsenal._
 
 Install bundle analyzer
 `npm -i -D @next/bundle-analyzer`
@@ -206,7 +210,7 @@ You can also check using bundle size using [bundlephobia](https://bundlephobia.c
 
 #### 🧰 CSS
 
-&emsp; &nbsp; _Optimize [tailwind on production](https://tailwindcss.com/docs/optimizing-for-production)_
+&emsp; _Optimize [tailwind on production](https://tailwindcss.com/docs/optimizing-for-production)_
 
 Minify CSS using cssnano
 
@@ -232,7 +236,7 @@ module.exports = {
 
 #### 🌟 Animation
 
-&emsp; &nbsp; _Steal user attention & help them navigate._
+&emsp; _Steal user attention & help them navigate._
 
 These css animation collection very useful to make your website stand out
 
