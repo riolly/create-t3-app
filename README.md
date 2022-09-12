@@ -1,16 +1,12 @@
 # [create-T3-app](https://github.com/t3-oss/create-t3-app) with extra tools out of the box
 
-create-t3-app is one of the fastest and easiest way to scaffold fullstack app.
+create-t3-app is one of the fastest and easiest way to scaffold fullstack app.<br/>
+create-t3-extended make it even **faster for my case.** 🏃💨<br/>
+Make sure you understand create-t3-app first. ⚠️<br/>
 
-create-t3-extended make it even **faster for my case.** 🏃💨
-
-Make sure you understand create-t3-app first. ⚠️
-
-:smiley: If you find it helpful, feel free to use.
-
-🥰 If you have opinion that you think better, feel free to discuss.
-
-🤓 _I'm not consider myself an expert. Just learn & share_.
+:smiley: If you find it helpful, feel free to use. <br/>
+🥰 If you have opinion that you think better, feel free to discuss.<br/>
+🤓 _I'm not consider myself an expert. Just learn & share_.<br/>
 
 <br />
 
@@ -24,10 +20,10 @@ Make sure you understand create-t3-app first. ⚠️
 
 &emsp; _Confuse about plugin vs config?_ Read [this](https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint) and [this](https://stackoverflow.com/questions/53189200/whats-the-difference-between-plugins-and-extends-in-eslint).
 
-&emsp; _Why don't we use stylelint also?_
+&emsp; _Why don't we use stylelint also?_<br/>
 &emsp; **Tailwind is more than enough.** [Use arbitrary value & custom style.](https://tailwindcss.com/docs/adding-custom-styles#customizing-your-theme)
 
-Here is my experience:
+Here is my experience:<br/>
 I make component animation on css and realize that you can move it to tailwind custom style.
 I use scss on svg animation and realize css is not for this kind of job. You will screw up really fast (sarah drasnes said). I move using animation library instead ([more below](#animation-🌟)).
 
