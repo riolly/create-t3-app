@@ -1,24 +1,33 @@
-# Enhanced create-T3-app
+# [create-T3-app](https://github.com/t3-oss/create-t3-app) with extra tools out of the box
 
-More tools to enhance your experience while develop your app.
+create-t3-app is one of the fastest and easiest way to scaffold fullstack app.<br/>
+create-t3-extended make it even **faster for my case.** 🏃💨<br/>
+Make sure you understand create-t3-app first. ⚠️<br/>
+
+:smiley: If you find it helpful, feel free to use. <br/>
+🥰 If you have opinion that you think better, feel free to discuss.<br/>
+🤓 _I'm not consider myself an expert. Just learn & share_.<br/>
 
 <br />
-## Lint & Format
 
-Detect error by enforcing some rule & beautifully format it.
+## Linting & Formatting 🧹
 
-_Confuse about plugin and config?_
+> better code [^1] without the frustration of config.
 
-- Read [this](https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint) and
-- Read [this](https://stackoverflow.com/questions/53189200/whats-the-difference-between-plugins-and-extends-in-eslint)
+##### Install prettier with the config & plugin for eslint & tailwind
 
-### 1. Install prettier with config for eslint & plugin for tailwind
+`npm i -D prettier eslint-config-prettier eslint-plugin-prettier prettier-plugin-tailwindcss`
 
-`npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier prettier-plugin-tailwindcss`
+&emsp; _Confuse about plugin vs config?_ Read [this](https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint) and [this](https://stackoverflow.com/questions/53189200/whats-the-difference-between-plugins-and-extends-in-eslint).
 
-### 2. Add prettier config file
+&emsp; _Why don't we use stylelint also?_<br/>
+&emsp; **Tailwind is more than enough.** [Use arbitrary value & custom style.](https://tailwindcss.com/docs/adding-custom-styles#customizing-your-theme)
 
-`prettier.config.cjs`
+Here is my experience:<br/>
+I make component animation on css and realize that you can move it to tailwind custom style.
+I use scss on svg animation and realize css is not for this kind of job. You will screw up really fast (sarah drasnes said). I move using animation library instead ([more below](#animation-🌟)).
+
+##### Add prettier config file `prettier.config.cjs`
 
 ```js
 module.exports = {
@@ -34,45 +43,49 @@ module.exports = {
 }
 ```
 
-### 3. Extend prettier on eslint config file `.eslint.json`
+##### Extend eslint config `.eslint.json`
 
 ```diff
 {
 - "plugins": ["@typescript-eslint"],
 + "plugins": ["@typescript-eslint", "prettier"],
-	"extends": [
-		"next/core-web-vitals",
-		"plugin:@typescript-eslint/recommended",
-+		"prettier"
-	],
-+	"rules": {
-+		"prettier/prettier": "warn"
-+	}
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
++ "prettier"
+  ],
++ "rules": {
++   "prettier/prettier": "warn"
++ }
 }
 ```
 
-### 4. Add more plugin when you needed
+You can use prettier only on formatting or also give linting error/ warning. For my chase warn me.
 
-I personally love [unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn)
+##### Add more plugin if you need it
 
-### 5. Lint & format all of your file
+I personally love [unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn) plugin.
 
-`npx prettier --write .`
+##### Lint & format all of your file
+
+`npx prettier --write .`<br/>
 `npx eslint .`
 
 <br />
 
-## Git hooks
+## Git hooks ⛓️
 
-Adding pre-commit check (lint, format), commit message check, and emoji 😄
+> better [^1] and more exciting git experience
 
-### 1. Pre-commit check
+#### 🧹 Pre-commit
 
-Add husky to the project
-`npx husky-init && npm install`
+&emsp; _Make sure everything is clean before commit it._
 
-Install lint-staged
-`npm install --save-dev lint-staged`
+Add husky to the project<br/>
+`npx husky-init && npm i`
+
+Install lint-staged<br/>
+`npm i -D lint-staged`
 
 Add config file `.lintstagedrc`
 
@@ -83,7 +96,7 @@ Add config file `.lintstagedrc`
 }
 ```
 
-Edit pre-commit husky hook to run lint-staged
+Run lint-staged on pre-commit hook
 
 ```diff
 #!/usr/bin/env sh
@@ -95,12 +108,17 @@ Edit pre-commit husky hook to run lint-staged
 
 If the log message doesn't show correctly, see this [issue](https://github.com/typicode/husky/issues/968#issuecomment-1176848345)
 
-### 2. Commit message
+#### 📨 Commit message
 
-Install commitlint
+&emsp; _Give clear message by following the [convention][1]_
+
+[1]: https://www.conventionalcommits.org/en/v1.0.0/
+
+Install commitlint<br/>
 `npm install -D @commitlint/cli @commitlint/config-conventional`
 
-Add config file `commitlint.config.cjs`
+Add config file<br/>
+`commitlint.config.cjs`
 
 ```json
 module.exports = {
@@ -108,18 +126,20 @@ module.exports = {
 }
 ```
 
-Add to commit-message hook
+Add to commit-message hook<br/>
 `npx husky add .husky/commit-msg "npx commitlint --edit \"\$1\""`
 
-Test by making a commit
+Test by making a commit<br/>
 `git commit -m "foo: bar"`
 
-#### Adding Emoji 🤯🚀
+#### 🤯 Commit emoji
 
-Install [gitmoji](https://github.com/carloscuesta/gitmoji)
+&emsp; _Who don't like emoji??_
+
+Install [gitmoji](https://github.com/carloscuesta/gitmoji)<br/>
 `npm i -g gitmoji-cli`
 
-Install gitmoji config for commitlint
+Install gitmoji config for commitlint<br/>
 `npm i -D commitlint-config-gitmoji`
 
 Update commitlint config file
@@ -135,23 +155,28 @@ module.exports = {
 }
 ```
 
-Commit using gitmoji
+Commit using gitmoji<br/>
 `gitmoji -c`
 
-#### Pre-push hook
+#### 🏗️ Pre-push
 
-Usually I make sure the build is success before push to remote repo
+&emsp; _Clean doesn't mean it's not break_
+
 `npx husky add .husky/pre-push "npm run build" `
+
+Hosting provider usually charge money if you exceed the build time limit. It can save you some time.
 
 <br />
 
-## Bundle Analyzer 📈
+## Optimization/ Perf 📈
 
-> Make sure your app perform fast.
+> Don't bring unnecessary thing in your baggage
 
-Also it's recommended to check package size before installing using [bundlephobia](https://bundlephobia.com/)
+#### 📦 Bundle Analyzer
 
-Install bundle analyzer
+&emsp; _Consider package bundle size before add it to your arsenal._
+
+Install bundle analyzer<br/>
 `npm -i -D @next/bundle-analyzer`
 
 Edit next.config.cjs
@@ -178,17 +203,17 @@ Add bundle analyzer build script
 Run build with bundle analyzer
 `npm run build-stats`
 
-<br />
+You can also check using bundle size using [bundlephobia](https://bundlephobia.com/).
 
-## CSS 💅
+#### 🧰 CSS
 
-> Small and beautiful
+&emsp; _Optimize [tailwind on production](https://tailwindcss.com/docs/optimizing-for-production)_
 
-Optimize tailwind for production
+Minify CSS using cssnano<br/>
 
 `npm -i -D cssnano`
 
-Edit postcss.config.cjs
+Edit `postcss.config.cjs`
 
 ```diff
 module.exports = {
@@ -200,22 +225,34 @@ module.exports = {
 }
 ```
 
-### Animation 🌟
+<br/>
 
-These css animation collection very usefull our website stand out
+## Styling 💅
+
+> You are beautiful and special
+
+#### 🌟 Animation
+
+&emsp; _Steal user attention & help them navigate._
+
+These css animation collection very useful to make your website stand out
 
 - [animate.css](https://animate.style/)
 - [magic](https://www.minimamente.com/project/magic/)
 - [hover](https://github.com/IanLunn/Hover)
 
-[Auto animate](https://github.com/formkit/auto-animate) also really helpful
+[Auto animate](https://github.com/formkit/auto-animate) also really helpful for element transition.
 
-For svg animation use [GSAP](https://github.com/greensock/GSAP) [Sarah Drasnes](https://github.com/sdras) and other pro recommend it. It's the most mature and reliable library.
+For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasnes](https://github.com/sdras) and other pro recommend it because it's the most mature and reliable library.
 
 <br />
 
 ## Next to cover
 
-1. Favicon
-2. SVG
-3. Form
+- vscode extension
+- nextjs
+- favicon
+- svg
+- form
+
+[^1]: more readable & manageable also prevent error
