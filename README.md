@@ -2,11 +2,18 @@
 
 create-t3-app is one of the fastest and easiest way to scaffold fullstack app.<br/>
 create-t3-extended make it even **faster for my case.** 🏃💨<br/>
-Make sure you understand create-t3-app first. ⚠️<br/>
 
 :smiley: If you find it helpful, feel free to use. <br/>
 🥰 If you have opinion that you think better, feel free to discuss.<br/>
 🤓 _I'm not consider myself an expert. Just learn & share_.<br/>
+
+This instruction below is _how I modify the original code base_ into what you'll find in this repo.
+
+- If you agree with all my opinion just clone it & start.
+- If you only want to pick few, just go to the section that suitable with your need and try.
+
+Hopefully one day I will make a CLI for this.
+Make sure you understand create-t3-app first before continue. ⚠️<br/>
 
 <br />
 
