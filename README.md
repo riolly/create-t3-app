@@ -176,7 +176,7 @@ Hosting provider usually charge money if you exceed the build time limit. It can
 
 &emsp; _Consider package bundle size before add it to your arsenal._
 
-Install bundle analyzer
+Install bundle analyzer<br/>
 `npm -i -D @next/bundle-analyzer`
 
 Edit next.config.cjs
