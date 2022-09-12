@@ -68,7 +68,7 @@ I personally love [unicorn](https://github.com/sindresorhus/eslint-plugin-unicor
 
 ##### Lint & format all of your file
 
-`npx prettier --write .`
+`npx prettier --write .`<br/>
 `npx eslint .`
 
 <br />
@@ -81,10 +81,10 @@ I personally love [unicorn](https://github.com/sindresorhus/eslint-plugin-unicor
 
 &emsp; _Make sure everything is clean before commit it._
 
-Add husky to the project
+Add husky to the project<br/>
 `npx husky-init && npm i`
 
-Install lint-staged
+Install lint-staged<br/>
 `npm i -D lint-staged`
 
 Add config file `.lintstagedrc`
@@ -114,10 +114,11 @@ If the log message doesn't show correctly, see this [issue](https://github.com/t
 
 [1]: https://www.conventionalcommits.org/en/v1.0.0/
 
-Install commitlint
+Install commitlint<br/>
 `npm install -D @commitlint/cli @commitlint/config-conventional`
 
-Add config file `commitlint.config.cjs`
+Add config file<br/>
+`commitlint.config.cjs`
 
 ```json
 module.exports = {
@@ -125,20 +126,20 @@ module.exports = {
 }
 ```
 
-Add to commit-message hook
+Add to commit-message hook<br/>
 `npx husky add .husky/commit-msg "npx commitlint --edit \"\$1\""`
 
-Test by making a commit
+Test by making a commit<br/>
 `git commit -m "foo: bar"`
 
 #### 🤯 Commit emoji
 
 &emsp; _Who don't like emoji??_
 
-Install [gitmoji](https://github.com/carloscuesta/gitmoji)
+Install [gitmoji](https://github.com/carloscuesta/gitmoji)<br/>
 `npm i -g gitmoji-cli`
 
-Install gitmoji config for commitlint
+Install gitmoji config for commitlint<br/>
 `npm i -D commitlint-config-gitmoji`
 
 Update commitlint config file
@@ -154,7 +155,7 @@ module.exports = {
 }
 ```
 
-Commit using gitmoji
+Commit using gitmoji<br/>
 `gitmoji -c`
 
 #### 🏗️ Pre-push
@@ -208,7 +209,7 @@ You can also check using bundle size using [bundlephobia](https://bundlephobia.c
 
 &emsp; _Optimize [tailwind on production](https://tailwindcss.com/docs/optimizing-for-production)_
 
-Minify CSS using cssnano
+Minify CSS using cssnano<br/>
 
 `npm -i -D cssnano`
 
