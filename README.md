@@ -254,6 +254,122 @@ For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasnes]
 
 <br />
 
+## Going Live 🚀
+
+> Why wait so long to go to the moon?
+
+#### 🪐 MySQL on planetscale
+
+&emsp; _Sit with ease in case your app suddenly become a startup_. Watch this [interview](https://www.youtube.com/watch?v=MCz_19KUZ2s&ab_channel=Theo-ping%E2%80%A4gg)
+
+I use both local database & planetscale branch database for development. Depend on your need. <br/>
+For local I use `prisma migrate dev`<br/>
+For remote I use `prima db push`<br/>
+Read this for the [difference](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push#choosing-db-push-or-prisma-migrate)
+
+##### Local MySQL server
+
+Go to prisma.schema and there will be instruction about what to do.
+
+For MySQL installation follow [guide](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04).
+
+Set database url on `.env`<br/>
+`DATABASE_URL=mysql://user:password@localhost:3306/database_name`
+
+Migrate local database (_better wait after planet scale setup_)<br/>
+`npx prisma migrate dev`
+
+##### Planetscale setup
+
+Ignore prisma migration file in `.gitignore` <br/>
+`/prisma/migrations/*`
+
+Follow this [instruction](https://planetscale.com/docs/tutorials/prisma-quickstart) and you are good to go.
+
+Code mods:<br/>
+`prisma.schema`
+
+```diff
+  generator client {
+      provider        = "prisma-client-js"
++     previewFeatures = ["referentialIntegrity"]
+  }
+
+  datasource db {
+      url                  = env("DATABASE_URL")
++      referentialIntegrity = "prisma"
+  }
+```
+
+Replace your DATABASE_URL on `.env` with url that you get from planetscale
+
+#### 🔎 Google OAuth
+
+&emsp; _Who doesn't have google account?_
+
+Setup credential at [google console](https://console.cloud.google.com).<br/>
+Create new project > configure consent screen<br />
+Go to "APIs & Services" > "Credentials" > "Create credentials" > "OAuth Client ID" <br/>
+
+Add "Authorized JavaScript origins" with base url
+
+```
+http://localhost:3000
+https://your-domain.vercel.app
+```
+
+Add "Authorized redirect URIs" with callback url
+
+```
+http://localhost:3000/api/auth/callback/google
+https://your-domain.vercel.app/api/auth/callback/google
+```
+
+Add google credential to `.env`
+
+```diff
++ GOOGLE_CLIENT_ID = 'Your Client ID'
++ GOOGLE_CLIENT_SECRET = 'Your Client Secret'
+```
+
+Add google env to `schema.mjs`
+
+```diff
+export const serverSchema = z.object({
+	...
++	GOOGLE_CLIENT_ID: z.string(),
++	GOOGLE_CLIENT_SECRET: z.string(),
+})
+```
+
+Enable jwt callback (required)
+
+```diff
+callbacks: {
+		session({session, user}) {
+			...
+		},
++		async jwt({token}) {
++			return token
++		},
+	},
+```
+
+#### 🔺 Vercel
+
+&emsp; _Except you like to complicate things_
+
+Just add the env & deploy
+
+Add your live url as next auth url on `.env`
+
+```diff
++ NEXTAUTH_URL=https://your-domain.vercel.app
+
+```
+
+<br/>
+
 ## Next to cover
 
 - vscode extension
