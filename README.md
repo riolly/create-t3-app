@@ -11,6 +11,7 @@ This extended version contains:
 - 📈 [Optimization](#optimization-)
 - 💅 [Styling](#styling-)
 - 🚀 [Deployment](#going-live-)
+- 🪛 [Others](#other-helpful-things-)
 
 This instruction below is _how I modify the original code base_ into what you'll find in this repo.
 
@@ -373,6 +374,32 @@ Add your live url as next auth url on `.env`
 ```diff
 + NEXTAUTH_URL=https://your-domain.vercel.app
 
+```
+
+<br/>
+
+## Other helpful things 🪛
+
+> Trivially important
+
+#### 📄 NextJS custom `Document`
+
+Create [custom document](https://nextjs.org/docs/advanced-features/custom-document) `_document.tsx` on pages directory
+
+```js
+import {Html, Head, Main, NextScript} from 'next/document'
+
+export default function Document() {
+	return (
+		<Html>
+			<Head />
+			<body>
+				<Main />
+				<NextScript />
+			</body>
+		</Html>
+	)
+}
 ```
 
 <br/>
