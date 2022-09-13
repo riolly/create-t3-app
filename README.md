@@ -135,7 +135,7 @@ Install commitlint<br/>
 Add config file<br/>
 `commitlint.config.cjs`
 
-```json
+```js
 module.exports = {
 	extends: ['@commitlint/config-conventional'],
 }
@@ -399,6 +399,87 @@ export default function Document() {
 			</body>
 		</Html>
 	)
+}
+```
+
+#### 🅵 Fonts
+
+&emsp; _There are a lot of curated font pairing ready to pick._
+
+Pick font pairing from two of the most useful collection from [heyreliable.com](https://heyreliable.com/ultimate-google-font-pairings/) and [pagecloud.com](https://www.pagecloud.com/blog/best-google-fonts-pairings).
+You can also filter by the style that match your app.
+
+Go to [google font](https://fonts.google.com/) and search those fonts.
+
+Select the specimen that you will use. Remember about performance!
+I recommend pick three font weight and the italic version of each weight.
+
+Add the font link inside `<Head>` component on `_document.tsx`
+
+```diff
+  <Head>
++	<link rel='preconnect' href='https://fonts.googleapis.com' />
++	<link
++		rel='preconnect'
++		href='https://fonts.gstatic.com'
++		crossOrigin=''
++	/>
++	<link
++		href='https://fonts.googleapis.com/css2?family=Hind:wght@400;600&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap'
++		rel='stylesheet'
++	/>
+    ...
+  <Head />
+
+```
+
+Extend tailwind config with the font family
+
+```diff
+theme: {
+		extend: {
+			fontFamily: {
++				heading: ['Montserrat', 'sans-serif'],
++				body: ['Hind', 'sans-serif'],
+			},
+		},
+	},
+```
+
+You can apply it directly to the tag if needed by changing `styles/global.css`
+
+```css
+@layer base {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-heading;
+	}
+	h1 {
+		@apply text-6xl;
+	}
+	h2 {
+		@apply text-4xl;
+	}
+	h3 {
+		@apply text-4xl;
+	}
+	h4 {
+		@apply text-3xl;
+	}
+	h5 {
+		@apply text-2xl;
+	}
+	h6 {
+		@apply text-xl;
+	}
+
+	p {
+		@apply font-body;
+	}
 }
 ```
 
