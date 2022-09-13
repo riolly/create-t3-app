@@ -3,16 +3,23 @@
 create-t3-app is one of the fastest and easiest way to scaffold fullstack app.<br/>
 create-t3-extended make it even **faster for my case.** 🏃💨<br/>
 
-:smiley: If you find it helpful, feel free to use. <br/>
-🥰 If you have opinion that you think better, feel free to discuss.<br/>
-🤓 _I'm not consider myself an expert. Just learn & share_.<br/>
+Make sure you understand create-t3-app first before continue. ⚠️<br/>
+This extended version contains:
+
+- 🧹 [Linting & Formatting](#linting--formatting-)
+- ⛓️ [Git hooks](#git-hooks-️)
+- 📈 [Optimization](#optimization-)
+- 💅 [Styling](#styling-)
+- 🚀 [Deployment](#going-live-)
 
 This instruction below is _how I modify the original code base_ into what you'll find in this repo.
 
 - If you **agree with all my opinion** just clone it & start.
 - If you only **want to pick few**, just go to the section that suitable with your need and try.
 
-Make sure you understand create-t3-app first before continue. ⚠️<br/>
+:smiley: If you find it helpful, feel free to use. <br/>
+🥰 If you have opinion that you think better, feel free to discuss.<br/>
+🤓 _I'm not consider myself an expert. Just learn & share_.<br/>
 Hopefully one day I will make a CLI for this.</br>
 
 <br />
@@ -175,7 +182,7 @@ Hosting provider usually charge money if you exceed the build time limit. It can
 
 <br />
 
-## Optimization/ Perf 📈
+## Optimization 📈
 
 > Don't bring unnecessary thing in your baggage
 
