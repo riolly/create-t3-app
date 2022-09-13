@@ -32,7 +32,7 @@ Make sure you understand create-t3-app first before continue. ⚠️<br/>
 
 Here is my experience:<br/>
 I make component animation on css and realize that you can move it to tailwind custom style.
-I use scss on svg animation and realize css is not for this kind of job. You will screw up really fast (sarah drasnes said). I move using animation library instead ([more below](#animation-🌟)).
+I use scss on svg animation and realize css is not for this kind of job. You will screw up really fast (sarah drasner said). I move using animation library instead ([more below](#animation-🌟)).
 
 ##### Add prettier config file `prettier.config.cjs`
 
@@ -250,7 +250,7 @@ These css animation collection very useful to make your website stand out
 
 [Auto animate](https://github.com/formkit/auto-animate) also really helpful for element transition.
 
-For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasnes](https://github.com/sdras) and other pro recommend it because it's the most mature and reliable library.
+For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasner](https://github.com/sdras) and other pro recommend it because it's the most mature and reliable library.
 
 <br />
 
