@@ -9,11 +9,11 @@ create-t3-extended make it even **faster for my case.** 🏃💨<br/>
 
 This instruction below is _how I modify the original code base_ into what you'll find in this repo.
 
-- If you agree with all my opinion just clone it & start.
-- If you only want to pick few, just go to the section that suitable with your need and try.
+- If you **agree with all my opinion** just clone it & start.
+- If you only **want to pick few**, just go to the section that suitable with your need and try.
 
-Hopefully one day I will make a CLI for this.
 Make sure you understand create-t3-app first before continue. ⚠️<br/>
+Hopefully one day I will make a CLI for this.</br>
 
 <br />
 
@@ -265,7 +265,7 @@ For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasner]
 I use both local database & planetscale branch database for development. Depend on your need. <br/>
 For local I use `prisma migrate dev`<br/>
 For remote I use `prima db push`<br/>
-Read this for the [difference](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push#choosing-db-push-or-prisma-migrate)
+Read this for the [differences](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push#choosing-db-push-or-prisma-migrate).
 
 ##### Local MySQL server
 
