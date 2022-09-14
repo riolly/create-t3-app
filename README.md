@@ -23,8 +23,14 @@ With these additional tools/ config:
   - [Google OAuth](#-google-oauth)
   - [Vercel](#-vercel)
 - 🪛 [Others](#other-helpful-things-)
+
   - [Fonts](#🅵-fonts)
   - [Favicon](#-favicon)
+    <br/>
+
+- 🗡️ [Bleeding edge tech](#️-bleeding-edge-tech)
+  - [ORM replacement](#orm-replacement)
+  - [Supercharge DB](#supercharge-database)
 
 This documentation below show _how I modify the original code base_ into what you'll find in this repo & also some _useful tips & trick_.
 
@@ -506,6 +512,21 @@ Copy generated link to head on `_document.tsx`
 +   <meta name="theme-color" content="#ffffff">
   <Head/>
 ```
+
+<br/>
+
+## 🗡️ ~~Bleeding~~ edge tech
+
+> Cool tech should not make you bleeding
+
+#### ORM Replacement
+
+[Kysely](https://github.com/koskimas/kysely) provide end-to-end type-safety but also edge-first approach to ORM replacement
+
+#### Supercharge Database
+
+I have been trying [EdgeDB](https://edgedb.com/) and it's **SUPER COOL!**
+But I think [SurrealDB](https://surrealdb.com/) will be the real one.
 
 <br/>
 
