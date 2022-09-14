@@ -1,19 +1,49 @@
-# [create-T3-app](https://github.com/t3-oss/create-t3-app) with extra tools out of the box
+# [create-T3-app](https://github.com/t3-oss/create-t3-app) with extra tools/config out of the box
 
 create-t3-app is one of the fastest and easiest way to scaffold fullstack app.<br/>
-create-t3-extended make it even **faster for my case.** 🏃💨<br/>
+create-t3-extended make it even **faster for my case (and maybe yours).** 🏃💨<br/>
 
-:smiley: If you find it helpful, feel free to use. <br/>
-🥰 If you have opinion that you think better, feel free to discuss.<br/>
-🤓 _I'm not consider myself an expert. Just learn & share_.<br/>
+⚠️ I make this to reduce my mental overhead whenever I start new app, but **for you paradoxically can add more** <br/>
+⚠️ Make sure you understand create-t3-app first before continue. <br/>
+⚠️ This template use all the t3 stack options (NextAuth, Prisma, Tailwind, TPRC)<br/>
+With these additional tools/ config:
 
-This instruction below is _how I modify the original code base_ into what you'll find in this repo.
+- 🧹 [Linting & Formatting](#linting--formatting-)
+- ⛓️ [Git hooks](#git-hooks-️)
+  - [Pre-commit](#-pre-commit)
+  - [Commit message](#-commit-message)
+  - [Commit emoji](#-commit-emoji)
+  - [Pre-push](#️-pre-push)
+- 📈 [Optimization](#optimization-)
+  - [Bundle size](#-bundle-analyzer)
+  - [CSS](#-css)
+- 🚀 [Deployment](#going-live-)
+  - [MySQL on PlanetScale](#-mysql-on-PlanetScale)
+  - [Google OAuth](#-google-oauth)
+  - [Vercel](#-vercel)
+- 🪛 [Others](#other-helpful-things-)
 
-- If you **agree with all my opinion** just clone it & start.
-- If you only **want to pick few**, just go to the section that suitable with your need and try.
+  - [Fonts](#🅵-fonts)
+  - [Favicon](#-favicon)
+  - [Animation](#-animation)
+    <br/>
 
-Make sure you understand create-t3-app first before continue. ⚠️<br/>
-Hopefully one day I will make a CLI for this.</br>
+- 🗡️ [Bleeding edge tech](#️-bleeding-edge-tech)
+  - [ORM replacement](#orm-replacement)
+  - [Supercharge DB](#supercharge-database)
+
+This documentation below show _how I modify the original code base_ into what you'll find in this repo & also some _useful tips & trick_.
+
+- _If your case same with mine/ you agree with all my opinion_, **just use it & start**.
+- _If your case is different than mine/ agree only some of my opinion_, **use create-t3-app & add the tools/ config you need.**
+
+⚠️ **I personally encourage the second point.**
+
+If you find it helpful, feel free to use. :smiley:<br/>
+If you have opinion that you think better, feel free to discuss. 🥰 <br/>
+If you find bug, let's fix it. 🤔 <br/>
+_I'm not consider myself an expert. Just learn & share_. 🤓 <br/>
+Hopefully one day I will make a CLI for this. How smooth that will be?</br>
 
 <br />
 
@@ -127,7 +157,7 @@ Install commitlint<br/>
 Add config file<br/>
 `commitlint.config.cjs`
 
-```json
+```js
 module.exports = {
 	extends: ['@commitlint/config-conventional'],
 }
@@ -175,7 +205,7 @@ Hosting provider usually charge money if you exceed the build time limit. It can
 
 <br />
 
-## Optimization/ Perf 📈
+## Optimization 📈
 
 > Don't bring unnecessary thing in your baggage
 
@@ -234,35 +264,15 @@ module.exports = {
 
 <br/>
 
-## Styling 💅
-
-> You are beautiful and special
-
-#### 🌟 Animation
-
-&emsp; _Steal user attention & help them navigate._
-
-These css animation collection very useful to make your website stand out
-
-- [animate.css](https://animate.style/)
-- [magic](https://www.minimamente.com/project/magic/)
-- [hover](https://github.com/IanLunn/Hover)
-
-[Auto animate](https://github.com/formkit/auto-animate) also really helpful for element transition.
-
-For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasner](https://github.com/sdras) and other pro recommend it because it's the most mature and reliable library.
-
-<br />
-
 ## Going Live 🚀
 
 > Why wait so long to go to the moon?
 
-#### 🪐 MySQL on planetscale
+#### 🪐 MySQL on PlanetScale
 
 &emsp; _Sit with ease in case your app suddenly become a startup_. Watch this [interview](https://www.youtube.com/watch?v=MCz_19KUZ2s&ab_channel=Theo-ping%E2%80%A4gg)
 
-I use both local database & planetscale branch database for development. Depend on your need. <br/>
+I use both local database & PlanetScale branch database for development. Depend on your need. <br/>
 For local I use `prisma migrate dev`<br/>
 For remote I use `prima db push`<br/>
 Read this for the [differences](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push#choosing-db-push-or-prisma-migrate).
@@ -279,12 +289,12 @@ Set database url on `.env`<br/>
 Migrate local database (_better wait after planet scale setup_)<br/>
 `npx prisma migrate dev`
 
-##### Planetscale setup
+##### PlanetScale setup
 
 Ignore prisma migration file in `.gitignore` <br/>
 `/prisma/migrations/*`
 
-Follow this [instruction](https://planetscale.com/docs/tutorials/prisma-quickstart) and you are good to go.
+Follow this [instruction](https://PlanetScale.com/docs/tutorials/prisma-quickstart) and you are good to go.
 
 Code mods:<br/>
 `prisma.schema`
@@ -301,7 +311,7 @@ Code mods:<br/>
   }
 ```
 
-Replace your DATABASE_URL on `.env` with url that you get from planetscale
+Replace your DATABASE_URL on `.env` with url that you get from PlanetScale
 
 #### 🔎 Google OAuth
 
@@ -370,12 +380,158 @@ Add your live url as next auth url on `.env`
 
 <br/>
 
+## Other helpful things 🪛
+
+> Trivially important
+
+#### 📄 NextJS custom `Document`
+
+Create [custom document](https://nextjs.org/docs/advanced-features/custom-document) `_document.tsx` on pages directory
+
+```js
+import {Html, Head, Main, NextScript} from 'next/document'
+
+export default function Document() {
+	return (
+		<Html>
+			<Head />
+			<body>
+				<Main />
+				<NextScript />
+			</body>
+		</Html>
+	)
+}
+```
+
+#### 🅵 Fonts
+
+&emsp; _There are a lot of curated font pairing ready to pick._
+
+Pick font pairing from two of the most useful collection from [heyreliable.com](https://heyreliable.com/ultimate-google-font-pairings/) and [pagecloud.com](https://www.pagecloud.com/blog/best-google-fonts-pairings).
+You can also filter by the style that match your app.
+
+💡 Steal font combo from your favorite website.
+
+Go to [google font](https://fonts.google.com/) and search those fonts.
+
+Select the specimen that you will use. Remember about performance!
+I recommend pick three font weight and the italic version of each weight.
+
+Add the font link inside `<Head>` component on `_document.tsx`
+
+```diff
+  <Head>
++	<link rel='preconnect' href='https://fonts.googleapis.com' />
++	<link
++		rel='preconnect'
++		href='https://fonts.gstatic.com'
++		crossOrigin=''
++	/>
++	<link
++		href='https://fonts.googleapis.com/css2?family=Hind:wght@400;600&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap'
++		rel='stylesheet'
++	/>
+    ...
+  <Head />
+
+```
+
+Extend tailwind config with the font family
+
+```diff
+theme: {
+		extend: {
+			fontFamily: {
++				heading: ['Montserrat', 'sans-serif'],
++				body: ['Hind', 'sans-serif'],
+			},
+		},
+	},
+```
+
+You can apply it directly to the tag if needed by changing `styles/global.css`
+
+```css
+@layer base {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-heading;
+	}
+
+	p {
+		@apply font-body;
+	}
+}
+```
+
+#### ⭐ Favicon
+
+&emsp; _Just get it correctly._
+
+Prepare your svg icon
+
+Go to [realfavicongenerator.net](`https://realfavicongenerator.net/`)
+
+Adjust & generate favicon
+
+Download & put on public directory
+
+Copy generated link to head on `_document.tsx`
+
+```diff
+  <Head>
++   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
++   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
++   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
++   <link rel="manifest" href="/site.webmanifest">
++   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
++   <meta name="msapplication-TileColor" content="#2d89ef">
++   <meta name="theme-color" content="#ffffff">
+  <Head/>
+```
+
+#### 🌟 Animation
+
+&emsp; _Steal user attention & help them navigate._
+
+These css animation collection very useful to make your website stand out
+
+- [animate.css](https://animate.style/)
+- [magic](https://www.minimamente.com/project/magic/)
+- [hover](https://github.com/IanLunn/Hover)
+
+[Auto animate](https://github.com/formkit/auto-animate) also really helpful for element transition.
+
+For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasner](https://github.com/sdras) and other pro recommend it because it's the most mature and reliable library.
+
+<br />
+
+<br/>
+
+## 🗡️ ~~Bleeding~~ edge tech
+
+> Cool tech should not make you bleeding
+
+#### ORM Replacement
+
+[Kysely](https://github.com/koskimas/kysely) provide end-to-end type-safety but also edge-first approach to ORM replacement
+
+#### Supercharge Database
+
+I have been trying [EdgeDB](https://edgedb.com/) and it's **SUPER COOL!**
+But I think [SurrealDB](https://surrealdb.com/) will be the real one.
+
+<br/>
+
 ## Next to cover
 
 - vscode extension
 - nextjs
-- favicon
 - svg
-- form
 
 [^1]: more readable & manageable also prevent error
