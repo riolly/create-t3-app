@@ -28,6 +28,8 @@ With these additional tools/ config:
   - [Animation](#-animation)
     <br/>
 
+Interesting Discussion
+
 - 🗡️ [Bleeding edge tech](#️-bleeding-edge-tech)
   - [ORM replacement](#orm-replacement)
   - [Supercharge DB](#supercharge-database)
@@ -516,6 +518,8 @@ For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasner]
 ## 🗡️ ~~Bleeding~~ edge tech
 
 > Cool tech should not make you bleeding
+
+These is only for exploration & discussion.
 
 #### ORM Replacement
 
