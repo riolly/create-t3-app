@@ -495,8 +495,6 @@ Copy generated link to head on `_document.tsx`
 
 - vscode extension
 - nextjs
-- favicon
 - svg
-- form
 
 [^1]: more readable & manageable also prevent error
