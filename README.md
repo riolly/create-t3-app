@@ -9,10 +9,21 @@ With these additional tools:
 
 - 🧹 [Linting & Formatting](#linting--formatting-)
 - ⛓️ [Git hooks](#git-hooks-️)
+  - [Pre-commit](#-pre-commit)
+  - [Commit message](#-commit-message)
+  - [Commit emoji](#-commit-emoji)
+  - [Pre-push](#️-pre-push)
 - 📈 [Optimization](#optimization-)
-- 💅 [Styling](#styling-)
+  - [Bundle size](#-bundle-analyzer)
+  - [CSS](#-css)
+- 💅 [Styling (tips only)](#styling-)
 - 🚀 [Deployment](#going-live-)
+  - [MySQL on PlanetScale](#-mysql-on-planetscale)
+  - [Google OAuth](#-google-oauth)
+  - [Vercel](#-vercel)
 - 🪛 [Others](#other-helpful-things-)
+  - [Fonts](#-fonts)
+  - [Favicon](#-favicon)
 
 The documentation below show _how I modify the original code base_ into what you'll find in this repo & some _useful tips & trick_.
 
