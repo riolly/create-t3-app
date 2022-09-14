@@ -1,11 +1,11 @@
 # [create-T3-app](https://github.com/t3-oss/create-t3-app) with extra tools out of the box
 
 create-t3-app is one of the fastest and easiest way to scaffold fullstack app.<br/>
-create-t3-extended make it even **faster for my case.** 🏃💨<br/>
+create-t3-extended make it even **faster for my case (and maybe yours).** 🏃💨<br/>
 
 ⚠️ Make sure you understand create-t3-app first before continue. <br/>
 ⚠️ This template use all the t3 stack options (NextAuth, Prisma, Tailwind, TPRC)<br/>
-With these additional tools:
+With these additional tools/ config:
 
 - 🧹 [Linting & Formatting](#linting--formatting-)
 - ⛓️ [Git hooks](#git-hooks-️)
@@ -25,12 +25,12 @@ With these additional tools:
   - [Fonts](#-fonts)
   - [Favicon](#-favicon)
 
-The documentation below show _how I modify the original code base_ into what you'll find in this repo & some _useful tips & trick_.
+This documentation below show _how I modify the original code base_ into what you'll find in this repo & also some _useful tips & trick_.
 
 - _If your case same with mine/ you agree with all my opinion_, **just use it & start**.
-- _If your case is different than mine/ agree only some of my opinion_, **use create-t3-app & add the tools you need.**
+- _If your case is different than mine/ agree only some of my opinion_, **use create-t3-app & add the tools/ config you need.**
 
-⚠️ **I personally encourage the second point. Follow the docs and add what you need**
+⚠️ **I personally encourage the second point.**
 
 :smiley: If you find it helpful, feel free to use. <br/>
 🥰 If you have opinion that you think better, feel free to discuss.<br/>
