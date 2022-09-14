@@ -18,7 +18,7 @@ With these additional tools:
   - [CSS](#-css)
 - 💅 [Styling (tips only)](#styling-)
 - 🚀 [Deployment](#going-live-)
-  - [MySQL on PlanetScale](#-mysql-on-planetscale)
+  - [MySQL on PlanetScale](#-mysql-on-PlanetScale)
   - [Google OAuth](#-google-oauth)
   - [Vercel](#-vercel)
 - 🪛 [Others](#other-helpful-things-)
@@ -281,11 +281,11 @@ For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasner]
 
 > Why wait so long to go to the moon?
 
-#### 🪐 MySQL on planetscale
+#### 🪐 MySQL on PlanetScale
 
 &emsp; _Sit with ease in case your app suddenly become a startup_. Watch this [interview](https://www.youtube.com/watch?v=MCz_19KUZ2s&ab_channel=Theo-ping%E2%80%A4gg)
 
-I use both local database & planetscale branch database for development. Depend on your need. <br/>
+I use both local database & PlanetScale branch database for development. Depend on your need. <br/>
 For local I use `prisma migrate dev`<br/>
 For remote I use `prima db push`<br/>
 Read this for the [differences](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push#choosing-db-push-or-prisma-migrate).
@@ -302,12 +302,12 @@ Set database url on `.env`<br/>
 Migrate local database (_better wait after planet scale setup_)<br/>
 `npx prisma migrate dev`
 
-##### Planetscale setup
+##### PlanetScale setup
 
 Ignore prisma migration file in `.gitignore` <br/>
 `/prisma/migrations/*`
 
-Follow this [instruction](https://planetscale.com/docs/tutorials/prisma-quickstart) and you are good to go.
+Follow this [instruction](https://PlanetScale.com/docs/tutorials/prisma-quickstart) and you are good to go.
 
 Code mods:<br/>
 `prisma.schema`
@@ -324,7 +324,7 @@ Code mods:<br/>
   }
 ```
 
-Replace your DATABASE_URL on `.env` with url that you get from planetscale
+Replace your DATABASE_URL on `.env` with url that you get from PlanetScale
 
 #### 🔎 Google OAuth
 
