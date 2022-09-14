@@ -23,7 +23,7 @@ With these additional tools/ config:
   - [Google OAuth](#-google-oauth)
   - [Vercel](#-vercel)
 - 🪛 [Others](#other-helpful-things-)
-  - [Fonts](#-fonts)
+  - [Fonts](#🅵-fonts)
   - [Favicon](#-favicon)
 
 This documentation below show _how I modify the original code base_ into what you'll find in this repo & also some _useful tips & trick_.
@@ -424,6 +424,8 @@ export default function Document() {
 
 Pick font pairing from two of the most useful collection from [heyreliable.com](https://heyreliable.com/ultimate-google-font-pairings/) and [pagecloud.com](https://www.pagecloud.com/blog/best-google-fonts-pairings).
 You can also filter by the style that match your app.
+
+💡 Steal font combo from your favorite website.
 
 Go to [google font](https://fonts.google.com/) and search those fonts.
 
