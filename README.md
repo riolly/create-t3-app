@@ -17,7 +17,6 @@ With these additional tools/ config:
 - 📈 [Optimization](#optimization-)
   - [Bundle size](#-bundle-analyzer)
   - [CSS](#-css)
-- 💅 [Styling (tips only)](#styling-)
 - 🚀 [Deployment](#going-live-)
   - [MySQL on PlanetScale](#-mysql-on-PlanetScale)
   - [Google OAuth](#-google-oauth)
@@ -26,6 +25,7 @@ With these additional tools/ config:
 
   - [Fonts](#🅵-fonts)
   - [Favicon](#-favicon)
+  - [Animation](#-animation)
     <br/>
 
 - 🗡️ [Bleeding edge tech](#️-bleeding-edge-tech)
@@ -264,26 +264,6 @@ module.exports = {
 
 <br/>
 
-## Styling 💅
-
-> You are beautiful and special
-
-#### 🌟 Animation
-
-&emsp; _Steal user attention & help them navigate._
-
-These css animation collection very useful to make your website stand out
-
-- [animate.css](https://animate.style/)
-- [magic](https://www.minimamente.com/project/magic/)
-- [hover](https://github.com/IanLunn/Hover)
-
-[Auto animate](https://github.com/formkit/auto-animate) also really helpful for element transition.
-
-For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasner](https://github.com/sdras) and other pro recommend it because it's the most mature and reliable library.
-
-<br />
-
 ## Going Live 🚀
 
 > Why wait so long to go to the moon?
@@ -491,6 +471,8 @@ You can apply it directly to the tag if needed by changing `styles/global.css`
 
 #### ⭐ Favicon
 
+&emsp; _Just get it correctly._
+
 Prepare your svg icon
 
 Go to [realfavicongenerator.net](`https://realfavicongenerator.net/`)
@@ -512,6 +494,22 @@ Copy generated link to head on `_document.tsx`
 +   <meta name="theme-color" content="#ffffff">
   <Head/>
 ```
+
+#### 🌟 Animation
+
+&emsp; _Steal user attention & help them navigate._
+
+These css animation collection very useful to make your website stand out
+
+- [animate.css](https://animate.style/)
+- [magic](https://www.minimamente.com/project/magic/)
+- [hover](https://github.com/IanLunn/Hover)
+
+[Auto animate](https://github.com/formkit/auto-animate) also really helpful for element transition.
+
+For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasner](https://github.com/sdras) and other pro recommend it because it's the most mature and reliable library.
+
+<br />
 
 <br/>
 
