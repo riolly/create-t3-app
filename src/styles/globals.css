@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	html {
+		-webkit-tap-highlight-color: transparent;
+	}
+}
+
+@layer utilities {
+	.pb-safe {
+		padding-bottom: env(safe-area-inset-bottom);
+	}
+}

@@ -26,6 +26,7 @@ With these additional tools/ config:
   - [Fonts](#🅵-fonts)
   - [Favicon](#-favicon)
   - [Animation](#-animation)
+  - [Tailwind](#-tailwind)
     <br/>
 
 Interesting Discussion
@@ -510,6 +511,26 @@ These css animation collection very useful to make your website stand out
 [Auto animate](https://github.com/formkit/auto-animate) also really helpful for element transition.
 
 For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasner](https://github.com/sdras) and other pro recommend it because it's the most mature and reliable library.
+
+#### 🌬️ Tailwind
+
+&emsp; _Small details fixes._
+
+Additional default override. For what? [read this](https://css-tricks.com/custom-tailwind-css/)
+
+```css
+@layer base {
+	html {
+		-webkit-tap-highlight-color: transparent;
+	}
+}
+
+@layer utilities {
+	.pb-safe {
+		padding-bottom: env(safe-area-inset-bottom);
+	}
+}
+```
 
 <br />
 
