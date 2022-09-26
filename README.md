@@ -27,6 +27,7 @@ With these additional tools/ config:
   - [Favicon](#-favicon)
   - [Animation](#-animation)
   - [Tailwind](#-tailwind)
+  - [SASS](#-sass)
     <br/>
 
 Interesting Discussion
@@ -532,6 +533,34 @@ Additional default override. For what? [read this](https://css-tricks.com/custom
 }
 ```
 
+#### 👓 SASS
+
+&emsp; _Managing keyframe will ruin your entire day._
+
+You will mess up very quickly if you don't use variables for handling keyframe. But we don't want JS yet for this simple animation.
+
+- Attention seeker & Transition > SASS
+- Interaction & complex SVG > JS library
+
+Install sass
+`npm i -D sass`
+
+Add script to watch & debug sass
+
+```diff
+	"scripts": {
+		...
++		"sass-watch": "sass --watch src/styles:css"
+	},
+```
+
+Ignore output file
+
+```diff
++ # sass watch output
++ /css
+```
+
 <br />
 
 <br/>
@@ -558,5 +587,7 @@ But I think [SurrealDB](https://surrealdb.com/) will be the real one.
 - vscode extension
 - nextjs
 - svg
+
+---
 
 [^1]: more readable & manageable also prevent error
