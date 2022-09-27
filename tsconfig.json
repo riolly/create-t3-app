@@ -11,6 +11,7 @@
 			"@server/*": ["server/*"],
 			"@images/*": ["../public/images/*"]
 		},
+		"plugins": [{"name": "typescript-plugin-css-modules"}],
 		"target": "es5",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,

@@ -561,6 +561,26 @@ Ignore output file
 + /css
 ```
 
+Add [typescript-plugin-css-modules](https://github.com/mrmckeb/typescript-plugin-css-modules#visual-studio-code) for autocompletion<br />
+`npm i -D typescript-plugin-css-modules`
+
+Update `tsconfig`
+
+```diff
+{
+  "compilerOptions": {
++   "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  }
+}
+```
+
+Add to vscode config
+
+```diff
++ "typescript.tsserver.pluginPaths": ["typescript-plugin-css-modules"]
+
+```
+
 #### 🛣️ Path Aliases
 
 &emsp; _Stop playing guess game while importing module_
