@@ -561,6 +561,26 @@ Ignore output file
 + /css
 ```
 
+#### 🛣️ Path Aliases
+
+&emsp; _Stop playing guess game while importing module_
+
+Add base path & path aliases on `tsconfig.json`
+
+```diff
++ "baseUrl": "src",
++ "paths": {
++ 	"@components/*": ["components/*"],
++ 	"@api/*": ["pages/api/*"],
++ 	"@pages/*": ["pages/*"],
++ 	"@animation/*": ["styles/animation/*"],
++ 	"@styles/*": ["styles/*"],
++ 	"@utils/*": ["utils/*"],
++ 	"@server/*": ["server/*"],
++ 	"@images/*": ["../public/images/*"]
+},
+```
+
 <br />
 
 <br/>
