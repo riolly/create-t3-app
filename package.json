@@ -9,7 +9,8 @@
 		"lint": "next lint",
 		"start": "next start",
 		"prepare": "husky install",
-		"build-stats": "ANALYZE=true npm run build"
+		"build-stats": "ANALYZE=true npm run build",
+		"sass-watch": "sass --watch src/styles:css"
 	},
 	"dependencies": {
 		"@next-auth/prisma-adapter": "^1.0.4",
@@ -50,7 +51,8 @@
 		"prettier-plugin-tailwindcss": "^0.1.13",
 		"prisma": "^4.1.0",
 		"tailwindcss": "^3.1.6",
-		"typescript": "4.7.4"
+		"typescript": "4.7.4",
+		"typescript-plugin-css-modules": "^3.4.0"
 	},
 	"ct3aMetadata": {
 		"initVersion": "6.0.0-next.2af4bc9"
