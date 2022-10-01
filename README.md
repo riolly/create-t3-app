@@ -22,7 +22,6 @@ With these additional tools/ config:
   - [Google OAuth](#-google-oauth)
   - [Vercel](#-vercel)
 - 🪛 [Others](#other-helpful-things-)
-
   - [Fonts](#🅵-fonts)
   - [Favicon](#-favicon)
   - [Animation](#-animation)
@@ -93,7 +92,7 @@ module.exports = {
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
-+ "prettier"
++   "prettier"
   ],
 + "rules": {
 +   "prettier/prettier": "warn"
@@ -311,7 +310,7 @@ Code mods:<br/>
 
   datasource db {
       url                  = env("DATABASE_URL")
-+      referentialIntegrity = "prisma"
++     referentialIntegrity = "prisma"
   }
 ```
 
@@ -627,7 +626,5 @@ But I think [SurrealDB](https://surrealdb.com/) will be the real one.
 - vscode extension
 - nextjs
 - svg
-
----
 
 [^1]: more readable & manageable also prevent error
