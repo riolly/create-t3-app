@@ -34,7 +34,7 @@ Interesting Discussion
 
 - 🗡️ [Bleeding edge tech](#️-bleeding-edge-tech)
   - [ORM replacement](#orm-replacement)
-  - [Supercharge DB](#supercharge-database)
+  - [DB replacement](#db-replacement)
 
 This documentation below show _how I modify the original code base_ into what you'll find in this repo & also some _useful tips & trick_.
 
@@ -615,7 +615,7 @@ These is only for exploration & discussion.
 
 [Kysely](https://github.com/koskimas/kysely) provide end-to-end type-safety but also edge-first approach to ORM replacement
 
-#### Supercharge Database
+#### DB Replacement
 
 I have been trying [EdgeDB](https://edgedb.com/) and it's **SUPER COOL!**
 But I think [SurrealDB](https://surrealdb.com/) will be the real one.
