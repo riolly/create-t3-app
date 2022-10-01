@@ -22,10 +22,11 @@ With these additional tools/ config:
   - [Google OAuth](#-google-oauth)
   - [Vercel](#-vercel)
 - 🪛 [Others](#other-helpful-things-)
-
   - [Fonts](#🅵-fonts)
   - [Favicon](#-favicon)
   - [Animation](#-animation)
+  - [Tailwind](#-tailwind)
+  - [SASS](#-sass)
     <br/>
 
 Interesting Discussion
@@ -91,7 +92,7 @@ module.exports = {
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
-+ "prettier"
++   "prettier"
   ],
 + "rules": {
 +   "prettier/prettier": "warn"
@@ -309,7 +310,7 @@ Code mods:<br/>
 
   datasource db {
       url                  = env("DATABASE_URL")
-+      referentialIntegrity = "prisma"
++     referentialIntegrity = "prisma"
   }
 ```
 
@@ -510,6 +511,94 @@ These css animation collection very useful to make your website stand out
 [Auto animate](https://github.com/formkit/auto-animate) also really helpful for element transition.
 
 For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasner](https://github.com/sdras) and other pro recommend it because it's the most mature and reliable library.
+
+#### 🌬️ Tailwind
+
+&emsp; _Small details fixes._
+
+Additional default override. For what? [read this](https://css-tricks.com/custom-tailwind-css/)
+
+```css
+@layer base {
+	html {
+		-webkit-tap-highlight-color: transparent;
+	}
+}
+
+@layer utilities {
+	.pb-safe {
+		padding-bottom: env(safe-area-inset-bottom);
+	}
+}
+```
+
+#### 👓 SASS
+
+&emsp; _Managing keyframe will ruin your entire day._
+
+You will mess up very quickly if you don't use variables for handling keyframe. But we don't want JS yet for this simple animation.
+
+- Attention seeker & Transition > SASS
+- Interaction & complex SVG > JS library
+
+Install sass
+`npm i -D sass`
+
+Add script to watch & debug sass
+
+```diff
+	"scripts": {
+		...
++		"sass-watch": "sass --watch src/styles:css"
+	},
+```
+
+Ignore output file
+
+```diff
++ # sass watch output
++ /css
+```
+
+Add [typescript-plugin-css-modules](https://github.com/mrmckeb/typescript-plugin-css-modules#visual-studio-code) for autocompletion<br />
+`npm i -D typescript-plugin-css-modules`
+
+Update `tsconfig`
+
+```diff
+{
+  "compilerOptions": {
++   "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  }
+}
+```
+
+Add to vscode config
+
+```diff
++ "typescript.tsserver.pluginPaths": ["typescript-plugin-css-modules"]
+
+```
+
+#### 🛣️ Path Aliases
+
+&emsp; _Stop playing guess game while importing module_
+
+Add base path & path aliases on `tsconfig.json`
+
+```diff
++ "baseUrl": "src",
++ "paths": {
++ 	"@components/*": ["components/*"],
++ 	"@api/*": ["pages/api/*"],
++ 	"@pages/*": ["pages/*"],
++ 	"@animation/*": ["styles/animation/*"],
++ 	"@styles/*": ["styles/*"],
++ 	"@utils/*": ["utils/*"],
++ 	"@server/*": ["server/*"],
++ 	"@images/*": ["../public/images/*"]
+},
+```
 
 <br />
 
