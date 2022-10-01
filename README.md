@@ -3,10 +3,10 @@
 create-t3-app is one of the fastest and easiest way to scaffold fullstack app.<br/>
 create-t3-extended make it even **faster for my case (and maybe yours).** 🏃💨<br/>
 
-⚠️ I make this to reduce my mental overhead whenever I start new app, but **for you paradoxically can add more** <br/>
-⚠️ Make sure you understand create-t3-app first before continue. <br/>
-⚠️ This template use all the t3 stack options (NextAuth, Prisma, Tailwind, TPRC)<br/>
-With these additional tools/ config:
+Made with create-t3-extended:<br/>
+[Transparency app](https://transparency.vercel.app)
+
+Tools & config included:
 
 - 🧹 [Linting & Formatting](#linting--formatting-)
 - ⛓️ [Git hooks](#git-hooks-️)
@@ -18,15 +18,16 @@ With these additional tools/ config:
   - [Bundle size](#-bundle-analyzer)
   - [CSS](#-css)
 - 🚀 [Deployment](#going-live-)
-  - [MySQL on PlanetScale](#-mysql-on-PlanetScale)
+  - [MySQL on PlanetScale](#-mysql-on-planetscale)
   - [Google OAuth](#-google-oauth)
   - [Vercel](#-vercel)
 - 🪛 [Others](#other-helpful-things-)
   - [Fonts](#🅵-fonts)
   - [Favicon](#-favicon)
   - [Animation](#-animation)
-  - [Tailwind](#-tailwind)
   - [SASS](#-sass)
+  - [Tailwind config](#-tailwind-config)
+  - [Path aliases](#-path-aliases)
     <br/>
 
 Interesting Discussion
@@ -512,7 +513,7 @@ These css animation collection very useful to make your website stand out
 
 For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasner](https://github.com/sdras) and other pro recommend it because it's the most mature and reliable library.
 
-#### 🌬️ Tailwind
+#### 💨 Tailwind config
 
 &emsp; _Small details fixes._
 
@@ -580,7 +581,7 @@ Add to vscode config
 
 ```
 
-#### 🛣️ Path Aliases
+#### 🛣 Path Aliases
 
 &emsp; _Stop playing guess game while importing module_
 
