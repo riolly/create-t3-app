@@ -51,6 +51,9 @@ Hopefully one day I will make a CLI for this. How smooth that will be?</br>
 
 <br />
 
+#### Note
+This instruction is using npm and yarn as example, but you can use whatever you like :facepunch:
+
 ## Linting & Formatting 🧹
 
 > better code [^1] without the frustration of config.
