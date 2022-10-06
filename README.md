@@ -422,6 +422,29 @@ export const serverSchema = z.object({
 })
 ```
 
+Add Google provider & enable jwt on `[..nextauth].ts`
+
+```diff
++ import GoogleProvider from 'next-auth/providers/google'
+
+  callbacks: {
+    session({session, user}) {
+      ...
+    },
++   async jwt({token}) {
++     return token
++   },
+  },
+
+  providers: [
++   GoogleProvider({
++     clientId: env.GOOGLE_CLIENT_ID,
++     clientSecret: env.GOOGLE_CLIENT_SECRET,
++   }),
+    ...
+  ],
+```
+
 Enable jwt callback (required)
 
 ```diff
