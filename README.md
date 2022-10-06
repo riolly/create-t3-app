@@ -53,7 +53,7 @@ Hopefully one day I will make a CLI for this. How smooth that will be?</br>
 
 #### Note
 
-This instruction is using npm and yarn as example, but you can use whatever you like :facepunch:
+This instruction is using npm, but you can use yarn or pnpm :facepunch:
 
 ## Linting & Formatting 🧹
 
@@ -65,12 +65,6 @@ This instruction is using npm and yarn as example, but you can use whatever you 
 
 ```bash
 npm i -D prettier eslint-config-prettier eslint-plugin-prettier prettier-plugin-tailwindcss
-```
-
-##### yarn
-
-```bash
-yarn add -D prettier eslint-config-prettier eslint-plugin-prettier prettier-plugin-tailwindcss
 ```
 
 &emsp; _Confuse about plugin vs config?_ Read [this](https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint) and [this](https://stackoverflow.com/questions/53189200/whats-the-difference-between-plugins-and-extends-in-eslint).
@@ -149,24 +143,12 @@ Add husky to the project<br/>
 npx husky-init && npm i
 ```
 
-##### yarn
-
-```bash
-npx husky-init && yarn
-```
-
 Install lint-staged<br/>
 
 ##### npm
 
 ```bash
 npm i -D lint-staged
-```
-
-##### yarn
-
-```bash
-yarn add -D lint-staged
 ```
 
 Add config file `.lintstagedrc`
@@ -204,12 +186,6 @@ Install commitlint<br/>
 npm install -D @commitlint/cli @commitlint/config-conventional
 ```
 
-##### yarn
-
-```bash
-yarn add -D @commitlint/cli @commitlint/config-conventional
-```
-
 Add config file<br/>
 `commitlint.config.cjs`
 
@@ -243,24 +219,12 @@ Install [gitmoji](https://github.com/carloscuesta/gitmoji)<br/>
 npm i -g gitmoji-cli
 ```
 
-##### yarn
-
-```bash
-yarn global add gitmoji-cli
-```
-
 Install gitmoji config for commitlint<br/>
 
 ##### npm
 
 ```bash
 npm i -D commitlint-config-gitmoji
-```
-
-##### yarn
-
-```bash
-yarn add -D commitlint-config-gitmoji
 ```
 
 Update commitlint config file
@@ -310,12 +274,6 @@ Install bundle analyzer<br/>
 npm -i -D @next/bundle-analyzer
 ```
 
-##### yarn
-
-```bash
-yarn add -D @next/bundle-analyzer
-```
-
 Edit next.config.cjs
 
 ```diff
@@ -345,12 +303,6 @@ Run build with bundle analyzer
 npm run build-stats
 ```
 
-##### yarn
-
-```bash
-yarn build-stats
-```
-
 You can also check using bundle size using [bundlephobia](https://bundlephobia.com/).
 
 #### 🧰 CSS
@@ -363,12 +315,6 @@ Minify CSS using cssnano<br/>
 
 ```bash
 npm -i -D cssnano
-```
-
-##### yarn
-
-```bash
-yarn add -D cssnano
 ```
 
 Edit `postcss.config.cjs`
@@ -664,12 +610,6 @@ Install sass
 npm i -D sass
 ```
 
-##### yarn
-
-```bash
-yarn add -D sass
-```
-
 Add script to watch & debug sass
 
 ```diff
@@ -692,12 +632,6 @@ Add [typescript-plugin-css-modules](https://github.com/mrmckeb/typescript-plugin
 
 ```bash
 npm i -D typescript-plugin-css-modules
-```
-
-##### yarn
-
-```bash
-yarn add -D typescript-plugin-css-modules
 ```
 
 Update `tsconfig`
