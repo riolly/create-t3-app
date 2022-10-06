@@ -71,15 +71,15 @@ I use scss on svg animation and realize css is not for this kind of job. You wil
 
 ```js
 module.exports = {
-	trailingComma: 'es5',
-	useTabs: true,
-	tabWidth: 2,
-	semi: false,
-	singleQuote: true,
-	bracketSpacing: false,
-	jsxSingleQuote: true,
-	plugins: [require('prettier-plugin-tailwindcss')],
-	tailwindConfig: './tailwind.config.cjs',
+  trailingComma: 'es5',
+  useTabs: true,
+  tabWidth: 2,
+  semi: false,
+  singleQuote: true,
+  bracketSpacing: false,
+  jsxSingleQuote: true,
+  plugins: [require('prettier-plugin-tailwindcss')],
+  tailwindConfig: './tailwind.config.cjs',
 }
 ```
 
@@ -131,8 +131,8 @@ Add config file `.lintstagedrc`
 
 ```json
 {
-	"*.{js,jsx,cjs,ts,tsx}": "eslint --fix",
-	"*.{md,json}": "prettier --write"
+  "*.{js,jsx,cjs,ts,tsx}": "eslint --fix",
+  "*.{md,json}": "prettier --write"
 }
 ```
 
@@ -162,7 +162,7 @@ Add config file<br/>
 
 ```js
 module.exports = {
-	extends: ['@commitlint/config-conventional'],
+  extends: ['@commitlint/config-conventional'],
 }
 ```
 
@@ -186,12 +186,12 @@ Update commitlint config file
 
 ```diff
 module.exports = {
--	extends: ['@commitlint/config-conventional'],
-+	extends: ['gitmoji'],
-+	rules: {
-+		'header-max-length': [0, 'always', 100],
-+		'scope-case': [0, 'always', 'pascal-case']
-+ 	}
+- extends: ['@commitlint/config-conventional'],
++ extends: ['gitmoji'],
++ rules: {
++   'header-max-length': [0, 'always', 100],
++   'scope-case': [0, 'always', 'pascal-case'],
++ },
 }
 ```
 
@@ -225,19 +225,19 @@ Edit next.config.cjs
 + import bundleAnalyzer from '@next/bundle-analyzer'
 
 + const withBundleAnalyzer = bundleAnalyzer({
-+ 	enabled: process.env.ANALYZE === 'true',
++   enabled: process.env.ANALYZE === 'true',
 + })
 
 function defineNextConfig(config) {
--	return config
-+	return withBundleAnalyzer(config)
+- return config
++ return withBundleAnalyzer(config)
 }
 ```
 
 Add bundle analyzer build script
 
 ```diff
-+	"build-stats": "ANALYZE=true npm run build"
++ "build-stats": "ANALYZE=true npm run build"
 ```
 
 Run build with bundle analyzer
@@ -257,11 +257,11 @@ Edit `postcss.config.cjs`
 
 ```diff
 module.exports = {
-	plugins: {
-		tailwindcss: {},
-		autoprefixer: {},
-+		...(process.env.NODE_ENV === 'production' ? {cssnano: {}} : {}),
-	},
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
++   ...(process.env.NODE_ENV === 'production' ? {cssnano: {}} : {}),
+  },
 }
 ```
 
@@ -303,15 +303,15 @@ Code mods:<br/>
 `prisma.schema`
 
 ```diff
-  generator client {
-      provider        = "prisma-client-js"
-+     previewFeatures = ["referentialIntegrity"]
-  }
+generator client {
+  provider        = "prisma-client-js"
++ previewFeatures = ["referentialIntegrity"]
+}
 
-  datasource db {
-      url                  = env("DATABASE_URL")
-+     referentialIntegrity = "prisma"
-  }
+datasource db {
+  url                  = env("DATABASE_URL")
++ referentialIntegrity = "prisma"
+}
 ```
 
 Replace your DATABASE_URL on `.env` with url that you get from PlanetScale
@@ -349,9 +349,9 @@ Add google env to `schema.mjs`
 
 ```diff
 export const serverSchema = z.object({
-	...
-+	GOOGLE_CLIENT_ID: z.string(),
-+	GOOGLE_CLIENT_SECRET: z.string(),
+  ...
++ GOOGLE_CLIENT_ID: z.string(),
++ GOOGLE_CLIENT_SECRET: z.string(),
 })
 ```
 
@@ -359,13 +359,13 @@ Enable jwt callback (required)
 
 ```diff
 callbacks: {
-		session({session, user}) {
-			...
-		},
-+		async jwt({token}) {
-+			return token
-+		},
-	},
+  session({session, user}) {
+    ...
+  },
++ async jwt({token}) {
++   return token
++ },
+},
 ```
 
 #### 🔺 Vercel
@@ -378,7 +378,6 @@ Add your live url as next auth url on `.env`
 
 ```diff
 + NEXTAUTH_URL=https://your-domain.vercel.app
-
 ```
 
 <br/>
@@ -395,15 +394,15 @@ Create [custom document](https://nextjs.org/docs/advanced-features/custom-docume
 import {Html, Head, Main, NextScript} from 'next/document'
 
 export default function Document() {
-	return (
-		<Html>
-			<Head />
-			<body>
-				<Main />
-				<NextScript />
-			</body>
-		</Html>
-	)
+  return (
+    <Html>
+      <Head />
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  )
 }
 ```
 
@@ -424,51 +423,46 @@ I recommend pick three font weight and the italic version of each weight.
 Add the font link inside `<Head>` component on `_document.tsx`
 
 ```diff
-  <Head>
-+	<link rel='preconnect' href='https://fonts.googleapis.com' />
-+	<link
-+		rel='preconnect'
-+		href='https://fonts.gstatic.com'
-+		crossOrigin=''
-+	/>
-+	<link
-+		href='https://fonts.googleapis.com/css2?family=Hind:wght@400;600&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap'
-+		rel='stylesheet'
-+	/>
++ <head>
++   <link rel="preconnect" href="https://fonts.googleapis.com" />
++   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
++   <link
++     href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap"
++     rel="stylesheet"
++   />
     ...
-  <Head />
-
++ </head>
 ```
 
 Extend tailwind config with the font family
 
-```diff
-theme: {
-		extend: {
-			fontFamily: {
-+				heading: ['Montserrat', 'sans-serif'],
-+				body: ['Hind', 'sans-serif'],
-			},
-		},
-	},
+```js
+  theme: {
+    extend: {
+      fontFamily: {
++       heading: ['Montserrat', 'sans-serif'],
++       body: ['Hind', 'sans-serif'],
+      },
+    },
+  },
 ```
 
 You can apply it directly to the tag if needed by changing `styles/global.css`
 
 ```css
 @layer base {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		@apply font-heading;
-	}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
 
-	p {
-		@apply font-body;
-	}
+  p {
+    @apply font-body;
+  }
 }
 ```
 
@@ -487,15 +481,15 @@ Download & put on public directory
 Copy generated link to head on `_document.tsx`
 
 ```diff
-  <Head>
-+   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-+   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-+   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-+   <link rel="manifest" href="/site.webmanifest">
-+   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-+   <meta name="msapplication-TileColor" content="#2d89ef">
-+   <meta name="theme-color" content="#ffffff">
-  <Head/>
+  <head>
++   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
++   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
++   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
++   <link rel="manifest" href="/site.webmanifest" />
++   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
++   <meta name="msapplication-TileColor" content="#2d89ef" />
++   <meta name="theme-color" content="#ffffff" />
+  <head />
 ```
 
 #### 🌟 Animation
@@ -520,15 +514,15 @@ Additional default override. For what? [read this](https://css-tricks.com/custom
 
 ```css
 @layer base {
-	html {
-		-webkit-tap-highlight-color: transparent;
-	}
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 @layer utilities {
-	.pb-safe {
-		padding-bottom: env(safe-area-inset-bottom);
-	}
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 ```
 
@@ -547,10 +541,10 @@ Install sass
 Add script to watch & debug sass
 
 ```diff
-	"scripts": {
-		...
-+		"sass-watch": "sass --watch src/styles:css"
-	},
+"scripts": {
+  ...
++ "sass-watch": "sass --watch src/styles:css"
+},
 ```
 
 Ignore output file
@@ -566,10 +560,8 @@ Add [typescript-plugin-css-modules](https://github.com/mrmckeb/typescript-plugin
 Update `tsconfig`
 
 ```diff
-{
-  "compilerOptions": {
-+   "plugins": [{ "name": "typescript-plugin-css-modules" }]
-  }
+"compilerOptions": {
++ "plugins": [{ "name": "typescript-plugin-css-modules" }]
 }
 ```
 
@@ -577,7 +569,6 @@ Add to vscode config
 
 ```diff
 + "typescript.tsserver.pluginPaths": ["typescript-plugin-css-modules"]
-
 ```
 
 #### 🛣️ Path Aliases
@@ -589,15 +580,15 @@ Add base path & path aliases on `tsconfig.json`
 ```diff
 + "baseUrl": "src",
 + "paths": {
-+ 	"@components/*": ["components/*"],
-+ 	"@api/*": ["pages/api/*"],
-+ 	"@pages/*": ["pages/*"],
-+ 	"@animation/*": ["styles/animation/*"],
-+ 	"@styles/*": ["styles/*"],
-+ 	"@utils/*": ["utils/*"],
-+ 	"@server/*": ["server/*"],
-+ 	"@images/*": ["../public/images/*"]
-},
++   "@components/*": ["components/*"],
++   "@api/*": ["pages/api/*"],
++   "@pages/*": ["pages/*"],
++   "@animation/*": ["styles/animation/*"],
++   "@styles/*": ["styles/*"],
++   "@utils/*": ["utils/*"],
++   "@server/*": ["server/*"],
++   "@images/*": ["../public/images/*"]
++ },
 ```
 
 <br />
