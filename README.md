@@ -3,10 +3,10 @@
 create-t3-app is one of the fastest and easiest way to scaffold fullstack app.<br/>
 create-t3-extended make it even **faster for my case (and maybe yours).** 🏃💨<br/>
 
-⚠️ I make this to reduce my mental overhead whenever I start new app, but **for you paradoxically can add more** <br/>
-⚠️ Make sure you understand create-t3-app first before continue. <br/>
-⚠️ This template use all the t3 stack options (NextAuth, Prisma, Tailwind, TPRC)<br/>
-With these additional tools/ config:
+Made with create-t3-extended:<br/>
+[Transparency app](https://transparency.vercel.app)
+
+Tools & config included:
 
 - 🧹 [Linting & Formatting](#linting--formatting-)
 - ⛓️ [Git hooks](#git-hooks-️)
@@ -18,22 +18,23 @@ With these additional tools/ config:
   - [Bundle size](#-bundle-analyzer)
   - [CSS](#-css)
 - 🚀 [Deployment](#going-live-)
-  - [MySQL on PlanetScale](#-mysql-on-PlanetScale)
+  - [MySQL on PlanetScale](#-mysql-on-planetscale)
   - [Google OAuth](#-google-oauth)
   - [Vercel](#-vercel)
 - 🪛 [Others](#other-helpful-things-)
   - [Fonts](#🅵-fonts)
   - [Favicon](#-favicon)
   - [Animation](#-animation)
-  - [Tailwind](#-tailwind)
   - [SASS](#-sass)
+  - [Tailwind config](#-tailwind-config)
+  - [Path aliases](#-path-aliases)
     <br/>
 
 Interesting Discussion
 
 - 🗡️ [Bleeding edge tech](#️-bleeding-edge-tech)
   - [ORM replacement](#orm-replacement)
-  - [Supercharge DB](#supercharge-database)
+  - [DB replacement](#db-replacement)
 
 This documentation below show _how I modify the original code base_ into what you'll find in this repo & also some _useful tips & trick_.
 
@@ -50,13 +51,27 @@ Hopefully one day I will make a CLI for this. How smooth that will be?</br>
 
 <br />
 
+#### Note
+
+This instruction is using npm and yarn as example, but you can use whatever you like :facepunch:
+
 ## Linting & Formatting 🧹
 
 > better code [^1] without the frustration of config.
 
 ##### Install prettier with the config & plugin for eslint & tailwind
 
-`npm i -D prettier eslint-config-prettier eslint-plugin-prettier prettier-plugin-tailwindcss`
+##### npm
+
+```bash
+npm i -D prettier eslint-config-prettier eslint-plugin-prettier prettier-plugin-tailwindcss
+```
+
+##### yarn
+
+```bash
+yarn add -D prettier eslint-config-prettier eslint-plugin-prettier prettier-plugin-tailwindcss
+```
 
 &emsp; _Confuse about plugin vs config?_ Read [this](https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint) and [this](https://stackoverflow.com/questions/53189200/whats-the-difference-between-plugins-and-extends-in-eslint).
 
@@ -108,8 +123,13 @@ I personally love [unicorn](https://github.com/sindresorhus/eslint-plugin-unicor
 
 ##### Lint & format all of your file
 
-`npx prettier --write .`<br/>
-`npx eslint .`
+```bash
+npx prettier --write .
+```
+
+```bash
+npx eslint .
+```
 
 <br />
 
@@ -122,10 +142,32 @@ I personally love [unicorn](https://github.com/sindresorhus/eslint-plugin-unicor
 &emsp; _Make sure everything is clean before commit it._
 
 Add husky to the project<br/>
-`npx husky-init && npm i`
+
+##### npm
+
+```bash
+npx husky-init && npm i
+```
+
+##### yarn
+
+```bash
+npx husky-init && yarn
+```
 
 Install lint-staged<br/>
-`npm i -D lint-staged`
+
+##### npm
+
+```bash
+npm i -D lint-staged
+```
+
+##### yarn
+
+```bash
+yarn add -D lint-staged
+```
 
 Add config file `.lintstagedrc`
 
@@ -155,7 +197,18 @@ If the log message doesn't show correctly, see this [issue](https://github.com/t
 [1]: https://www.conventionalcommits.org/en/v1.0.0/
 
 Install commitlint<br/>
-`npm install -D @commitlint/cli @commitlint/config-conventional`
+
+##### npm
+
+```bash
+npm install -D @commitlint/cli @commitlint/config-conventional
+```
+
+##### yarn
+
+```bash
+yarn add -D @commitlint/cli @commitlint/config-conventional
+```
 
 Add config file<br/>
 `commitlint.config.cjs`
@@ -167,20 +220,48 @@ module.exports = {
 ```
 
 Add to commit-message hook<br/>
-`npx husky add .husky/commit-msg "npx commitlint --edit \"\$1\""`
+
+```bash
+npx husky add .husky/commit-msg "npx commitlint --edit \"\$1\""
+```
 
 Test by making a commit<br/>
-`git commit -m "foo: bar"`
+
+```bash
+git commit -m "foo: bar"
+```
 
 #### 🤯 Commit emoji
 
 &emsp; _Who don't like emoji??_
 
 Install [gitmoji](https://github.com/carloscuesta/gitmoji)<br/>
-`npm i -g gitmoji-cli`
+
+##### npm
+
+```bash
+npm i -g gitmoji-cli
+```
+
+##### yarn
+
+```bash
+yarn global add gitmoji-cli
+```
 
 Install gitmoji config for commitlint<br/>
-`npm i -D commitlint-config-gitmoji`
+
+##### npm
+
+```bash
+npm i -D commitlint-config-gitmoji
+```
+
+##### yarn
+
+```bash
+yarn add -D commitlint-config-gitmoji
+```
 
 Update commitlint config file
 
@@ -196,13 +277,18 @@ module.exports = {
 ```
 
 Commit using gitmoji<br/>
-`gitmoji -c`
+
+```bash
+gitmoji -c
+```
 
 #### 🏗️ Pre-push
 
 &emsp; _Clean doesn't mean it's not break_
 
-`npx husky add .husky/pre-push "npm run build" `
+```bash
+npx husky add .husky/pre-push "npm run build"
+```
 
 Hosting provider usually charge money if you exceed the build time limit. It can save you some time.
 
@@ -217,7 +303,18 @@ Hosting provider usually charge money if you exceed the build time limit. It can
 &emsp; _Consider package bundle size before add it to your arsenal._
 
 Install bundle analyzer<br/>
-`npm -i -D @next/bundle-analyzer`
+
+##### npm
+
+```bash
+npm -i -D @next/bundle-analyzer
+```
+
+##### yarn
+
+```bash
+yarn add -D @next/bundle-analyzer
+```
 
 Edit next.config.cjs
 
@@ -241,7 +338,18 @@ Add bundle analyzer build script
 ```
 
 Run build with bundle analyzer
-`npm run build-stats`
+
+##### npm
+
+```bash
+npm run build-stats
+```
+
+##### yarn
+
+```bash
+yarn build-stats
+```
 
 You can also check using bundle size using [bundlephobia](https://bundlephobia.com/).
 
@@ -251,7 +359,17 @@ You can also check using bundle size using [bundlephobia](https://bundlephobia.c
 
 Minify CSS using cssnano<br/>
 
-`npm -i -D cssnano`
+##### npm
+
+```bash
+npm -i -D cssnano
+```
+
+##### yarn
+
+```bash
+yarn add -D cssnano
+```
 
 Edit `postcss.config.cjs`
 
@@ -290,7 +408,10 @@ Set database url on `.env`<br/>
 `DATABASE_URL=mysql://user:password@localhost:3306/database_name`
 
 Migrate local database (_better wait after planet scale setup_)<br/>
-`npx prisma migrate dev`
+
+```bash
+npx prisma migrate dev
+```
 
 ##### PlanetScale setup
 
@@ -506,7 +627,7 @@ These css animation collection very useful to make your website stand out
 
 For svg animation use [GSAP](https://github.com/greensock/GSAP). [Sarah Drasner](https://github.com/sdras) and other pro recommend it because it's the most mature and reliable library.
 
-#### 🌬️ Tailwind
+#### 💨 Tailwind config
 
 &emsp; _Small details fixes._
 
@@ -536,7 +657,18 @@ You will mess up very quickly if you don't use variables for handling keyframe. 
 - Interaction & complex SVG > JS library
 
 Install sass
-`npm i -D sass`
+
+##### npm
+
+```bash
+npm i -D sass
+```
+
+##### yarn
+
+```bash
+yarn add -D sass
+```
 
 Add script to watch & debug sass
 
@@ -555,7 +687,18 @@ Ignore output file
 ```
 
 Add [typescript-plugin-css-modules](https://github.com/mrmckeb/typescript-plugin-css-modules#visual-studio-code) for autocompletion<br />
-`npm i -D typescript-plugin-css-modules`
+
+##### npm
+
+```bash
+npm i -D typescript-plugin-css-modules
+```
+
+##### yarn
+
+```bash
+yarn add -D typescript-plugin-css-modules
+```
 
 Update `tsconfig`
 
@@ -571,7 +714,7 @@ Add to vscode config
 + "typescript.tsserver.pluginPaths": ["typescript-plugin-css-modules"]
 ```
 
-#### 🛣️ Path Aliases
+#### 🛣 Path Aliases
 
 &emsp; _Stop playing guess game while importing module_
 
@@ -605,7 +748,7 @@ These is only for exploration & discussion.
 
 [Kysely](https://github.com/koskimas/kysely) provide end-to-end type-safety but also edge-first approach to ORM replacement
 
-#### Supercharge Database
+#### DB Replacement
 
 I have been trying [EdgeDB](https://edgedb.com/) and it's **SUPER COOL!**
 But I think [SurrealDB](https://surrealdb.com/) will be the real one.
