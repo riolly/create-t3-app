@@ -52,7 +52,8 @@ Hopefully one day I will make a CLI for this. How smooth that will be?</br>
 <br />
 
 #### Note
-This instruction is using npm and yarn as example, but you can use whatever you like :facepunch:
+
+This instruction is using npm, but you can use yarn or pnpm :facepunch:
 
 ## Linting & Formatting 🧹
 
@@ -64,12 +65,6 @@ This instruction is using npm and yarn as example, but you can use whatever you 
 
 ```bash
 npm i -D prettier eslint-config-prettier eslint-plugin-prettier prettier-plugin-tailwindcss
-```
-
-##### yarn
-
-```bash
-yarn add -D prettier eslint-config-prettier eslint-plugin-prettier prettier-plugin-tailwindcss
 ```
 
 &emsp; _Confuse about plugin vs config?_ Read [this](https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint) and [this](https://stackoverflow.com/questions/53189200/whats-the-difference-between-plugins-and-extends-in-eslint).
@@ -85,15 +80,15 @@ I use scss on svg animation and realize css is not for this kind of job. You wil
 
 ```js
 module.exports = {
-	trailingComma: 'es5',
-	useTabs: true,
-	tabWidth: 2,
-	semi: false,
-	singleQuote: true,
-	bracketSpacing: false,
-	jsxSingleQuote: true,
-	plugins: [require('prettier-plugin-tailwindcss')],
-	tailwindConfig: './tailwind.config.cjs',
+  trailingComma: 'es5',
+  useTabs: true,
+  tabWidth: 2,
+  semi: false,
+  singleQuote: true,
+  bracketSpacing: false,
+  jsxSingleQuote: true,
+  plugins: [require('prettier-plugin-tailwindcss')],
+  tailwindConfig: './tailwind.config.cjs',
 }
 ```
 
@@ -148,12 +143,6 @@ Add husky to the project<br/>
 npx husky-init && npm i
 ```
 
-##### yarn
-
-```bash
-npx husky-init && yarn
-```
-
 Install lint-staged<br/>
 
 ##### npm
@@ -162,18 +151,12 @@ Install lint-staged<br/>
 npm i -D lint-staged
 ```
 
-##### yarn
-
-```bash
-yarn add -D lint-staged
-```
-
 Add config file `.lintstagedrc`
 
 ```json
 {
-	"*.{js,jsx,cjs,ts,tsx}": "eslint --fix",
-	"*.{md,json}": "prettier --write"
+  "*.{js,jsx,cjs,ts,tsx}": "eslint --fix",
+  "*.{md,json}": "prettier --write"
 }
 ```
 
@@ -203,27 +186,23 @@ Install commitlint<br/>
 npm install -D @commitlint/cli @commitlint/config-conventional
 ```
 
-##### yarn
-
-```bash
-yarn add -D @commitlint/cli @commitlint/config-conventional
-```
-
 Add config file<br/>
 `commitlint.config.cjs`
 
 ```js
 module.exports = {
-	extends: ['@commitlint/config-conventional'],
+  extends: ['@commitlint/config-conventional'],
 }
 ```
 
 Add to commit-message hook<br/>
+
 ```bash
 npx husky add .husky/commit-msg "npx commitlint --edit \"\$1\""
 ```
 
 Test by making a commit<br/>
+
 ```bash
 git commit -m "foo: bar"
 ```
@@ -233,41 +212,36 @@ git commit -m "foo: bar"
 &emsp; _Who don't like emoji??_
 
 Install [gitmoji](https://github.com/carloscuesta/gitmoji)<br/>
+
 ##### npm
+
 ```bash
 npm i -g gitmoji-cli
 ```
 
-##### yarn
-```bash
-yarn global add gitmoji-cli
-```
-
 Install gitmoji config for commitlint<br/>
+
 ##### npm
+
 ```bash
 npm i -D commitlint-config-gitmoji
-```
-
-##### yarn
-```bash
-yarn add -D commitlint-config-gitmoji
 ```
 
 Update commitlint config file
 
 ```diff
 module.exports = {
--	extends: ['@commitlint/config-conventional'],
-+	extends: ['gitmoji'],
-+	rules: {
-+		'header-max-length': [0, 'always', 100],
-+		'scope-case': [0, 'always', 'pascal-case']
-+ 	}
+- extends: ['@commitlint/config-conventional'],
++ extends: ['gitmoji'],
++ rules: {
++   'header-max-length': [0, 'always', 100],
++   'scope-case': [0, 'always', 'pascal-case'],
++ },
 }
 ```
 
 Commit using gitmoji<br/>
+
 ```bash
 gitmoji -c
 ```
@@ -277,7 +251,7 @@ gitmoji -c
 &emsp; _Clean doesn't mean it's not break_
 
 ```bash
-npx husky add .husky/pre-push "npm run build" 
+npx husky add .husky/pre-push "npm run build"
 ```
 
 Hosting provider usually charge money if you exceed the build time limit. It can save you some time.
@@ -293,14 +267,11 @@ Hosting provider usually charge money if you exceed the build time limit. It can
 &emsp; _Consider package bundle size before add it to your arsenal._
 
 Install bundle analyzer<br/>
+
 ##### npm
+
 ```bash
 npm -i -D @next/bundle-analyzer
-```
-
-##### yarn
-```bash
-yarn add -D @next/bundle-analyzer
 ```
 
 Edit next.config.cjs
@@ -309,30 +280,27 @@ Edit next.config.cjs
 + import bundleAnalyzer from '@next/bundle-analyzer'
 
 + const withBundleAnalyzer = bundleAnalyzer({
-+ 	enabled: process.env.ANALYZE === 'true',
++   enabled: process.env.ANALYZE === 'true',
 + })
 
 function defineNextConfig(config) {
--	return config
-+	return withBundleAnalyzer(config)
+- return config
++ return withBundleAnalyzer(config)
 }
 ```
 
 Add bundle analyzer build script
 
 ```diff
-+	"build-stats": "ANALYZE=true npm run build"
++ "build-stats": "ANALYZE=true npm run build"
 ```
 
 Run build with bundle analyzer
+
 ##### npm
+
 ```bash
 npm run build-stats
-```
-
-##### yarn
-```bash
-yarn build-stats
 ```
 
 You can also check using bundle size using [bundlephobia](https://bundlephobia.com/).
@@ -344,24 +312,20 @@ You can also check using bundle size using [bundlephobia](https://bundlephobia.c
 Minify CSS using cssnano<br/>
 
 ##### npm
+
 ```bash
 npm -i -D cssnano
-```
-
-##### yarn
-```bash
-yarn add -D cssnano
 ```
 
 Edit `postcss.config.cjs`
 
 ```diff
 module.exports = {
-	plugins: {
-		tailwindcss: {},
-		autoprefixer: {},
-+		...(process.env.NODE_ENV === 'production' ? {cssnano: {}} : {}),
-	},
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
++   ...(process.env.NODE_ENV === 'production' ? {cssnano: {}} : {}),
+  },
 }
 ```
 
@@ -390,6 +354,7 @@ Set database url on `.env`<br/>
 `DATABASE_URL=mysql://user:password@localhost:3306/database_name`
 
 Migrate local database (_better wait after planet scale setup_)<br/>
+
 ```bash
 npx prisma migrate dev
 ```
@@ -405,15 +370,15 @@ Code mods:<br/>
 `prisma.schema`
 
 ```diff
-  generator client {
-      provider        = "prisma-client-js"
-+     previewFeatures = ["referentialIntegrity"]
-  }
+generator client {
+  provider        = "prisma-client-js"
++ previewFeatures = ["referentialIntegrity"]
+}
 
-  datasource db {
-      url                  = env("DATABASE_URL")
-+     referentialIntegrity = "prisma"
-  }
+datasource db {
+  url                  = env("DATABASE_URL")
++ referentialIntegrity = "prisma"
+}
 ```
 
 Replace your DATABASE_URL on `.env` with url that you get from PlanetScale
@@ -451,23 +416,46 @@ Add google env to `schema.mjs`
 
 ```diff
 export const serverSchema = z.object({
-	...
-+	GOOGLE_CLIENT_ID: z.string(),
-+	GOOGLE_CLIENT_SECRET: z.string(),
+  ...
++ GOOGLE_CLIENT_ID: z.string(),
++ GOOGLE_CLIENT_SECRET: z.string(),
 })
+```
+
+Add Google provider & enable jwt on `[..nextauth].ts`
+
+```diff
++ import GoogleProvider from 'next-auth/providers/google'
+
+  callbacks: {
+    session({session, user}) {
+      ...
+    },
++   async jwt({token}) {
++     return token
++   },
+  },
+
+  providers: [
++   GoogleProvider({
++     clientId: env.GOOGLE_CLIENT_ID,
++     clientSecret: env.GOOGLE_CLIENT_SECRET,
++   }),
+    ...
+  ],
 ```
 
 Enable jwt callback (required)
 
 ```diff
 callbacks: {
-		session({session, user}) {
-			...
-		},
-+		async jwt({token}) {
-+			return token
-+		},
-	},
+  session({session, user}) {
+    ...
+  },
++ async jwt({token}) {
++   return token
++ },
+},
 ```
 
 #### 🔺 Vercel
@@ -480,7 +468,6 @@ Add your live url as next auth url on `.env`
 
 ```diff
 + NEXTAUTH_URL=https://your-domain.vercel.app
-
 ```
 
 <br/>
@@ -497,15 +484,15 @@ Create [custom document](https://nextjs.org/docs/advanced-features/custom-docume
 import {Html, Head, Main, NextScript} from 'next/document'
 
 export default function Document() {
-	return (
-		<Html>
-			<Head />
-			<body>
-				<Main />
-				<NextScript />
-			</body>
-		</Html>
-	)
+  return (
+    <Html>
+      <Head />
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  )
 }
 ```
 
@@ -526,51 +513,46 @@ I recommend pick three font weight and the italic version of each weight.
 Add the font link inside `<Head>` component on `_document.tsx`
 
 ```diff
-  <Head>
-+	<link rel='preconnect' href='https://fonts.googleapis.com' />
-+	<link
-+		rel='preconnect'
-+		href='https://fonts.gstatic.com'
-+		crossOrigin=''
-+	/>
-+	<link
-+		href='https://fonts.googleapis.com/css2?family=Hind:wght@400;600&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap'
-+		rel='stylesheet'
-+	/>
++ <head>
++   <link rel="preconnect" href="https://fonts.googleapis.com" />
++   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
++   <link
++     href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap"
++     rel="stylesheet"
++   />
     ...
-  <Head />
-
++ </head>
 ```
 
 Extend tailwind config with the font family
 
-```diff
-theme: {
-		extend: {
-			fontFamily: {
-+				heading: ['Montserrat', 'sans-serif'],
-+				body: ['Hind', 'sans-serif'],
-			},
-		},
-	},
+```js
+  theme: {
+    extend: {
+      fontFamily: {
++       heading: ['Montserrat', 'sans-serif'],
++       body: ['Hind', 'sans-serif'],
+      },
+    },
+  },
 ```
 
 You can apply it directly to the tag if needed by changing `styles/global.css`
 
 ```css
 @layer base {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		@apply font-heading;
-	}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
 
-	p {
-		@apply font-body;
-	}
+  p {
+    @apply font-body;
+  }
 }
 ```
 
@@ -589,15 +571,15 @@ Download & put on public directory
 Copy generated link to head on `_document.tsx`
 
 ```diff
-  <Head>
-+   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-+   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-+   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-+   <link rel="manifest" href="/site.webmanifest">
-+   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-+   <meta name="msapplication-TileColor" content="#2d89ef">
-+   <meta name="theme-color" content="#ffffff">
-  <Head/>
+  <head>
++   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
++   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
++   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
++   <link rel="manifest" href="/site.webmanifest" />
++   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
++   <meta name="msapplication-TileColor" content="#2d89ef" />
++   <meta name="theme-color" content="#ffffff" />
+  <head />
 ```
 
 #### 🌟 Animation
@@ -622,15 +604,15 @@ Additional default override. For what? [read this](https://css-tricks.com/custom
 
 ```css
 @layer base {
-	html {
-		-webkit-tap-highlight-color: transparent;
-	}
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 @layer utilities {
-	.pb-safe {
-		padding-bottom: env(safe-area-inset-bottom);
-	}
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 ```
 
@@ -644,23 +626,20 @@ You will mess up very quickly if you don't use variables for handling keyframe. 
 - Interaction & complex SVG > JS library
 
 Install sass
+
 ##### npm
+
 ```bash
 npm i -D sass
-```
-
-##### yarn
-```bash
-yarn add -D sass
 ```
 
 Add script to watch & debug sass
 
 ```diff
-	"scripts": {
-		...
-+		"sass-watch": "sass --watch src/styles:css"
-	},
+"scripts": {
+  ...
++ "sass-watch": "sass --watch src/styles:css"
+},
 ```
 
 Ignore output file
@@ -671,23 +650,18 @@ Ignore output file
 ```
 
 Add [typescript-plugin-css-modules](https://github.com/mrmckeb/typescript-plugin-css-modules#visual-studio-code) for autocompletion<br />
+
 ##### npm
+
 ```bash
 npm i -D typescript-plugin-css-modules
-```
-
-##### yarn
-```bash
-yarn add -D typescript-plugin-css-modules
 ```
 
 Update `tsconfig`
 
 ```diff
-{
-  "compilerOptions": {
-+   "plugins": [{ "name": "typescript-plugin-css-modules" }]
-  }
+"compilerOptions": {
++ "plugins": [{ "name": "typescript-plugin-css-modules" }]
 }
 ```
 
@@ -695,7 +669,6 @@ Add to vscode config
 
 ```diff
 + "typescript.tsserver.pluginPaths": ["typescript-plugin-css-modules"]
-
 ```
 
 #### 🛣 Path Aliases
@@ -707,15 +680,15 @@ Add base path & path aliases on `tsconfig.json`
 ```diff
 + "baseUrl": "src",
 + "paths": {
-+ 	"@components/*": ["components/*"],
-+ 	"@api/*": ["pages/api/*"],
-+ 	"@pages/*": ["pages/*"],
-+ 	"@animation/*": ["styles/animation/*"],
-+ 	"@styles/*": ["styles/*"],
-+ 	"@utils/*": ["utils/*"],
-+ 	"@server/*": ["server/*"],
-+ 	"@images/*": ["../public/images/*"]
-},
++   "@components/*": ["components/*"],
++   "@api/*": ["pages/api/*"],
++   "@pages/*": ["pages/*"],
++   "@animation/*": ["styles/animation/*"],
++   "@styles/*": ["styles/*"],
++   "@utils/*": ["utils/*"],
++   "@server/*": ["server/*"],
++   "@images/*": ["../public/images/*"]
++ },
 ```
 
 <br />

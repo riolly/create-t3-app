@@ -3,7 +3,7 @@ import {env} from './src/env/server.mjs'
 import bundleAnalyzer from '@next/bundle-analyzer'
 
 const withBundleAnalyzer = bundleAnalyzer({
-	enabled: process.env.ANALYZE === 'true',
+  enabled: process.env.ANALYZE === 'true',
 })
 
 /**
@@ -15,15 +15,15 @@ const withBundleAnalyzer = bundleAnalyzer({
  * @constraint {{import('next').NextConfig}}
  */
 function defineNextConfig(config) {
-	return withBundleAnalyzer(config)
+  return withBundleAnalyzer(config)
 }
 
 export default defineNextConfig({
-	reactStrictMode: true,
-	swcMinify: true,
-	// Next.js i18n docs: https://nextjs.org/docs/advanced-features/i18n-routing
-	i18n: {
-		locales: ['en'],
-		defaultLocale: 'en',
-	},
+  reactStrictMode: true,
+  swcMinify: true,
+  // Next.js i18n docs: https://nextjs.org/docs/advanced-features/i18n-routing
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+  },
 })
