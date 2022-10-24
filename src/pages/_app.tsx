@@ -6,9 +6,12 @@ import '../styles/globals.scss'
 import type {AppType} from 'next/app'
 import type {Session} from 'next-auth'
 
-const MyApp: AppType<{session: Session | null}> = ({Component, pageProps}) => {
+const MyApp: AppType<{session: Session | null}> = ({
+	Component,
+	pageProps: {session, ...pageProps},
+}) => {
 	return (
-		<SessionProvider session={pageProps.session}>
+		<SessionProvider session={session}>
 			<Component {...pageProps} />
 		</SessionProvider>
 	)
