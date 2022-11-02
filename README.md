@@ -383,6 +383,9 @@ datasource db {
 
 Replace your DATABASE_URL on `.env` with url that you get from PlanetScale
 
+Add SSL certificate to database url to enable secure connection. For SSL certificate location, see this [docs](https://planetscale.com/docs/concepts/secure-connections#red-hat-fedora-cent-os-mageia-vercel-netlify).
+`?ssl={"rejectUnauthorized":true}&sslcert=/etc/pki/tls/certs/ca-bundle.crt`
+
 #### 🔎 Google OAuth
 
 &emsp; _Who doesn't have google account?_
