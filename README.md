@@ -493,7 +493,7 @@ import {Html, Head, Main, NextScript} from 'next/document'
 export default function Document() {
   return (
     <Html>
-      <Head />
+      <Head></Head>
       <body>
         <Main />
         <NextScript />
@@ -520,15 +520,14 @@ I recommend pick three font weight and the italic version of each weight.
 Add the font link inside `<Head>` component on `_document.tsx`
 
 ```diff
-+ <head>
+  <Head>
 +   <link rel="preconnect" href="https://fonts.googleapis.com" />
 +   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 +   <link
 +     href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap"
 +     rel="stylesheet"
 +   />
-    ...
-+ </head>
+  </Head>
 ```
 
 Extend tailwind config with the font family
@@ -578,7 +577,8 @@ Download & put on public directory
 Copy generated link to head on `_document.tsx`
 
 ```diff
-  <head>
+  <Head>
+  ...
 +   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 +   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 +   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -586,7 +586,7 @@ Copy generated link to head on `_document.tsx`
 +   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
 +   <meta name="msapplication-TileColor" content="#2d89ef" />
 +   <meta name="theme-color" content="#ffffff" />
-  <head />
+  <Head />
 ```
 
 #### 🌟 Animation
