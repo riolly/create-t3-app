@@ -1,12 +1,33 @@
+<p align="center">
+  <img src="/public/mstile-150x150.png" alt="Riolly T3 App Logo" />
+</p>
+
 # [create-T3-app](https://github.com/t3-oss/create-t3-app) with extra tools/config out of the box
 
-create-t3-app is one of the fastest and easiest way to scaffold fullstack app.<br/>
-create-t3-extended make it even **faster for my case (and maybe yours).** 🏃💨<br/>
+create-t3-app is one of the fastest and easiest way to scaffold fullstack app. This version make it even **faster for my case (and maybe yours).** 🏃💨<br/>
 
-Made with create-t3-extended:<br/>
-[Transparency app](https://transparency.vercel.app)
+Prerequisite installed on system:
 
-Tools & config included:
+1. [mysql](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
+2. [pnpm](https://pnpm.io/installation)
+
+Prerequisite global package:
+
+1. [gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli)
+
+Step to follow:
+
+1. `pnpm install`
+2. Rename .env.example to .env and replace it value
+   2.1 [Local database](#local-mysql-server)
+   2.2 [Google Oauth](#-google-oauth)
+3. Customize [font](#🅵-fonts) & [favicon](#-favicon)
+4. Deploy
+   4.1 [Planetscale](https://planetscale.com/docs/tutorials/prisma-quickstart)
+   4.2 [Vercel](#-vercel)
+5. Done! 🎉 🚀
+
+More detail about how we modify the code:
 
 - 🧹 [Linting & Formatting](#linting--formatting-)
 - ⛓️ [Git hooks](#git-hooks-️)
@@ -36,6 +57,8 @@ Interesting Discussion
   - [ORM replacement](#orm-replacement)
   - [DB replacement](#db-replacement)
 
+<!--
+
 This documentation below show _how I modify the original code base_ into what you'll find in this repo & also some _useful tips & trick_.
 
 - _If your case same with mine/ you agree with all my opinion_, **just use it & start**.
@@ -53,7 +76,8 @@ Hopefully one day I will make a CLI for this. How smooth that will be?</br>
 
 #### Note
 
-This instruction is using npm, but you can use yarn or pnpm :facepunch:
+Use pnpm please! [Here is why](https://pnpm.io/feature-comparison). :facepunch:
+ -->
 
 ## Linting & Formatting 🧹
 
@@ -61,10 +85,8 @@ This instruction is using npm, but you can use yarn or pnpm :facepunch:
 
 ##### Install prettier with the config & plugin for eslint & tailwind
 
-##### npm
-
 ```bash
-npm i -D prettier eslint-config-prettier eslint-plugin-prettier prettier-plugin-tailwindcss
+pnpm i -D prettier eslint-config-prettier eslint-plugin-prettier prettier-plugin-tailwindcss
 ```
 
 &emsp; _Confuse about plugin vs config?_ Read [this](https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint) and [this](https://stackoverflow.com/questions/53189200/whats-the-difference-between-plugins-and-extends-in-eslint).
@@ -118,11 +140,11 @@ I personally love [unicorn](https://github.com/sindresorhus/eslint-plugin-unicor
 ##### Lint & format all of your file
 
 ```bash
-npx prettier --write .
+pnpm prettier --write .
 ```
 
 ```bash
-npx eslint .
+pnpm eslint .
 ```
 
 <br />
@@ -137,18 +159,14 @@ npx eslint .
 
 Add husky to the project<br/>
 
-##### npm
-
 ```bash
-npx husky-init && npm i
+pnpm dlx husky-init && pnpm i
 ```
 
 Install lint-staged<br/>
 
-##### npm
-
 ```bash
-npm i -D lint-staged
+pnpm i -D lint-staged
 ```
 
 Add config file `.lintstagedrc`
@@ -167,7 +185,7 @@ Run lint-staged on pre-commit hook
 . "$(dirname -- "$0")/_/husky.sh"
 
 - npm test
-+ npx lint-staged
++ pnpm lint-staged
 ```
 
 If the log message doesn't show correctly, see this [issue](https://github.com/typicode/husky/issues/968#issuecomment-1176848345)
@@ -180,10 +198,8 @@ If the log message doesn't show correctly, see this [issue](https://github.com/t
 
 Install commitlint<br/>
 
-##### npm
-
 ```bash
-npm install -D @commitlint/cli @commitlint/config-conventional
+pnpm install -D @commitlint/cli @commitlint/config-conventional
 ```
 
 Add config file<br/>
@@ -198,7 +214,7 @@ module.exports = {
 Add to commit-message hook<br/>
 
 ```bash
-npx husky add .husky/commit-msg "npx commitlint --edit \"\$1\""
+pnpm dlx husky add .husky/commit-msg "pnpm commitlint --edit \"\$1\""
 ```
 
 Test by making a commit<br/>
@@ -213,18 +229,14 @@ git commit -m "foo: bar"
 
 Install [gitmoji](https://github.com/carloscuesta/gitmoji)<br/>
 
-##### npm
-
 ```bash
-npm i -g gitmoji-cli
+pnpm i -g gitmoji-cli
 ```
 
 Install gitmoji config for commitlint<br/>
 
-##### npm
-
 ```bash
-npm i -D commitlint-config-gitmoji
+pnpm i -D commitlint-config-gitmoji
 ```
 
 Update commitlint config file
@@ -251,7 +263,7 @@ gitmoji -c
 &emsp; _Clean doesn't mean it's not break_
 
 ```bash
-npx husky add .husky/pre-push "npm run build"
+pnpm dlx husky add .husky/pre-push "pnpm build"
 ```
 
 Hosting provider usually charge money if you exceed the build time limit. It can save you some time.
@@ -268,10 +280,8 @@ Hosting provider usually charge money if you exceed the build time limit. It can
 
 Install bundle analyzer<br/>
 
-##### npm
-
 ```bash
-npm -i -D @next/bundle-analyzer
+pnpm -i -D @next/bundle-analyzer
 ```
 
 Edit next.config.cjs
@@ -292,15 +302,13 @@ function defineNextConfig(config) {
 Add bundle analyzer build script
 
 ```diff
-+ "build-stats": "ANALYZE=true npm run build"
++ "build-stats": "ANALYZE=true pnpm build"
 ```
 
 Run build with bundle analyzer
 
-##### npm
-
 ```bash
-npm run build-stats
+pnpm build-stats
 ```
 
 You can also check using bundle size using [bundlephobia](https://bundlephobia.com/).
@@ -311,10 +319,8 @@ You can also check using bundle size using [bundlephobia](https://bundlephobia.c
 
 Minify CSS using cssnano<br/>
 
-##### npm
-
 ```bash
-npm -i -D cssnano
+pnpm -i -D cssnano
 ```
 
 Edit `postcss.config.cjs`
@@ -346,8 +352,6 @@ Read this for the [differences](https://www.prisma.io/docs/concepts/components/p
 
 ##### Local MySQL server
 
-Go to prisma.schema and there will be instruction about what to do.
-
 For MySQL installation follow [guide](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04).
 
 Set database url on `.env`<br/>
@@ -356,7 +360,7 @@ Set database url on `.env`<br/>
 Migrate local database (_better wait after planet scale setup_)<br/>
 
 ```bash
-npx prisma migrate dev
+pnpm prisma migrate dev
 ```
 
 ##### PlanetScale setup
@@ -382,6 +386,9 @@ datasource db {
 ```
 
 Replace your DATABASE_URL on `.env` with url that you get from PlanetScale
+
+Add SSL certificate to database url to enable secure connection. For SSL certificate location, see this [docs](https://planetscale.com/docs/concepts/secure-connections#red-hat-fedora-cent-os-mageia-vercel-netlify).
+`?ssl={"rejectUnauthorized":true}&sslcert=/etc/pki/tls/certs/ca-bundle.crt`
 
 #### 🔎 Google OAuth
 
@@ -462,7 +469,7 @@ callbacks: {
 
 &emsp; _Except you like to complicate things_
 
-Just add the env & deploy
+Add the env for production & deploy
 
 Add your live url as next auth url on `.env`
 
@@ -486,7 +493,7 @@ import {Html, Head, Main, NextScript} from 'next/document'
 export default function Document() {
   return (
     <Html>
-      <Head />
+      <Head></Head>
       <body>
         <Main />
         <NextScript />
@@ -513,15 +520,14 @@ I recommend pick three font weight and the italic version of each weight.
 Add the font link inside `<Head>` component on `_document.tsx`
 
 ```diff
-+ <head>
+  <Head>
 +   <link rel="preconnect" href="https://fonts.googleapis.com" />
 +   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 +   <link
 +     href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600&family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap"
 +     rel="stylesheet"
 +   />
-    ...
-+ </head>
+  </Head>
 ```
 
 Extend tailwind config with the font family
@@ -571,7 +577,8 @@ Download & put on public directory
 Copy generated link to head on `_document.tsx`
 
 ```diff
-  <head>
+  <Head>
+  ...
 +   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 +   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 +   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -579,7 +586,7 @@ Copy generated link to head on `_document.tsx`
 +   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
 +   <meta name="msapplication-TileColor" content="#2d89ef" />
 +   <meta name="theme-color" content="#ffffff" />
-  <head />
+  <Head />
 ```
 
 #### 🌟 Animation
@@ -627,10 +634,8 @@ You will mess up very quickly if you don't use variables for handling keyframe. 
 
 Install sass
 
-##### npm
-
 ```bash
-npm i -D sass
+pnpm i -D sass
 ```
 
 Add script to watch & debug sass
@@ -651,10 +656,8 @@ Ignore output file
 
 Add [typescript-plugin-css-modules](https://github.com/mrmckeb/typescript-plugin-css-modules#visual-studio-code) for autocompletion<br />
 
-##### npm
-
 ```bash
-npm i -D typescript-plugin-css-modules
+pnpm i -D typescript-plugin-css-modules
 ```
 
 Update `tsconfig`

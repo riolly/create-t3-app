@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import {signIn, signOut, useSession} from 'next-auth/react'
 
 import {trpc} from '@utils/trpc'
@@ -17,9 +18,28 @@ const Home: NextPage = () => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main className='container mx-auto flex min-h-screen flex-col items-center justify-center p-4'>
-				<h1 className='text-5xl font-extrabold leading-normal text-gray-700 md:text-[5rem]'>
-					Create <span className='text-purple-300'>T3</span> App
-				</h1>
+				<Link href='https://github.com/riolly/create-t3-app/' target='_blank'>
+					<h1 className='text-5xl font-extrabold leading-normal text-gray-700 md:text-[5rem]'>
+						Create{' '}
+						<Image
+							className='-mx-2 inline align-text-bottom'
+							width={112}
+							height={112}
+							src='/mstile-144x144.png'
+							alt='T3'
+						/>{' '}
+						App
+					</h1>
+				</Link>
+				<p className='mb-4 -mt-2 text-xl'>
+					Riolly&apos;s opinionated version of&nbsp;
+					<Link
+						href='https://create.t3.gg/'
+						className='font-highlight underline decoration-blue-300 underline-offset-4'
+					>
+						create-t3-app
+					</Link>
+				</p>
 				<p className='text-2xl text-gray-700'>This stack uses:</p>
 				<div className='mt-3 grid gap-3 pt-3 text-center md:grid-cols-3 lg:w-2/3'>
 					<TechnologyCard
@@ -80,7 +100,7 @@ const AuthShowcase: React.FC = () => {
 				<p className='text-2xl text-blue-500'>{secretMessage}</p>
 			)}
 			<button
-				className='rounded-md border border-black bg-violet-50 px-4 py-2 text-xl shadow-lg hover:bg-violet-100'
+				className='rounded-md border border-black bg-sky-50 px-4 py-2 text-xl shadow-lg hover:bg-sky-100'
 				onClick={sessionData ? () => signOut() : () => signIn()}
 			>
 				{sessionData ? 'Sign out' : 'Sign in'}
@@ -105,7 +125,7 @@ const TechnologyCard = ({
 			<h2 className='text-lg text-gray-700'>{name}</h2>
 			<p className='text-sm text-gray-600'>{description}</p>
 			<Link
-				className='m-auto mt-3 w-fit text-sm text-violet-500 underline decoration-dotted underline-offset-2'
+				className='m-auto mt-3 w-fit text-sm text-sky-500 underline decoration-dotted underline-offset-2'
 				href={documentation}
 				target='_blank'
 				rel='noreferrer'
