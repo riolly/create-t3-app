@@ -9,7 +9,7 @@
     "lint": "next lint",
     "start": "next start",
     "prepare": "husky install",
-    "build-stats": "ANALYZE=true npm run build",
+    "build-stats": "ANALYZE=true pnpm build",
     "sass-watch": "sass --watch src/styles:css"
   },
   "dependencies": {

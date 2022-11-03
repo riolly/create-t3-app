@@ -53,7 +53,7 @@ Hopefully one day I will make a CLI for this. How smooth that will be?</br>
 
 #### Note
 
-This instruction is using npm, but you can use yarn or pnpm :facepunch:
+Use pnpm please! [Here is why](https://pnpm.io/feature-comparison). :facepunch:
 
 ## Linting & Formatting 🧹
 
@@ -61,10 +61,8 @@ This instruction is using npm, but you can use yarn or pnpm :facepunch:
 
 ##### Install prettier with the config & plugin for eslint & tailwind
 
-##### npm
-
 ```bash
-npm i -D prettier eslint-config-prettier eslint-plugin-prettier prettier-plugin-tailwindcss
+pnpm i -D prettier eslint-config-prettier eslint-plugin-prettier prettier-plugin-tailwindcss
 ```
 
 &emsp; _Confuse about plugin vs config?_ Read [this](https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint) and [this](https://stackoverflow.com/questions/53189200/whats-the-difference-between-plugins-and-extends-in-eslint).
@@ -118,11 +116,11 @@ I personally love [unicorn](https://github.com/sindresorhus/eslint-plugin-unicor
 ##### Lint & format all of your file
 
 ```bash
-npx prettier --write .
+pnpm prettier --write .
 ```
 
 ```bash
-npx eslint .
+pnpm eslint .
 ```
 
 <br />
@@ -137,18 +135,14 @@ npx eslint .
 
 Add husky to the project<br/>
 
-##### npm
-
 ```bash
-npx husky-init && npm i
+pnpm dlx husky-init && pnpm i
 ```
 
 Install lint-staged<br/>
 
-##### npm
-
 ```bash
-npm i -D lint-staged
+pnpm i -D lint-staged
 ```
 
 Add config file `.lintstagedrc`
@@ -167,7 +161,7 @@ Run lint-staged on pre-commit hook
 . "$(dirname -- "$0")/_/husky.sh"
 
 - npm test
-+ npx lint-staged
++ pnpm lint-staged
 ```
 
 If the log message doesn't show correctly, see this [issue](https://github.com/typicode/husky/issues/968#issuecomment-1176848345)
@@ -180,10 +174,8 @@ If the log message doesn't show correctly, see this [issue](https://github.com/t
 
 Install commitlint<br/>
 
-##### npm
-
 ```bash
-npm install -D @commitlint/cli @commitlint/config-conventional
+pnpm install -D @commitlint/cli @commitlint/config-conventional
 ```
 
 Add config file<br/>
@@ -198,7 +190,7 @@ module.exports = {
 Add to commit-message hook<br/>
 
 ```bash
-npx husky add .husky/commit-msg "npx commitlint --edit \"\$1\""
+pnpm dlx husky add .husky/commit-msg "pnpm commitlint --edit \"\$1\""
 ```
 
 Test by making a commit<br/>
@@ -213,18 +205,14 @@ git commit -m "foo: bar"
 
 Install [gitmoji](https://github.com/carloscuesta/gitmoji)<br/>
 
-##### npm
-
 ```bash
-npm i -g gitmoji-cli
+pnpm i -g gitmoji-cli
 ```
 
 Install gitmoji config for commitlint<br/>
 
-##### npm
-
 ```bash
-npm i -D commitlint-config-gitmoji
+pnpm i -D commitlint-config-gitmoji
 ```
 
 Update commitlint config file
@@ -251,7 +239,7 @@ gitmoji -c
 &emsp; _Clean doesn't mean it's not break_
 
 ```bash
-npx husky add .husky/pre-push "npm run build"
+pnpm dlx husky add .husky/pre-push "pnpm build"
 ```
 
 Hosting provider usually charge money if you exceed the build time limit. It can save you some time.
@@ -268,10 +256,8 @@ Hosting provider usually charge money if you exceed the build time limit. It can
 
 Install bundle analyzer<br/>
 
-##### npm
-
 ```bash
-npm -i -D @next/bundle-analyzer
+pnpm -i -D @next/bundle-analyzer
 ```
 
 Edit next.config.cjs
@@ -292,15 +278,13 @@ function defineNextConfig(config) {
 Add bundle analyzer build script
 
 ```diff
-+ "build-stats": "ANALYZE=true npm run build"
++ "build-stats": "ANALYZE=true pnpm build"
 ```
 
 Run build with bundle analyzer
 
-##### npm
-
 ```bash
-npm run build-stats
+pnpm build-stats
 ```
 
 You can also check using bundle size using [bundlephobia](https://bundlephobia.com/).
@@ -311,10 +295,8 @@ You can also check using bundle size using [bundlephobia](https://bundlephobia.c
 
 Minify CSS using cssnano<br/>
 
-##### npm
-
 ```bash
-npm -i -D cssnano
+pnpm -i -D cssnano
 ```
 
 Edit `postcss.config.cjs`
@@ -356,7 +338,7 @@ Set database url on `.env`<br/>
 Migrate local database (_better wait after planet scale setup_)<br/>
 
 ```bash
-npx prisma migrate dev
+pnpm prisma migrate dev
 ```
 
 ##### PlanetScale setup
@@ -630,10 +612,8 @@ You will mess up very quickly if you don't use variables for handling keyframe. 
 
 Install sass
 
-##### npm
-
 ```bash
-npm i -D sass
+pnpm i -D sass
 ```
 
 Add script to watch & debug sass
@@ -654,10 +634,8 @@ Ignore output file
 
 Add [typescript-plugin-css-modules](https://github.com/mrmckeb/typescript-plugin-css-modules#visual-studio-code) for autocompletion<br />
 
-##### npm
-
 ```bash
-npm i -D typescript-plugin-css-modules
+pnpm i -D typescript-plugin-css-modules
 ```
 
 Update `tsconfig`
