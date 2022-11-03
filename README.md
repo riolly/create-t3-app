@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="/public/mstile-150x150.png" alt="Riolly T3 App Logo" />
+</p>
+
 # [create-T3-app](https://github.com/t3-oss/create-t3-app) with extra tools/config out of the box
 
 create-t3-app is one of the fastest and easiest way to scaffold fullstack app. This version make it even **faster for my case (and maybe yours).** 🏃💨<br/>
