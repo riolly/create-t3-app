@@ -18,18 +18,20 @@ const Home: NextPage = () => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main className='container mx-auto flex min-h-screen flex-col items-center justify-center p-4'>
-				<h1 className='text-5xl font-extrabold leading-normal text-gray-700 md:text-[5rem]'>
-					Create{' '}
-					<Image
-						className='-mx-2 inline align-text-bottom'
-						width={112}
-						height={112}
-						src='/mstile-144x144.png'
-						alt='T3'
-					/>{' '}
-					App
-				</h1>
-				<p className='mb-4 -mt-3 text-xl'>
+				<Link href='https://github.com/riolly/create-t3-app/' target='_blank'>
+					<h1 className='text-5xl font-extrabold leading-normal text-gray-700 md:text-[5rem]'>
+						Create{' '}
+						<Image
+							className='-mx-2 inline align-text-bottom'
+							width={112}
+							height={112}
+							src='/mstile-144x144.png'
+							alt='T3'
+						/>{' '}
+						App
+					</h1>
+				</Link>
+				<p className='mb-4 -mt-2 text-xl'>
 					Riolly&apos;s opinionated version of&nbsp;
 					<Link
 						href='https://create.t3.gg/'
