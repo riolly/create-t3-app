@@ -1,12 +1,29 @@
 # [create-T3-app](https://github.com/t3-oss/create-t3-app) with extra tools/config out of the box
 
-create-t3-app is one of the fastest and easiest way to scaffold fullstack app.<br/>
-create-t3-extended make it even **faster for my case (and maybe yours).** 🏃💨<br/>
+create-t3-app is one of the fastest and easiest way to scaffold fullstack app. This version make it even **faster for my case (and maybe yours).** 🏃💨<br/>
 
-Made with create-t3-extended:<br/>
-[Transparency app](https://transparency.vercel.app)
+Prerequisite installed on system:
 
-Tools & config included:
+1. [mysql](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
+2. [pnpm](https://pnpm.io/installation)
+
+Prerequisite global package:
+
+1. [gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli)
+
+Step to follow:
+
+1. `pnpm install`
+2. Rename .env.example to .env and replace it value
+   2.1 [Local database](#local-mysql-server)
+   2.2 [Google Oauth](#-google-oauth)
+3. Customize [font](#🅵-fonts) & [favicon](#-favicon)
+4. Deploy
+   4.1 [Planetscale](https://planetscale.com/docs/tutorials/prisma-quickstart)
+   4.2 [Vercel](#-vercel)
+5. Done! 🎉 🚀
+
+More detail about how we modify the code:
 
 - 🧹 [Linting & Formatting](#linting--formatting-)
 - ⛓️ [Git hooks](#git-hooks-️)
@@ -36,6 +53,8 @@ Interesting Discussion
   - [ORM replacement](#orm-replacement)
   - [DB replacement](#db-replacement)
 
+<!--
+
 This documentation below show _how I modify the original code base_ into what you'll find in this repo & also some _useful tips & trick_.
 
 - _If your case same with mine/ you agree with all my opinion_, **just use it & start**.
@@ -54,6 +73,7 @@ Hopefully one day I will make a CLI for this. How smooth that will be?</br>
 #### Note
 
 Use pnpm please! [Here is why](https://pnpm.io/feature-comparison). :facepunch:
+ -->
 
 ## Linting & Formatting 🧹
 
@@ -328,8 +348,6 @@ Read this for the [differences](https://www.prisma.io/docs/concepts/components/p
 
 ##### Local MySQL server
 
-Go to prisma.schema and there will be instruction about what to do.
-
 For MySQL installation follow [guide](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04).
 
 Set database url on `.env`<br/>
@@ -447,7 +465,7 @@ callbacks: {
 
 &emsp; _Except you like to complicate things_
 
-Just add the env & deploy
+Add the env for production & deploy
 
 Add your live url as next auth url on `.env`
 
