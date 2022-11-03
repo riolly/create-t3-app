@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import {signIn, signOut, useSession} from 'next-auth/react'
 
 import {trpc} from '@utils/trpc'
@@ -18,7 +19,15 @@ const Home: NextPage = () => {
 			</Head>
 			<main className='container mx-auto flex min-h-screen flex-col items-center justify-center p-4'>
 				<h1 className='text-5xl font-extrabold leading-normal text-gray-700 md:text-[5rem]'>
-					Create <span className='text-blue-500'>T3</span> App
+					Create{' '}
+					<Image
+						className='-mx-2 inline align-text-bottom'
+						width={112}
+						height={112}
+						src='/mstile-144x144.png'
+						alt='T3'
+					/>{' '}
+					App
 				</h1>
 				<p className='mb-4 -mt-3 text-xl'>
 					Riolly&apos;s opinionated version of&nbsp;
