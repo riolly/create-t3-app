@@ -2,7 +2,13 @@
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        heading: ['Autour One', 'cursive'],
+        body: ['Abel', 'sans-serif'],
+        highlight: ['Architects Daughter', 'cursive'],
+      },
+    },
   },
   plugins: [],
 }
