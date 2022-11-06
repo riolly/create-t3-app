@@ -31,8 +31,12 @@ export const trpc = createTRPCNext<AppRouter>({
 })
 
 /**
- * Inference helpers
- * @example type HelloOutput = RouterTypes['example']['hello']['output']
+ * Inference helper for inputs
+ * @example type HelloInput = RouterInputs['example']['hello']
  **/
-export type RouterOutputsTypes = inferRouterOutputs<AppRouter>
-export type RouterInputsTypes = inferRouterInputs<AppRouter>
+export type RouterInputs = inferRouterInputs<AppRouter>
+/**
+ * Inference helper for outputs
+ * @example type HelloOutput = RouterOutputs['example']['hello']
+ **/
+export type RouterOutputs = inferRouterOutputs<AppRouter>
