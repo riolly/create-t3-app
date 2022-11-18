@@ -36,7 +36,7 @@ const Home: NextPage = () => {
 						Riolly&apos;s opinionated version of&nbsp;
 						<Link
 							href='https://create.t3.gg/'
-							className='font-highlight underline decoration-blue-300 underline-offset-4'
+							className='font-highlight underline decoration-blue-300 underline-offset-4 transition-all hover:tracking-wider'
 						>
 							create-t3-app
 						</Link>
