@@ -713,15 +713,12 @@ These is only for exploration & discussion.
 
 #### DB Replacement
 
-I have been trying [EdgeDB](https://edgedb.com/) and it's **SUPER COOL!**
-But I think [SurrealDB](https://surrealdb.com/) will be the real one.
+Legacy databaase is awesome. PlanetScale is super awesome.
 
 <br/>
 
 ## Next to cover
 
 - vscode extension
-- nextjs
-- svg
 
 [^1]: more readable & manageable also prevent error
