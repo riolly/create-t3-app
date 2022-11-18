@@ -126,11 +126,11 @@ const TechnologyCard: React.FC<TechnologyCardProps> = ({
 }) => {
 	return (
 		<Link
-			className='flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 pl-6 pt-6 text-gray-200 hover:bg-white/20'
+			className='flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 pl-6 pt-6  hover:bg-white/20'
 			href={documentation}
 		>
-			<h3 className='text-2xl font-bold text-gray-50'>{name} →</h3>
-			<p className='text-lg'>{description}</p>
+			<h3 className='text-2xl font-bold text-gray-50'>{name} 🡵</h3>
+			<p className='text-lg text-gray-200'>{description}</p>
 		</Link>
 	)
 }
