@@ -37,6 +37,7 @@ const Home: NextPage = () => {
 						<Link
 							href='https://create.t3.gg/'
 							className='font-highlight underline decoration-blue-300 underline-offset-4 transition-all hover:tracking-wider'
+							target='_blank'
 						>
 							create-t3-app
 						</Link>
@@ -128,6 +129,7 @@ const TechnologyCard: React.FC<TechnologyCardProps> = ({
 		<Link
 			className='flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 pl-6 pt-6  hover:bg-white/20'
 			href={documentation}
+			target='_blank'
 		>
 			<h3 className='text-2xl font-bold text-gray-50'>{name} 🡵</h3>
 			<p className='text-lg text-gray-200'>{description}</p>
