@@ -18,21 +18,21 @@ const Home: NextPage = () => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main className='flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-gray-800 to-blue-800'>
-				<div className='container flex flex-col items-center justify-center gap-12 px-4 py-16 '>
+				<div className='container flex flex-col items-center justify-center gap-8 px-4 py-12 md:gap-12 md:py-16 '>
 					<Link href='https://github.com/riolly/create-t3-app/' target='_blank'>
-						<h1 className='text-5xl font-extrabold leading-normal text-gray-50 md:text-[5rem]'>
-							Create{' '}
+						<h1 className='text-4xl font-extrabold leading-normal text-gray-50 md:text-[5rem]'>
+							Create&nbsp;
 							<Image
-								className='-mx-2 inline align-text-bottom'
-								width={112}
-								height={112}
+								width={144}
+								height={144}
+								className='-mr-4 inline w-12 align-text-bottom md:-mr-8 md:w-24 md:align-text-top'
 								src='/mstile-144x144.png'
 								alt='T3'
-							/>{' '}
-							App
+							/>
+							&nbsp; App
 						</h1>
 					</Link>
-					<p className='-mt-8 text-2xl text-gray-200'>
+					<p className='-mt-6 text-xl text-gray-200 md:-mt-12 md:text-2xl'>
 						Riolly&apos;s opinionated version of&nbsp;
 						<Link
 							href='https://create.t3.gg/'
@@ -127,12 +127,12 @@ const TechnologyCard: React.FC<TechnologyCardProps> = ({
 }) => {
 	return (
 		<Link
-			className='flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 pl-6 pt-6  hover:bg-white/20'
+			className='flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 pl-6 pt-6 hover:bg-white/20'
 			href={documentation}
 			target='_blank'
 		>
-			<h3 className='text-2xl font-bold text-gray-50'>{name} 🡵</h3>
-			<p className='text-lg text-gray-200'>{description}</p>
+			<h3 className='text-xl font-bold text-gray-50 md:text-2xl '>{name} 🡵</h3>
+			<p className='text-gray-200 md:text-lg'>{description}</p>
 		</Link>
 	)
 }
