@@ -153,9 +153,9 @@ pnpm eslint .
 
 > better [^1] and more exciting git experience
 
-#### 🧹 Pre-commit
+#### 🧹 ~~Pre-commit~~
 
-&emsp; _Make sure everything is clean before commit it._
+&emsp; _You don't need it. But if your need it, add it by yourself._ [Here is why](https://www.youtube.com/watch?v=RAelLqnnOp0).
 
 Add husky to the project<br/>
 
