@@ -22,11 +22,9 @@ Step to follow:
 3. Rename .env.example to .env and replace it value
    3.1 [Local database](#local-mysql-server)
    3.2 [Google Oauth](#-google-oauth)
-4. Customize [font](#🅵-fonts) & [favicon](#-favicon)
-5. Deploy
+4. Deploy 🎉 🚀
    4.1 [Planetscale](https://planetscale.com/docs/tutorials/prisma-quickstart)
    4.2 [Vercel](#-vercel)
-6. Done! 🎉 🚀
 
 More detail about how we modify the code:
 
@@ -152,7 +150,7 @@ pnpm eslint .
 
 ## Git hooks ⛓️
 
-> ~~better [^1] and more exciting git experience~~. It can slow you down and it is. [Here is why](https://www.youtube.com/watch?v=RAelLqnnOp0).
+> ~~better [^1] and more exciting git experience~~. It can slow you down and it is. [Here is why](https://www.youtube.com/watch?v=RAelLqnnOp0). Move pre-commit & pre-push on CI (vercel status check)
 
 #### 🧹 ~~Pre-commit~~
 
@@ -259,9 +257,9 @@ Commit using gitmoji<br/>
 gitmoji -c
 ```
 
-#### 🏗️ Pre-push
+#### 🏗️ ~~Pre-push~~
 
-~~&emsp; _Clean doesn't mean it's not break_~~ Set it on CI (vercel status check)
+&emsp; _Clean doesn't mean it's not break_
 
 ```bash
 pnpm dlx husky add .husky/pre-push "pnpm build"
