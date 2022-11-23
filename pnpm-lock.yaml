@@ -3,6 +3,8 @@ lockfileVersion: 5.4
 specifiers:
   '@commitlint/cli': ^17.3.0
   '@commitlint/config-conventional': ^17.3.0
+  '@hookform/error-message': ^2.0.1
+  '@hookform/resolvers': ^2.9.10
   '@next-auth/prisma-adapter': ^1.0.5
   '@next/bundle-analyzer': ^13.0.4
   '@prisma/client': ^4.6.1
@@ -33,6 +35,7 @@ specifiers:
   prisma: ^4.6.1
   react: 18.2.0
   react-dom: 18.2.0
+  react-hook-form: ^7.39.5
   sass: ^1.56.1
   superjson: 1.11.0
   tailwindcss: ^3.2.4
@@ -41,6 +44,8 @@ specifiers:
   zod: ^3.19.1
 
 dependencies:
+  '@hookform/error-message': 2.0.1_aj3bhefp47i77oprn6nc6dps3i
+  '@hookform/resolvers': 2.9.10_react-hook-form@7.39.5
   '@next-auth/prisma-adapter': 1.0.5_o53gfpk3vz2btjrokqfjjwwn3m
   '@prisma/client': 4.6.1_prisma@4.6.1
   '@tanstack/react-query': 4.16.1_biqbaboplfbrettd7655fr4n2y
@@ -52,6 +57,7 @@ dependencies:
   next-auth: 4.17.0_dcors23iqtgxrhrwosgnnc4xji
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-hook-form: 7.39.5_react@18.2.0
   superjson: 1.11.0
   zod: 3.19.1
 
@@ -448,6 +454,26 @@ packages:
   /@gitmoji/parser-opts/1.3.1:
     resolution: {integrity: sha512-5r0EocA6sWoAm6eQYIkKRLtSZpSu6sPVSQmGkjgbV60AE0FBX16usHbrF6phKoy2sY9mGeCYvENNiCq6xUsntQ==}
     dev: true
+
+  /@hookform/error-message/2.0.1_aj3bhefp47i77oprn6nc6dps3i:
+    resolution: {integrity: sha512-U410sAr92xgxT1idlu9WWOVjndxLdgPUHEB8Schr27C9eh7/xUnITWpCMF93s+lGiG++D4JnbSnrb5A21AdSNg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      react-hook-form: ^7.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-hook-form: 7.39.5_react@18.2.0
+    dev: false
+
+  /@hookform/resolvers/2.9.10_react-hook-form@7.39.5:
+    resolution: {integrity: sha512-JIL1DgJIlH9yuxcNGtyhsWX/PgNltz+5Gr6+8SX9fhXc/hPbEIk6wPI82nhgvp3uUb6ZfAM5mqg/x7KR7NAb+A==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.39.5_react@18.2.0
+    dev: false
 
   /@humanwhocodes/config-array/0.11.7:
     resolution: {integrity: sha512-kBbPWzN8oVMLb0hOUYXhmxggL/1cJE6ydvjDIGi9EnAGUyA7cLVKQg+d/Dsm+KZwx2czGHrCmMVLiyg8s5JPKw==}
@@ -4096,6 +4122,15 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-hook-form/7.39.5_react@18.2.0:
+    resolution: {integrity: sha512-OE0HKyz5IPc6svN2wd+e+evidZrw4O4WZWAWYzQVZuHi+hYnHFSLnxOq0ddjbdmaLIsLHut/ab7j72y2QT3+KA==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-is/16.13.1:
