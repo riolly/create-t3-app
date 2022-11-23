@@ -18,23 +18,22 @@ Prerequisite global package:
 Step to follow:
 
 1. `pnpm install`
-2. Rename .env.example to .env and replace it value<br/>
-   2.1 [Local database](#local-mysql-server)<br/>
-   2.2 [Google Oauth](#-google-oauth)
-3. Customize [font](#🅵-fonts) & [favicon](#-favicon)
-4. Deploy<br/>
-   4.1 [Planetscale](https://planetscale.com/docs/tutorials/prisma-quickstart)<br/>
+2. Rename next-env to next-env.d.ts
+3. Rename .env.example to .env and replace it value
+   3.1 [Local database](#local-mysql-server)
+   3.2 [Google Oauth](#-google-oauth)
+4. Deploy 🎉 🚀
+   4.1 [Planetscale](https://planetscale.com/docs/tutorials/prisma-quickstart)
    4.2 [Vercel](#-vercel)
-5. Done! 🎉 🚀
 
 More detail about how we modify the code:
 
 - 🧹 [Linting & Formatting](#linting--formatting-)
 - ⛓️ [Git hooks](#git-hooks-️)
-  - [Pre-commit](#-pre-commit)
+  - ~~[Pre-commit](#-pre-commit)~~
   - [Commit message](#-commit-message)
   - [Commit emoji](#-commit-emoji)
-  - [Pre-push](#️-pre-push)
+  - ~~[Pre-push](#️-pre-push)~~
 - 📈 [Optimization](#optimization-)
   - [Bundle size](#-bundle-analyzer)
   - [CSS](#-css)
@@ -151,11 +150,11 @@ pnpm eslint .
 
 ## Git hooks ⛓️
 
-> better [^1] and more exciting git experience
+> ~~better [^1] and more exciting git experience~~. It can slow you down and it is. [Here is why](https://www.youtube.com/watch?v=RAelLqnnOp0). Move pre-commit & pre-push on CI (vercel status check)
 
-#### 🧹 Pre-commit
+#### 🧹 ~~Pre-commit~~
 
-&emsp; _Make sure everything is clean before commit it._
+&emsp; _You don't need it. But if your need it, add it by yourself._
 
 Add husky to the project<br/>
 
@@ -258,7 +257,7 @@ Commit using gitmoji<br/>
 gitmoji -c
 ```
 
-#### 🏗️ Pre-push
+#### 🏗️ ~~Pre-push~~
 
 &emsp; _Clean doesn't mean it's not break_
 
@@ -472,7 +471,7 @@ callbacks: {
 
 &emsp; _Except you like to complicate things_
 
-Add the env for production & deploy
+Add the env for each environment & deploy
 
 Add your live url as next auth url on `.env`
 
