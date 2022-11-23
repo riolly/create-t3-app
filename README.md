@@ -18,7 +18,7 @@ Prerequisite global package:
 Step to follow:
 
 1. `pnpm install`
-2. Rename next-env-example.d.ts to next-env.d.ts
+2. Rename next-env to next-env.d.ts
 3. Rename .env.example to .env and replace it value
    3.1 [Local database](#local-mysql-server)
    3.2 [Google Oauth](#-google-oauth)
