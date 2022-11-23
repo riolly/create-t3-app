@@ -31,10 +31,10 @@ More detail about how we modify the code:
 
 - 🧹 [Linting & Formatting](#linting--formatting-)
 - ⛓️ [Git hooks](#git-hooks-️)
-  - [Pre-commit](#-pre-commit)
+  - ~~[Pre-commit](#-pre-commit)~~
   - [Commit message](#-commit-message)
   - [Commit emoji](#-commit-emoji)
-  - [Pre-push](#️-pre-push)
+  - ~~[Pre-push](#️-pre-push)~~
 - 📈 [Optimization](#optimization-)
   - [Bundle size](#-bundle-analyzer)
   - [CSS](#-css)
@@ -151,11 +151,11 @@ pnpm eslint .
 
 ## Git hooks ⛓️
 
-> better [^1] and more exciting git experience
+> ~~better [^1] and more exciting git experience~~. It can slow you down and it is. [Here is why](https://www.youtube.com/watch?v=RAelLqnnOp0).
 
 #### 🧹 ~~Pre-commit~~
 
-&emsp; _You don't need it. But if your need it, add it by yourself._ [Here is why](https://www.youtube.com/watch?v=RAelLqnnOp0).
+&emsp; _You don't need it. But if your need it, add it by yourself._
 
 Add husky to the project<br/>
 
@@ -260,7 +260,7 @@ gitmoji -c
 
 #### 🏗️ Pre-push
 
-&emsp; _Clean doesn't mean it's not break_
+~~&emsp; _Clean doesn't mean it's not break_~~ Set it on CI (vercel status check)
 
 ```bash
 pnpm dlx husky add .husky/pre-push "pnpm build"
