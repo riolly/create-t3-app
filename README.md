@@ -18,12 +18,12 @@ Prerequisite global package:
 Step to follow:
 
 1. `pnpm install`
-2. Rename .env.example to .env and replace it value
-   2.1 [Local database](#local-mysql-server)
+2. Rename .env.example to .env and replace it value<br/>
+   2.1 [Local database](#local-mysql-server)<br/>
    2.2 [Google Oauth](#-google-oauth)
 3. Customize [font](#🅵-fonts) & [favicon](#-favicon)
-4. Deploy
-   4.1 [Planetscale](https://planetscale.com/docs/tutorials/prisma-quickstart)
+4. Deploy<br/>
+   4.1 [Planetscale](https://planetscale.com/docs/tutorials/prisma-quickstart)<br/>
    4.2 [Vercel](#-vercel)
 5. Done! 🎉 🚀
 
