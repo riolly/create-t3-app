@@ -396,15 +396,27 @@ To establish [secure connection](https://planetscale.com/docs/tutorials/connect-
 
 &emsp; _Who doesn't have google account?_
 
-Setup credential at [google console](https://console.cloud.google.com).<br/>
-Create new project > configure consent screen<br />
-Go to "APIs & Services" > "Credentials" > "Create credentials" > "OAuth Client ID" <br/>
+##### [Create new project](https://console.cloud.google.com/projectcreate)
+
+##### [Configure OAuth consent screen](https://console.cloud.google.com/apis/credentials/consent)
+
+Your vercel preview branch domain will not be allowed to access the OAuth consent screen except your add it.
+So my workaround would be to create a development branch, add a new domain (for preview) on vercel and attach it to the development branch.
+On the authorized domains section, add both of your domains.
+
+```
+your-domain.vercel.app
+your-preview-domain.vercel.app
+```
+
+##### [Create credentials](https://console.cloud.google.com/apis/credentials)
 
 Add "Authorized JavaScript origins" with base url
 
 ```
 http://localhost:3000
 https://your-domain.vercel.app
+https://your-preview-domain.vercel.app
 ```
 
 Add "Authorized redirect URIs" with callback url
@@ -412,6 +424,8 @@ Add "Authorized redirect URIs" with callback url
 ```
 http://localhost:3000/api/auth/callback/google
 https://your-domain.vercel.app/api/auth/callback/google
+https://your-preview-domain.vercel.app/api/auth/callback/google
+
 ```
 
 Add google credential to `.env`
