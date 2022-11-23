@@ -473,7 +473,7 @@ callbacks: {
 
 &emsp; _Except you like to complicate things_
 
-Add the env for production & deploy
+Add the env for each environment & deploy
 
 Add your live url as next auth url on `.env`
 
