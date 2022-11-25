@@ -21,6 +21,7 @@ specifiers:
   autoprefixer: ^10.4.13
   commitlint-config-gitmoji: ^2.2.6
   cssnano: ^5.1.14
+  cuid: ^2.1.8
   dayjs: ^1.11.6
   eslint: 8.28.0
   eslint-config-next: 13.0.4
@@ -55,6 +56,7 @@ dependencies:
   '@trpc/next': 10.1.0_7n7i73g2poaa6aq6zuvf6lnqpa
   '@trpc/react-query': 10.1.0_6w4fappfojusde7o3jmgvyxwlu
   '@trpc/server': 10.1.0
+  cuid: 2.1.8
   dayjs: 1.11.6
   next: 13.0.4_m5sxuueb27gk6ddc5gums6vtgq
   next-auth: 4.17.0_dcors23iqtgxrhrwosgnnc4xji
@@ -1659,6 +1661,10 @@ packages:
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: true
+
+  /cuid/2.1.8:
+    resolution: {integrity: sha512-xiEMER6E7TlTPnDxrM4eRiC6TRgjNX9xzEZ5U/Se2YJKr7Mq4pJn/2XEHjl3STcSh96GmkHPcBXLES8M29wyyg==}
+    dev: false
 
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
