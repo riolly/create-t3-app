@@ -38,8 +38,9 @@ module.exports = {
           normal: colors.violet[400],
           darker: colors.violet[600],
           darkest: colors.violet[700],
+        },
+      },
     },
   },
-    },
-  },
+  plugins: [require('@tailwindcss/line-clamp')],
 }
