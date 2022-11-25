@@ -13,6 +13,8 @@
     "sass-watch": "sass --watch src/styles:css"
   },
   "dependencies": {
+    "@formkit/auto-animate": "1.0.0-beta.5",
+    "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^2.9.10",
@@ -38,6 +40,7 @@
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
     "@next/bundle-analyzer": "^13.0.4",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
