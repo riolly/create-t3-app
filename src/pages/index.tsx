@@ -91,24 +91,26 @@ const Home: NextPage = () => {
 export default Home
 
 const AuthShowcase: React.FC = () => {
-	const {data: sessionData} = useSession()
+	const session = useSession()
 
-	const {data: secretMessage} = trpc.auth.getSecretMessage.useQuery(
+	const {data: secretMessage, isSuccess} = trpc.auth.getSecretMessage.useQuery(
 		undefined, // no input
-		{enabled: sessionData?.user !== undefined}
+		{enabled: session.data?.user !== undefined}
 	)
 
 	return (
 		<div className='flex flex-col items-center justify-center gap-4'>
 			<p className='text-center text-2xl text-gray-200'>
-				{sessionData && <span>Logged in as {sessionData?.user?.name}</span>}
-				{secretMessage && <span> - {secretMessage}</span>}
+				{session.status === 'authenticated' && (
+					<span>Logged in as {session.data?.user?.name}</span>
+				)}
+				{isSuccess && <span> - {secretMessage}</span>}
 			</p>
 			<button
 				className='rounded-full bg-white/10 px-10 py-3 font-semibold text-gray-200 no-underline transition hover:bg-white/20'
-				onClick={sessionData ? () => signOut() : () => signIn()}
+				onClick={session.data ? () => signOut() : () => signIn()}
 			>
-				{sessionData ? 'Sign out' : 'Sign in'}
+				{session.data ? 'Sign out' : 'Sign in'}
 			</button>
 		</div>
 	)
