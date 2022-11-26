@@ -22,3 +22,19 @@ export async function revalidate(
 	})
 }
 
+export const slugify = (title: string, id?: string) => {
+	let slug = title
+		.normalize('NFD') // split an accented letter in the base letter and the accent
+		.replace(/[\u0300-\u036F]/g, '') // remove all previously split accents
+		.toLowerCase()
+		.trim()
+		.replace(/[^\d a-z]/g, '') // remove all chars not letters, numbers and spaces (to be replaced)
+		.replace(/\s+/g, '-') // separator
+
+	if (id) slug += `_${id}`
+	return slug
+}
+
+export const extractIdFromSlug = (str: string) => {
+	return str.slice(str.lastIndexOf('_') + 1)
+}
