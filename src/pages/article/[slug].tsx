@@ -126,7 +126,7 @@ const ArticleDetailsPage = ({
 				/>
 				<meta
 					property='og:image'
-					content={`${process.env.NEXT_PUBLIC_URL}/mstile-70x70.png`}
+					content={`${process.env.VERCEL_URL}/mstile-70x70.png`}
 				/>
 			</Head>
 			<main
