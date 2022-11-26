@@ -19,11 +19,11 @@ module.exports = {
         },
         light: {
           primary: colors.slate[200],
-          secondary: colors.slate[400],
+          secondary: colors.slate[300],
         },
         dark: {
           primary: colors.slate[800],
-          secondary: colors.slate[600],
+          secondary: colors.slate[700],
         },
         primary: {
           lightest: colors.indigo[100],

@@ -85,7 +85,7 @@ const Card = ({slug, title, content, createdAt, author}: ArticleType) => {
 				</div>
 			</div>
 
-			<p className='h-full overflow-hidden pt-2 text-right leading-5 text-light-primary'>
+			<p className='h-full overflow-hidden pt-2 text-right leading-5 text-light-secondary'>
 				{content}
 			</p>
 		</Link>
