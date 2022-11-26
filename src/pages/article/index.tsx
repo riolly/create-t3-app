@@ -78,14 +78,14 @@ const Card = ({slug, title, content, createdAt, author}: ArticleType) => {
 			</div>
 			<div className='mt-1 h-fit w-full text-xl text-light-primary'>
 				{author.image && <div className='float-left mr-2 h-12 w-12' />}
-				<h2 className=''>{title}</h2>
+				<h2 className='text-justify'>{title}</h2>
 				<div className='mt-0.5 flex h-1 items-center gap-2'>
 					<div className='h-[1px] w-auto grow rounded-full bg-secondary-normal/50' />
 					<Triangle className='' />
 				</div>
 			</div>
 
-			<p className='h-full overflow-hidden pt-2 text-right leading-5 text-light-secondary'>
+			<p className='h-full overflow-hidden pt-4 text-right indent-12 leading-5 text-light-secondary'>
 				{content}
 			</p>
 		</Link>
