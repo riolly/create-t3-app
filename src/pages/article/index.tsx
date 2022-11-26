@@ -45,7 +45,7 @@ export default function ArticlePage() {
 				/>
 				<meta
 					property='og:image'
-					content={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/article.jpg`}
+					content={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/articles.jpg`}
 				/>
 			</Head>
 			<main className='container mx-auto max-w-screen-lg space-y-8 px-8 pb-10 md:pb-8'>
