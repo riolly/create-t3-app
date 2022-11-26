@@ -120,7 +120,14 @@ const ArticleDetailsPage = ({
 			<Head>
 				<title>{article.title} | Create T3 App</title>
 				<meta name='description' content={article.content} />
-				<meta property='og:image' content='/mstile-70x70.png' />
+				<meta
+					property='og:title'
+					content={`${article.title} | Create T3 App`}
+				/>
+				<meta
+					property='og:image'
+					content={`${process.env.NEXT_PUBLIC_URL}/mstile-70x70.png`}
+				/>
 			</Head>
 			<main
 				className='container mx-auto max-w-screen-md space-y-8 px-6'
