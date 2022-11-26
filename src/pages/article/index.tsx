@@ -42,7 +42,7 @@ export default function ArticlePage() {
 				<meta property='og:image' content='public/mstile-70x70.png' />
 				<meta property='og:title' content='Articles | Create T3 App Example' />
 			</Head>
-			<div className='container mx-auto max-w-screen-lg space-y-8 px-8 pb-10 md:pb-8'>
+			<main className='container mx-auto max-w-screen-lg space-y-8 px-8 pb-10 md:pb-8'>
 				<h1 className='text-3xl text-gray-50'>Articles</h1>
 				<QueryWrapper {...articlesQuery}>
 					{(articles) => (
@@ -54,7 +54,7 @@ export default function ArticlePage() {
 					)}
 				</QueryWrapper>
 				<CreateArticleForm refetchList={articlesQuery.refetch} />
-			</div>
+			</main>
 		</>
 	)
 }

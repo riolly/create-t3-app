@@ -122,7 +122,7 @@ const ArticleDetailsPage = ({
 				<meta name='description' content={article.content} />
 				<meta property='og:image' content='/mstile-70x70.png' />
 			</Head>
-			<div
+			<main
 				className='container mx-auto max-w-screen-md space-y-8 px-6'
 				ref={toggleAnimation}
 			>
@@ -177,7 +177,7 @@ const ArticleDetailsPage = ({
 						)}
 					</>
 				)}
-			</div>
+			</main>
 		</>
 	)
 }
