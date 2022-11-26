@@ -1,4 +1,4 @@
-import {decrypt, type encrypt} from '@server/utils/crypto'
+import {decrypt, type encrypt} from 'server/utils/crypto'
 import {NextApiRequest, NextApiResponse} from 'next'
 
 export default async function handler(

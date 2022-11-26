@@ -1,7 +1,7 @@
 import {SessionProvider} from 'next-auth/react'
-import {trpc} from '@utils/trpc'
+import {trpc} from 'utils/trpc'
 
-import '@styles/globals.scss'
+import 'styles/globals.scss'
 
 import {type AppProps, type AppType} from 'next/app'
 import {type Session} from 'next-auth'

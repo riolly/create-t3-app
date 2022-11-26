@@ -6,22 +6,22 @@ import {
 	type InferGetStaticPropsType,
 } from 'next'
 
-import {prisma} from '@server/db/client'
-import {trpc} from '@utils/trpc'
-import {extractIdFromSlug} from '@server/utils/route'
+import {prisma} from 'server/db/client'
+import {trpc} from 'utils/trpc'
+import {extractIdFromSlug} from 'server/utils/route'
 
-import Button from '@components/button'
+import Button from 'components/button'
 
 import {
 	UpdateArticleSchema,
 	type UpdateArticleType,
 	type ArticleType,
-} from '@type/article'
+} from 'types/article'
 
 import {useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
-import FormWrapper from '@components/form-wrapper'
-import TextAreaInput from '@components/textarea-input'
+import FormWrapper from 'components/form-wrapper'
+import TextAreaInput from 'components/textarea-input'
 import {useAutoAnimate} from '@formkit/auto-animate/react'
 import NavbarTopLayout from 'layouts/navbar-top'
 import {

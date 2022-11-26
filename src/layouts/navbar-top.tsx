@@ -4,8 +4,8 @@ import Link from 'next/link'
 import {useSession, signIn, signOut} from 'next-auth/react'
 import Image from 'next/image'
 
-import Button from '@components/button'
-import MenuButton from '@components/menu-button'
+import Button from 'components/button'
+import MenuButton from 'components/menu-button'
 
 import {
 	HomeIcon as HomeOutlineIcon,
@@ -20,7 +20,7 @@ import {
 	UserIcon,
 } from '@heroicons/react/24/solid'
 
-import {capFirstChar} from '@utils/literal'
+import {capFirstChar} from 'utils/literal'
 
 export default function NavbarTopLayout({
 	children,

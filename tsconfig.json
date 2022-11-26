@@ -2,15 +2,7 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@layouts/": ["layouts/*"],
       "@api/*": ["pages/api/*"],
-      "@pages/*": ["pages/*"],
-      "@env/*": ["env/*"],
-      "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"],
-      "@type/*": ["types/*"],
-      "@server/*": ["server/*"],
       "@images/*": ["../public/images/*"]
     },
     "plugins": [{"name": "typescript-plugin-css-modules"}],

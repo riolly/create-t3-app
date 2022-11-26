@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import {useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 
-import {trpc} from '@utils/trpc'
+import {trpc} from 'utils/trpc'
 import NavbarTopLayout from 'layouts/navbar-top'
 import FormWrapper from 'components/form-wrapper'
 import TextAreaInput from 'components/textarea-input'
@@ -15,7 +15,7 @@ import {
 	CreateArticleSchema,
 	type CreateArticleType,
 	type ArticleType,
-} from '@type/article'
+} from 'types/article'
 import QueryWrapper from 'components/query-wrapper'
 
 export default function ArticlePage() {

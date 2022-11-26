@@ -1,5 +1,5 @@
 import {createCipheriv, createDecipheriv, randomBytes} from 'node:crypto'
-import {env} from '@env/server.mjs'
+import {env} from 'env/server.mjs'
 
 const encrypt = (text: string) => {
 	const iv = randomBytes(16)

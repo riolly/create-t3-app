@@ -1,8 +1,8 @@
 import {useFormContext} from 'react-hook-form'
 import {ErrorMessage} from '@hookform/error-message'
-import {capFirstChar} from '@utils/literal'
+import {capFirstChar} from 'utils/literal'
 
-import {type CreateArticleType} from '@type/article'
+import {type CreateArticleType} from 'types/article'
 type InputProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 	name: keyof CreateArticleType
 }

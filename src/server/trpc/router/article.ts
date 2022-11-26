@@ -2,7 +2,7 @@ import cuid from 'cuid'
 import {z} from 'zod'
 
 import {router, publicProcedure, protectedProcedure} from '../trpc'
-import {revalidate, slugify} from '@server/utils/route'
+import {revalidate, slugify} from 'server/utils/route'
 
 import {CreateArticleSchema, UpdateArticleSchema} from 'types/article'
 import {TRPCError} from '@trpc/server'

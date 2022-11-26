@@ -3,13 +3,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {signIn, signOut, useSession} from 'next-auth/react'
 
-import {trpc} from '@utils/trpc'
+import {trpc} from 'utils/trpc'
 
 import {type NextPage} from 'next'
 
 const Home: NextPage = () => {
-	const hello = trpc.example.hello.useQuery({text: 'from tRPC'})
-
 	return (
 		<>
 			<Head>
@@ -78,7 +76,7 @@ const Home: NextPage = () => {
 
 					<div className='flex flex-col items-center gap-2'>
 						<p className='text-2xl text-gray-200'>
-							{hello.data ? hello.data.greeting : 'Loading tRPC query...'}
+							{/* {hello.data ? hello.data.greeting : 'Loading tRPC query...'} */}
 						</p>
 						<AuthShowcase />
 					</div>
@@ -107,7 +105,7 @@ const AuthShowcase: React.FC = () => {
 				{isSuccess && <span> - {secretMessage}</span>}
 			</p>
 			<button
-				className='rounded-full bg-white/10 px-10 py-3 font-semibold text-gray-200 no-underline transition hover:bg-white/20'
+				className='rounded-full bg-light-primary/10 px-10 py-3 font-semibold text-gray-200 no-underline transition hover:bg-light-primary/20'
 				onClick={session.data ? () => signOut() : () => signIn()}
 			>
 				{session.data ? 'Sign out' : 'Sign in'}
@@ -129,7 +127,7 @@ const TechnologyCard: React.FC<TechnologyCardProps> = ({
 }) => {
 	return (
 		<Link
-			className='flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 pl-6 pt-6 hover:bg-white/20'
+			className='flex max-w-xs flex-col gap-4 rounded-xl bg-light-primary/10 p-4 pl-6 pt-6 hover:bg-light-primary/20'
 			href={documentation}
 			target='_blank'
 		>
