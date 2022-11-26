@@ -1,6 +1,7 @@
 import React from 'react'
-import {useRouter} from 'next/router'
+import Head from 'next/head'
 import dynamic from 'next/dynamic'
+import {useRouter} from 'next/router'
 import {useSession} from 'next-auth/react'
 import {
 	type GetStaticPaths,
@@ -115,54 +116,68 @@ const ArticleDetailsPage = ({
 	const {status} = useSession()
 
 	return (
-		<div
-			className='container mx-auto max-w-screen-md space-y-8 px-6'
-			ref={toggleAnimation}
-		>
-			{isEdit ? (
-				<FormWrapper
-					methods={methods}
-					onValidSubmit={onValidSubmit}
-					className='col-span-full flex flex-col gap-4 md:col-span-2'
-				>
-					<TextAreaInput name='title' />
-					<TextAreaInput name='content' rows={10} />
+		<>
+			<Head>
+				<title>{article.title} | Create T3 App</title>
+				<meta name='description' content={article.content} />
+			</Head>
+			<div
+				className='container mx-auto max-w-screen-md space-y-8 px-6'
+				ref={toggleAnimation}
+			>
+				{isEdit ? (
+					<FormWrapper
+						methods={methods}
+						onValidSubmit={onValidSubmit}
+						className='col-span-full flex flex-col gap-4 md:col-span-2'
+					>
+						<TextAreaInput name='title' />
+						<TextAreaInput name='content' rows={10} />
 
-					<div className='flex gap-4'>
-						<Button type='submit' variant='filled' isLoading={isUpdateLoading}>
-							Update <PencilSquareIcon className='h-4 w-4' />
-						</Button>
-						<Button variant='outlined' type='reset' onClick={() => onCancel()}>
-							Cancel <XMarkIcon className='h-4 w-4' />
-						</Button>
-					</div>
-				</FormWrapper>
-			) : (
-				<>
-					<h1 className='text-3xl text-gray-50'>{article.title}</h1>
-					<p className='text-lg text-light-primary'>{article.content}</p>
-					{status === 'authenticated' && (
 						<div className='flex gap-4'>
 							<Button
+								type='submit'
 								variant='filled'
-								isLoading={isDeleteLoading}
-								onClick={() => deleteArticle(defaultValues)}
-								className='bg-bg-light text-red-500 hover:bg-red-500 hover:text-light-primary'
-							>
-								Delete <TrashIcon className='h-4 w-4' />
-							</Button>
-							<Button
-								variant='filled'
-								onClick={() => setIsEdit(true)}
-								className='bg-bg-light text-violet-500 hover:bg-violet-500 hover:text-gray-200'
+								isLoading={isUpdateLoading}
 							>
 								Update <PencilSquareIcon className='h-4 w-4' />
 							</Button>
+							<Button
+								variant='outlined'
+								type='reset'
+								onClick={() => onCancel()}
+							>
+								Cancel <XMarkIcon className='h-4 w-4' />
+							</Button>
 						</div>
-					)}
-				</>
-			)}
-		</div>
+					</FormWrapper>
+				) : (
+					<>
+						<h1 className='text-3xl text-gray-50'>{article.title}</h1>
+						<p className='text-lg text-light-primary'>{article.content}</p>
+						{status === 'authenticated' && (
+							<div className='flex gap-4'>
+								<Button
+									variant='filled'
+									isLoading={isDeleteLoading}
+									onClick={() => deleteArticle(defaultValues)}
+									className='bg-bg-light text-red-500 hover:bg-red-500 hover:text-light-primary'
+								>
+									Delete <TrashIcon className='h-4 w-4' />
+								</Button>
+								<Button
+									variant='filled'
+									onClick={() => setIsEdit(true)}
+									className='bg-bg-light text-violet-500 hover:bg-violet-500 hover:text-gray-200'
+								>
+									Update <PencilSquareIcon className='h-4 w-4' />
+								</Button>
+							</div>
+						)}
+					</>
+				)}
+			</div>
+		</>
 	)
 }
 
