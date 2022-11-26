@@ -24,7 +24,7 @@ const HomePage: NextPageWithLayout = () => {
 							src='/mstile-144x144.png'
 							alt='T3'
 						/>
-						&nbsp; App
+						&nbsp;App
 					</h1>
 				</Link>
 
