@@ -7,7 +7,7 @@ type InputProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 	name: keyof CreateArticleType
 }
 
-const TextAreaInput = ({name, ...props}: InputProps) => {
+const TextAreaInput = ({name, className, ...props}: InputProps) => {
 	const {
 		register,
 		formState: {errors},
@@ -19,7 +19,7 @@ const TextAreaInput = ({name, ...props}: InputProps) => {
 			</label>
 			<textarea
 				id={name}
-				className='rounded bg-bg-light/80 py-2 px-4 '
+				className={`rounded bg-bg-light/80 py-2 px-4 ${className}`}
 				{...register(name)}
 				{...props}
 			/>
