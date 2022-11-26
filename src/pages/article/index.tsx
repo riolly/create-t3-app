@@ -31,7 +31,7 @@ export default function ArticlePage() {
 	})
 
 	return (
-		<div className='container mx-auto max-w-screen-lg space-y-8 px-8'>
+		<div className='container mx-auto max-w-screen-lg space-y-8 px-8 pb-10 md:pb-8'>
 			<h1 className='text-3xl text-gray-50'>Articles</h1>
 			<QueryWrapper {...articlesQuery}>
 				{(articles) => (
