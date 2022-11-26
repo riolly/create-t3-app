@@ -56,7 +56,7 @@ function Children({
 	)
 }
 
-export default function Button({
+export function Button({
 	children,
 	className,
 	variant,

@@ -1,5 +1,6 @@
 import React from 'react'
 import {useRouter} from 'next/router'
+import dynamic from 'next/dynamic'
 import {
 	type GetStaticPaths,
 	type GetStaticProps,
@@ -10,8 +11,6 @@ import {prisma} from 'server/db/client'
 import {trpc} from 'utils/trpc'
 import {extractIdFromSlug} from 'server/utils/route'
 
-import Button from 'components/button'
-
 import {
 	UpdateArticleSchema,
 	type UpdateArticleType,
@@ -20,8 +19,6 @@ import {
 
 import {useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
-import FormWrapper from 'components/form-wrapper'
-import TextAreaInput from 'components/textarea-input'
 import {useAutoAnimate} from '@formkit/auto-animate/react'
 import NavbarTopLayout from 'layouts/navbar-top'
 import {
@@ -29,6 +26,15 @@ import {
 	TrashIcon,
 	XMarkIcon,
 } from '@heroicons/react/24/outline'
+
+import {type FormWrapperProps} from 'components/form-wrapper'
+const FormWrapper = dynamic<FormWrapperProps<UpdateArticleType>>(
+	() => import('components/form-wrapper')
+)
+const TextAreaInput = dynamic(() => import('components/textarea-input'))
+const Button = dynamic(() =>
+	import('components/button').then((buttons) => buttons.Button)
+)
 
 export const getStaticProps: GetStaticProps<{
 	article: ArticleType

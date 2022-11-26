@@ -1,14 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import dayjs from 'dayjs'
+import dynamic from 'next/dynamic'
 import {useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 
 import {trpc} from 'utils/trpc'
 import NavbarTopLayout from 'layouts/navbar-top'
-import FormWrapper from 'components/form-wrapper'
-import TextAreaInput from 'components/textarea-input'
-import Button from 'components/button'
 import {PencilIcon} from '@heroicons/react/24/solid'
 
 import {
@@ -17,6 +15,15 @@ import {
 	type ArticleType,
 } from 'types/article'
 import QueryWrapper from 'components/query-wrapper'
+
+import {type FormWrapperProps} from 'components/form-wrapper'
+const FormWrapper = dynamic<FormWrapperProps<CreateArticleType>>(
+	() => import('components/form-wrapper')
+)
+const TextAreaInput = dynamic(() => import('components/textarea-input'))
+const Button = dynamic(() =>
+	import('components/button').then((buttons) => buttons.Button)
+)
 
 export default function ArticlePage() {
 	const articlesQuery = trpc.article.fetchAll.useQuery(undefined, {

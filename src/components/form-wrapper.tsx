@@ -6,7 +6,7 @@ import {
 	type FieldValues,
 } from 'react-hook-form'
 
-type Props<T extends FieldValues> = {
+export type FormWrapperProps<T extends FieldValues> = {
 	className: string
 	children: React.ReactNode
 	methods: UseFormReturn<T>
@@ -23,12 +23,15 @@ const FormWrapper = <T extends FieldValues>({
 	className,
 	methods,
 	onValidSubmit,
-	onInvalidSubmit = defaultOnInValidSubmit,
-}: Props<T>) => {
+	onInvalidSubmit,
+}: FormWrapperProps<T>) => {
 	return (
 		<FormProvider {...methods}>
 			<form
-				onSubmit={methods.handleSubmit(onValidSubmit, onInvalidSubmit)}
+				onSubmit={methods.handleSubmit(
+					onValidSubmit,
+					onInvalidSubmit ?? defaultOnInValidSubmit
+				)}
 				className={className}
 			>
 				{children}
