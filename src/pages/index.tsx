@@ -1,9 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import {signIn, signOut, useSession} from 'next-auth/react'
-
-import {trpc} from 'utils/trpc'
 
 import {type NextPage} from 'next'
 
@@ -43,42 +40,35 @@ const Home: NextPage = () => {
 
 					<div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8'>
 						<TechnologyCard
-							name='NextJS'
-							description='The React framework for production'
-							documentation='https://nextjs.org/'
+							name='React Hook Form'
+							description='When you go full-stack, for sure you need a form before sending data to the server. RHF is best in class.'
+							documentation='https://react-hook-form.com/'
 						/>
 						<TechnologyCard
-							name='TypeScript'
-							description='Strongly typed programming language that builds on JavaScript, giving you better tooling at any scale'
-							documentation='https://www.typescriptlang.org/'
+							name='Headless UI'
+							description='Need more complex components like dropdown, modal, popover? HeadlessUI by tailwindlabs is accessible by default.'
+							documentation='https://headlessui.com/'
 						/>
 						<TechnologyCard
-							name='TailwindCSS'
-							description='Rapidly build modern websites without ever leaving your HTML'
-							documentation='https://tailwindcss.com/'
+							name='Hero Icons'
+							description="Who doesn't use icons nowadays? Also created by tailwindlabs, it has enough collection just to get started."
+							documentation='https://heroicons.com/'
 						/>
 						<TechnologyCard
-							name='tRPC'
-							description='End-to-end typesafe APIs made easy'
-							documentation='https://trpc.io/'
+							name='Auto Animate'
+							description='Better UX for free just by installing this library and one line of code. No more janky websites.'
+							documentation='https://auto-animate.formkit.com/'
 						/>
 						<TechnologyCard
-							name='Next-Auth'
-							description='Authentication for Next.js'
-							documentation='https://next-auth.js.org/'
+							name='Dayjs'
+							description='You will deal with date sooner or later. day.js is the most versatile yet lightweight.'
+							documentation='https://day.js.org/'
 						/>
 						<TechnologyCard
-							name='Prisma'
-							description='Build data-driven JavaScript & TypeScript apps in less time'
-							documentation='https://www.prisma.io/docs/'
+							name='And many more goodness'
+							description='More config & example to kickstart your project more exciting 🚀'
+							documentation='https://github.com/riolly/create-t3-app/'
 						/>
-					</div>
-
-					<div className='flex flex-col items-center gap-2'>
-						<p className='text-2xl text-gray-200'>
-							{/* {hello.data ? hello.data.greeting : 'Loading tRPC query...'} */}
-						</p>
-						<AuthShowcase />
 					</div>
 				</div>
 			</main>
@@ -87,32 +77,6 @@ const Home: NextPage = () => {
 }
 
 export default Home
-
-const AuthShowcase: React.FC = () => {
-	const session = useSession()
-
-	const {data: secretMessage, isSuccess} = trpc.auth.getSecretMessage.useQuery(
-		undefined, // no input
-		{enabled: session.data?.user !== undefined}
-	)
-
-	return (
-		<div className='flex flex-col items-center justify-center gap-4'>
-			<p className='text-center text-2xl text-gray-200'>
-				{session.status === 'authenticated' && (
-					<span>Logged in as {session.data?.user?.name}</span>
-				)}
-				{isSuccess && <span> - {secretMessage}</span>}
-			</p>
-			<button
-				className='rounded-full bg-light-primary/10 px-10 py-3 font-semibold text-gray-200 no-underline transition hover:bg-light-primary/20'
-				onClick={session.data ? () => signOut() : () => signIn()}
-			>
-				{session.data ? 'Sign out' : 'Sign in'}
-			</button>
-		</div>
-	)
-}
 
 type TechnologyCardProps = {
 	name: string
