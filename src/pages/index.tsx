@@ -1,25 +1,18 @@
-import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 
 import {type NextPageWithLayout} from './_app'
 import NavbarTopLayout from 'layouts/navbar-top'
+import MetaHead from 'components/meta-head'
 
 const HomePage: NextPageWithLayout = () => {
 	return (
 		<>
-			<Head>
-				<title>Create T3 App | Riolly</title>
-				<meta
-					name='description'
-					content='The best tools to kick off your full-stack apps'
-				/>
-				<meta property='og:title' content='Create T3 App | Riolly' />
-				<meta
-					property='og:image'
-					content={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/home.jpg`}
-				/>
-			</Head>
+			<MetaHead
+				title='Create T3 App | Riolly'
+				description='The best way to scaffold fullstack app with the power of extended T3 stack'
+				imageUrl={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/home.jpg`}
+			/>
 			<main className='flex flex-col items-center justify-center gap-8 px-4 pb-12 md:gap-12 md:pb-16'>
 				<Link href='https://github.com/riolly/create-t3-app/' target='_blank'>
 					<h1 className='text-4xl font-extrabold text-light-primary md:text-[5rem]'>

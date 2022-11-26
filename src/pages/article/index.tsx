@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
-import Head from 'next/head'
 import dayjs from 'dayjs'
 import {useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 
 import {trpc} from 'utils/trpc'
 import NavbarTopLayout from 'layouts/navbar-top'
+import MetaHead from 'components/meta-head'
 import {PencilIcon} from '@heroicons/react/24/solid'
 
 import {
@@ -33,21 +33,11 @@ export default function ArticlePage() {
 
 	return (
 		<>
-			<Head>
-				<title>Articles (Example) | Create T3 App </title>
-				<meta
-					name='description'
-					content='Example on how to build full-stack app using the extended t3 stack'
-				/>
-				<meta
-					property='og:title'
-					content='Articles (Example) | Create T3 App'
-				/>
-				<meta
-					property='og:image'
-					content={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/articles.jpg`}
-				/>
-			</Head>
+			<MetaHead
+				title='Articles (example) | Create T3 App'
+				description='Example on how to build full stack app using extended T3 stack'
+				imageUrl={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/articles.jpg`}
+			/>
 			<main className='container mx-auto max-w-screen-lg space-y-8 px-8 pb-10 md:pb-8'>
 				<h1 className='text-3xl text-gray-50'>Articles</h1>
 				<QueryWrapper {...articlesQuery}>

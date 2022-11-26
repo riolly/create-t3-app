@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import {useSession} from 'next-auth/react'
@@ -23,6 +22,7 @@ import {useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 import {useAutoAnimate} from '@formkit/auto-animate/react'
 import NavbarTopLayout from 'layouts/navbar-top'
+import MetaHead from 'components/meta-head'
 import {
 	PencilSquareIcon,
 	TrashIcon,
@@ -53,9 +53,7 @@ export const getStaticProps: GetStaticProps<{
 	if (!article) return {notFound: true}
 
 	return {
-		props: {
-			article,
-		},
+		props: {article},
 		revalidate: true,
 	}
 }
@@ -117,18 +115,11 @@ const ArticleDetailsPage = ({
 
 	return (
 		<>
-			<Head>
-				<title>{article.title} | Create T3 App</title>
-				<meta name='description' content={article.content} />
-				<meta
-					property='og:title'
-					content={`${article.title} | Create T3 App`}
-				/>
-				<meta
-					property='og:image'
-					content={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/articles.jpg`}
-				/>
-			</Head>
+			<MetaHead
+				title={article.title}
+				description={article.content}
+				imageUrl={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/articles.jpg`}
+			/>
 			<main
 				className='container mx-auto max-w-screen-md space-y-8 px-6'
 				ref={toggleAnimation}
