@@ -103,6 +103,7 @@ function AuthButton({className}: {className?: string}) {
 				<MenuButton
 					menuItems={menuItems}
 					itemsClassName='-top-full md:top-full right-0'
+					buttonClassName='hover:bg-opacity-50 transition-all duration-500'
 				>
 					{data.user?.image ? (
 						<Image
