@@ -118,14 +118,20 @@ const CreateArticleForm = ({refetchList}: {refetchList: () => void}) => {
 				<Triangle className='rotate-180' />
 				<div className='h-[1px] w-auto grow rounded-full bg-secondary-normal/50' />
 			</div>
-			<div className='mx-auto md:w-3/4 '>
+			<div className='mx-auto lg:w-3/4 '>
 				<FormWrapper
 					methods={methods}
 					onValidSubmit={onValidSubmit}
 					className='flex flex-col gap-4'
 				>
-					<TextAreaInput name='title' rows={1} />
-					<TextAreaInput name='content' rows={5} />
+					<TextAreaInput
+						name='title'
+						className='h-[5.4em] md:h-[4em] lg:h-[2.5em]'
+					/>
+					<TextAreaInput
+						name='content'
+						className='h-[16em] md:h-[12.8em] lg:h-[10em]'
+					/>
 					<Button type='submit' variant='outlined' isLoading={isLoading}>
 						Create <PencilIcon className='h-4 w-4' />
 					</Button>
