@@ -86,7 +86,7 @@ export default function NavbarTopLayout({
 
 				<AuthButton className='px-2 md:px-4' />
 			</div>
-			<main className='container mx-auto py-12'>{children}</main>
+			<div className='container mx-auto py-12'>{children}</div>
 		</div>
 	)
 }
