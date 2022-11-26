@@ -17,7 +17,7 @@ const HomePage: NextPageWithLayout = () => {
 				<meta property='og:title' content='Create T3 App | Riolly' />
 				<meta
 					property='og:image'
-					content={`${process.env.VERCEL_URL}/mstile-70x70.png`}
+					content={`${process.env.NEXT_PUBLIC_VERCEL_URL}/mstile-70x70.png`}
 				/>
 			</Head>
 			<main className='flex flex-col items-center justify-center gap-8 px-4 pb-12 md:gap-12 md:pb-16'>
