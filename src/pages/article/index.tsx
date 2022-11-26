@@ -39,6 +39,8 @@ export default function ArticlePage() {
 					name='description'
 					content='Example on how to build full-stack app using the create-t3-app stack.'
 				/>
+				<meta property='og:image' content='public/mstile-70x70.png' />
+				<meta property='og:title' content='Articles | Create T3 App Example' />
 			</Head>
 			<div className='container mx-auto max-w-screen-lg space-y-8 px-8 pb-10 md:pb-8'>
 				<h1 className='text-3xl text-gray-50'>Articles</h1>
