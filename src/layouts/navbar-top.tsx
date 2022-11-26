@@ -43,16 +43,11 @@ export default function NavbarTopLayout({
 		},
 	]
 
-	const {status, data} = useSession()
-	const menuItems = [
-		{label: 'Sign out', Icon: LogoutIcon, onClick: () => signOut()},
-	]
-
 	return (
-		<div className='min-h-screen bg-gradient-to-br from-primary-darkest to-bg-dark '>
-			<div className='flex h-12 w-full items-center justify-between border-t-0 bg-opacity-30 pt-1 underline-offset-4 shadow-sm'>
+		<div className='relative min-h-screen bg-gradient-to-br from-primary-darkest to-bg-dark'>
+			<div className='fixed bottom-0 z-10 flex w-full items-center justify-between border-t-0 bg-primary-darkest/50 bg-opacity-30 py-2 underline-offset-4 shadow-sm backdrop-blur-lg md:relative md:bg-inherit'>
 				<div className='w-12' />
-				<nav className='flex h-fit items-center md:gap-2'>
+				<nav className='flex h-fit items-center gap-2'>
 					{routes.map(({href, label, Icon, IconActive}, i) => {
 						const isActive = pathname === href
 						return (
@@ -82,36 +77,53 @@ export default function NavbarTopLayout({
 							</React.Fragment>
 						)
 					})}
+					<div />
 				</nav>
-				<div className='px-4'>
-					{status === 'authenticated' ? (
-						<MenuButton menuItems={menuItems}>
-							{data.user?.image ? (
-								<Image
-									src={data.user.image}
-									alt='user picture'
-									width={32}
-									height={32}
-									className='rounded-full'
-								/>
-							) : (
-								<div className='h-8 w-8 rounded-full bg-bg-light p-1'>
-									<UserIcon className='h-full w-full text-secondary-normal' />
-								</div>
-							)}
-						</MenuButton>
-					) : (
-						<Button
-							variant='filled'
-							className='rounded-lg bg-transparent px-2 py-1 text-sm font-medium'
-							onClick={() => signIn()}
-						>
-							Signin <LoginIcon className='h-6 w-6 rotate-180 text-xl' />
-						</Button>
-					)}
-				</div>
+
+				<AuthButton className='px-2 md:px-4' />
 			</div>
 			<main className='container mx-auto py-12'>{children}</main>
+		</div>
+	)
+}
+
+function AuthButton({className}: {className?: string}) {
+	const {status, data} = useSession()
+	const menuItems = [
+		{label: 'Sign out', Icon: LogoutIcon, onClick: () => signOut()},
+	]
+
+	return (
+		<div className={className}>
+			{status === 'authenticated' ? (
+				<MenuButton
+					menuItems={menuItems}
+					itemsClassName='-top-full md:top-full right-0'
+				>
+					{data.user?.image ? (
+						<Image
+							src={data.user.image}
+							alt='user picture'
+							width={32}
+							height={32}
+							className='rounded-full'
+						/>
+					) : (
+						<div className='h-8 w-8 rounded-full bg-bg-light p-1'>
+							<UserIcon className='h-full w-full text-secondary-normal' />
+						</div>
+					)}
+				</MenuButton>
+			) : (
+				<Button
+					variant='filled'
+					className='rounded-lg bg-transparent px-2 py-1 text-sm font-medium'
+					onClick={() => signIn()}
+				>
+					<span className='hidden md:block'>Signin</span>
+					<LoginIcon className='h-7 w-7 rotate-180 text-xl md:h-6 md:w-6' />
+				</Button>
+			)}
 		</div>
 	)
 }
