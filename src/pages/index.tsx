@@ -20,7 +20,7 @@ const HomePage: NextPageWithLayout = () => {
 						<Image
 							width={144}
 							height={144}
-							className='-mr-4 inline w-12 align-text-bottom md:-mr-8 md:w-24 md:align-text-top'
+							className='inline w-12 align-text-bottom md:-mr-4 md:w-24 md:align-text-top'
 							src='/mstile-144x144.png'
 							alt='T3'
 						/>
