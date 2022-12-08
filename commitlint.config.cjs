@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['gitmoji'],
+  // extends: ['gitmoji'], // It's up to you wether you want emoji or not
   rules: {
     'header-max-length': [0, 'always', 100],
     'scope-case': [0, 'always', 'pascal-case'],
