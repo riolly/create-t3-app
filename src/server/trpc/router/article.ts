@@ -60,7 +60,8 @@ export const articleRouter = router({
 	delete: protectedProcedure
 		.input(requiredIdAuthorIdSchema)
 		.mutation(({ctx, input}) => {
-			if (ctx.session.user.id !== input.authorId)
+			const {user} = ctx.session
+			if (user.id !== input.authorId && user.role !== 'ADMIN')
 				throw new TRPCError({
 					code: 'FORBIDDEN',
 					message: 'You are not allowed to delete this article',
