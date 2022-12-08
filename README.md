@@ -373,15 +373,20 @@ Code mods:<br/>
 `prisma.schema`
 
 ```diff
-generator client {
-  provider        = "prisma-client-js"
-+ previewFeatures = ["referentialIntegrity"]
-}
-
 datasource db {
   url                  = env("DATABASE_URL")
-+ referentialIntegrity = "prisma"
++ relationMode = "prisma"
+
+model Account {
+...
++ @@index([userId])
 }
+
+model Session {
+...
++ @@index([userId])
+}
+
 ```
 
 Replace your DATABASE_URL on `.env` with url that you get from PlanetScale
