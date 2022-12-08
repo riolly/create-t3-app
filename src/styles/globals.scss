@@ -19,6 +19,13 @@
 	p {
 		@apply font-body;
 	}
+
+	a,
+	input,
+	textarea,
+	button {
+		@apply outline-secondary-darker;
+	}
 }
 
 @layer utilities {
