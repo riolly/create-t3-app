@@ -6,20 +6,11 @@
 
 create-t3-app is one of the fastest and easiest way to scaffold fullstack app. This version make it even **faster for my case (and maybe yours).** 🏃💨<br/>
 
-Prerequisite installed on system:
-
-1. [mysql](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
-2. [pnpm](https://pnpm.io/installation)
-
-Prerequisite global package:
-
-1. [gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli)
-
 Step to follow:
 
 1. `pnpm install`
 2. Rename next-env to next-env.d.ts
-3. Rename .env.example to .env and replace it value
+3. Rename .env.example to .env and fill the value
    3.1 [Local database](#local-mysql-server)
    3.2 [Google Oauth](#-google-oauth)
 4. Deploy 🎉 🚀
@@ -32,7 +23,7 @@ More detail about how we modify the code:
 - ⛓️ [Git hooks](#git-hooks-️)
   - ~~[Pre-commit](#-pre-commit)~~
   - [Commit message](#-commit-message)
-  - [Commit emoji](#-commit-emoji)
+  - ~~[Commit emoji](#-commit-emoji)~~
   - ~~[Pre-push](#️-pre-push)~~
 - 📈 [Optimization](#optimization-)
   - [Bundle size](#-bundle-analyzer)
@@ -222,7 +213,7 @@ Test by making a commit<br/>
 git commit -m "foo: bar"
 ```
 
-#### 🤯 Commit emoji
+#### 🤯 ~~Commit emoji~~
 
 &emsp; _Who don't like emoji??_
 
