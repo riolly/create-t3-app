@@ -53,21 +53,21 @@ const Card = ({slug, title, content, createdAt, author}: ArticleType) => {
 	return (
 		<Link
 			href={`./article/${slug}`}
-			className={`relative col-span-full flex h-72 flex-col overflow-hidden rounded rounded-br-3xl rounded-tl-2xl border-2 border-light-primary/25 bg-light-primary bg-opacity-20 p-6 pb-4 duration-100 hover:bg-opacity-30 hover:shadow-lg hover:shadow-bg-light md:col-span-3 lg:col-span-2`}
+			className={`relative col-span-full flex h-72 flex-col overflow-hidden rounded rounded-br-3xl rounded-tl-2xl border-2 border-light-head/25 bg-light-bg bg-opacity-20 p-6 pb-4 duration-100 hover:bg-opacity-30 hover:shadow-lg hover:shadow-light-bg md:col-span-3 lg:col-span-2`}
 		>
 			<div className='absolute top-0 left-0'>
-				<div className='flex rounded-br-xl bg-bg-dark/30 shadow'>
+				<div className='flex rounded-br-xl bg-dark-bg/30 shadow'>
 					<div className='flex w-16 items-center justify-center'>
 						{/* <StarIcon className='text-sm text-yellow-300' /> */}
 					</div>
-					<div className='py-0.5 px-4 text-sm text-light-primary'>
+					<div className='py-0.5 px-4 text-sm text-light-head'>
 						<time className='font-body text-sm italic'>
 							{dayjs(createdAt).format('MMM D, YYYY')}
 						</time>
 					</div>
 				</div>
 				{author.image && (
-					<div className='h-14 w-16 rounded-br-xl bg-bg-dark/30 shadow-xl'>
+					<div className='h-14 w-16 rounded-br-xl bg-dark-bg/30 shadow-xl'>
 						<Image
 							className='h-full w-full rounded-tl-lg rounded-br-xl object-cover'
 							src={author.image}
@@ -78,7 +78,7 @@ const Card = ({slug, title, content, createdAt, author}: ArticleType) => {
 					</div>
 				)}
 			</div>
-			<div className='mt-1 h-fit w-full text-xl text-light-primary'>
+			<div className='mt-1 h-fit w-full text-xl text-light-head'>
 				{author.image && <div className='float-left mr-2 h-12 w-12' />}
 				<h2 className=''>{title}</h2>
 				<div className='mt-0.5 flex h-1 items-center gap-2'>
@@ -87,7 +87,7 @@ const Card = ({slug, title, content, createdAt, author}: ArticleType) => {
 				</div>
 			</div>
 
-			<p className='h-full overflow-hidden pt-4 text-right indent-12 leading-5 text-light-secondary'>
+			<p className='h-full overflow-hidden pt-4 text-right indent-12 leading-5 text-light-body'>
 				{content}
 			</p>
 		</Link>
@@ -120,7 +120,7 @@ const CreateArticleForm = ({refetchList}: {refetchList: () => void}) => {
 
 	return (
 		<div className='space-y-2'>
-			<div className='flex items-center justify-center gap-4  text-light-primary'>
+			<div className='flex items-center justify-center gap-4  text-light-head'>
 				<div className='h-[1px] w-auto grow rounded-full bg-secondary-normal/50' />
 				<Triangle />
 				<p className='w-fit text-lg'>Create New Article</p>

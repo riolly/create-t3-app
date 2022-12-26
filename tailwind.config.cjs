@@ -13,17 +13,15 @@ module.exports = {
         highlight: ['Architects Daughter', 'cursive'],
       },
       colors: {
-        bg: {
-          light: colors.slate[50],
-          dark: colors.slate[900],
-        },
         light: {
-          primary: colors.slate[200],
-          secondary: colors.slate[300],
+          bg: colors.slate[50],
+          head: colors.slate[100],
+          body: colors.slate[200],
         },
         dark: {
-          primary: colors.slate[800],
-          secondary: colors.slate[700],
+          bg: colors.slate[900],
+          head: colors.slate[800],
+          body: colors.slate[700],
         },
         primary: {
           lightest: colors.indigo[100],

@@ -39,7 +39,7 @@ export default function NavbarLayout({children}: {children: React.ReactNode}) {
 	]
 
 	return (
-		<div className='relative min-h-screen bg-gradient-to-br from-primary-darkest to-bg-dark'>
+		<div className='relative min-h-screen bg-gradient-to-br from-primary-darkest to-dark-bg'>
 			<div className='fixed bottom-0 z-10 flex w-full items-center justify-between border-t-0 bg-primary-darkest/50 bg-opacity-30 py-2 underline-offset-4 shadow-sm backdrop-blur-lg md:relative md:bg-inherit'>
 				<div className='w-12' />
 				<nav className='flex h-fit items-center gap-2'>
@@ -50,7 +50,7 @@ export default function NavbarLayout({children}: {children: React.ReactNode}) {
 								<Link
 									href={href}
 									className={`
-										flex items-start gap-2 rounded px-2 py-1 font-medium text-light-primary 
+										flex items-start gap-2 rounded px-2 py-1 font-medium text-light-head 
 										${isActive ? 'pointer-events-none' : 'hover:underline'}
 									`}
 								>
@@ -65,7 +65,7 @@ export default function NavbarLayout({children}: {children: React.ReactNode}) {
 								</Link>
 
 								{i !== routes.length - 1 && (
-									<span className='invisible text-light-primary md:visible'>
+									<span className='invisible text-light-head md:visible'>
 										&#9671;
 									</span>
 								)}
@@ -105,7 +105,7 @@ function AuthButton({className}: {className?: string}) {
 							className='rounded-full'
 						/>
 					) : (
-						<div className='h-8 w-8 rounded-full bg-bg-light p-1'>
+						<div className='h-8 w-8 rounded-full bg-light-bg p-1'>
 							<UserIcon className='h-full w-full text-secondary-normal' />
 						</div>
 					)}
