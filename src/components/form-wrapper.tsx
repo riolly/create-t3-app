@@ -7,7 +7,7 @@ import {
 } from 'react-hook-form'
 
 export type FormWrapperProps<T extends FieldValues> = {
-	className: string
+	className?: string
 	children: React.ReactNode
 	methods: UseFormReturn<T>
 	onValidSubmit: SubmitHandler<T>

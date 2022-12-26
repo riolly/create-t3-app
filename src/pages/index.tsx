@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import {type NextPageWithLayout} from './_app'
-import NavbarTopLayout from 'layouts/navbar-top'
+import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
 
 const HomePage: NextPageWithLayout = () => {
@@ -15,7 +15,7 @@ const HomePage: NextPageWithLayout = () => {
 			/>
 			<main className='flex flex-col items-center justify-center gap-8 px-4 pb-12 md:gap-12 md:pb-16'>
 				<Link href='https://github.com/riolly/create-t3-app/' target='_blank'>
-					<h1 className='text-4xl font-extrabold text-light-primary md:text-[5rem]'>
+					<h1 className='text-4xl font-extrabold text-light-head md:text-[5rem]'>
 						Create&nbsp;
 						<Image
 							width={144}
@@ -28,7 +28,7 @@ const HomePage: NextPageWithLayout = () => {
 					</h1>
 				</Link>
 
-				<p className='-mt-6 text-xl text-light-secondary md:-mt-12 md:text-2xl'>
+				<p className='-mt-6 text-xl text-light-body md:-mt-12 md:text-2xl'>
 					Riolly&apos;s opinionated version of&nbsp;
 					<Link
 						href='https://create.t3.gg/'
@@ -91,18 +91,18 @@ const TechnologyCard: React.FC<TechnologyCardProps> = ({
 }) => {
 	return (
 		<Link
-			className='flex max-w-xs flex-col gap-4 rounded-xl bg-light-primary/10 p-4 pl-6 pt-6 hover:bg-light-primary/20'
+			className='flex max-w-xs flex-col gap-4 rounded-xl bg-light-bg/10 p-4 pl-6 pt-6 hover:bg-light-bg/20'
 			href={documentation}
 			target='_blank'
 		>
-			<h3 className='text-xl font-bold text-light-primary md:text-2xl '>
+			<h3 className='text-xl font-bold text-light-head md:text-2xl '>
 				{name} 🡵
 			</h3>
-			<p className='text-light-secondary md:text-lg'>{description}</p>
+			<p className='text-light-body md:text-lg'>{description}</p>
 		</Link>
 	)
 }
 
 HomePage.getLayout = function getLayout(page: React.ReactElement) {
-	return <NavbarTopLayout>{page}</NavbarTopLayout>
+	return <NavbarLayout>{page}</NavbarLayout>
 }

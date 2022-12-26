@@ -4,7 +4,7 @@ import {z} from 'zod'
 import {router, publicProcedure, protectedProcedure} from '../trpc'
 import {revalidate, slugify} from 'server/utils/route'
 
-import {CreateArticleSchema, UpdateArticleSchema} from 'types/article'
+import {articleCreateSchema, articleUpdateSchema} from 'types/article'
 import {TRPCError} from '@trpc/server'
 
 const requiredIdSchema = z.object({id: z.string()})
@@ -23,7 +23,7 @@ export const articleRouter = router({
 		})
 	),
 	create: protectedProcedure
-		.input(CreateArticleSchema)
+		.input(articleCreateSchema)
 		.mutation(({ctx, input}) => {
 			const id = cuid()
 			return ctx.prisma.article.create({
@@ -36,7 +36,7 @@ export const articleRouter = router({
 			})
 		}),
 	update: protectedProcedure
-		.input(UpdateArticleSchema)
+		.input(articleUpdateSchema)
 		.mutation(async ({ctx, input}) => {
 			if (ctx.session.user.id !== input.authorId)
 				throw new TRPCError({

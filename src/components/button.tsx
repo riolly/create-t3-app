@@ -19,10 +19,10 @@ type CustomButtonProps = NativeButtonProps & Extension
 type LinkButtonProps = LinkProps & Extension
 
 const base =
-	'relative whitespace-nowrap text-light-primary w-fit rounded-xl shadow-md transition ease-out focus:outline-none focus:ring-2 active:translate-y-2 active:shadow-md active:shadow-primary-lighter disabled:pointer-events-none disabled:border-gray-600 disabled:border-2 disabled:bg-gray-400'
+	'relative whitespace-nowrap text-light-head w-fit rounded-xl shadow-md transition ease-out focus:outline-none focus:ring-2 active:translate-y-2 active:shadow-md active:shadow-primary-lighter disabled:pointer-events-none disabled:border-gray-600 disabled:border-2 disabled:bg-gray-400'
 
 const outlined =
-	'border-[0.2rem] border-primary-normal px-5 py-2 hover:border-secondary-lighter hover:bg-primary-darker hover:shadow-primary-lightest focus:border-secondary-normal focus:ring-bg-light active:bg-primary-darkest'
+	'border-[0.2rem] border-primary-normal px-5 py-2 hover:border-secondary-lighter hover:bg-primary-darker hover:shadow-primary-lightest focus:border-secondary-normal focus:ring-light-bg active:bg-primary-darkest'
 
 const filled =
 	'bg-primary-normal px-6 py-2.5 hover:bg-primary-lighter hover:text-primary-darkest hover:shadow-primary-lightest focus:ring-secondary-normal focus:ring-offset-2 active:bg-primary-lightest'
@@ -50,7 +50,7 @@ function Children({
 					${isLoading ? 'visible' : 'invisible'} 
 				`}
 			>
-				<LoadingIcon className='h-6 w-6 animate-spin text-light-primary' />
+				<LoadingIcon className='h-6 w-6 animate-spin text-light-head' />
 			</span>
 		</>
 	)
