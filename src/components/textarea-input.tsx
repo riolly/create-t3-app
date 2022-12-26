@@ -31,9 +31,9 @@ const TextAreaInput = <T,>({
 			</label>
 			<textarea
 				id={name}
-				className={`rounded bg-light-bg/80 py-2 px-4 ${inputClassName}`}
 				{...register(name)}
 				{...props}
+				className={`rounded bg-light-bg/80 py-2 px-4 ${inputClassName}`}
 			/>
 			<ErrorMessage
 				name={name}
