@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import {type NextPageWithLayout} from './_app'
-import NavbarTopLayout from 'layouts/navbar-top'
+import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
 
 const HomePage: NextPageWithLayout = () => {
@@ -104,5 +104,5 @@ const TechnologyCard: React.FC<TechnologyCardProps> = ({
 }
 
 HomePage.getLayout = function getLayout(page: React.ReactElement) {
-	return <NavbarTopLayout>{page}</NavbarTopLayout>
+	return <NavbarLayout>{page}</NavbarLayout>
 }

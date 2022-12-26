@@ -21,11 +21,7 @@ import {
 
 import {capFirstChar} from 'utils/literal'
 
-export default function NavbarTopLayout({
-	children,
-}: {
-	children: React.ReactNode
-}) {
+export default function NavbarLayout({children}: {children: React.ReactNode}) {
 	const {pathname} = useRouter()
 	const routes = [
 		{

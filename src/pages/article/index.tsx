@@ -6,7 +6,7 @@ import {zodResolver} from '@hookform/resolvers/zod'
 
 import {trpc} from 'utils/trpc'
 
-import NavbarTopLayout from 'layouts/navbar-top'
+import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
 import QueryWrapper from 'components/query-wrapper'
 import FormWrapper from 'components/form-wrapper'
@@ -155,5 +155,5 @@ const Triangle = ({className}: {className?: string}) => {
 }
 
 ArticlePage.getLayout = function getLayout(page: React.ReactElement) {
-	return <NavbarTopLayout>{page}</NavbarTopLayout>
+	return <NavbarLayout>{page}</NavbarLayout>
 }

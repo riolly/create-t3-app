@@ -22,7 +22,7 @@ import {useAutoAnimate} from '@formkit/auto-animate/react'
 import {useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 
-import NavbarTopLayout from 'layouts/navbar-top'
+import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
 import TextAreaInput from 'components/textarea-input'
 import FormWrapper from 'components/form-wrapper'
@@ -178,5 +178,5 @@ const ArticleDetailsPage = ({
 export default ArticleDetailsPage
 
 ArticleDetailsPage.getLayout = (page: React.ReactElement) => (
-	<NavbarTopLayout>{page}</NavbarTopLayout>
+	<NavbarLayout>{page}</NavbarLayout>
 )
