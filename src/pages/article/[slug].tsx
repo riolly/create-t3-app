@@ -12,8 +12,8 @@ import {trpc} from 'utils/trpc'
 import {extractIdFromSlug} from 'server/utils/route'
 
 import {
-	UpdateArticleSchema,
-	type UpdateArticleType,
+	articleUpdateSchema,
+	type ArticleUpdateType,
 	type ArticleType,
 } from 'types/article'
 
@@ -90,12 +90,12 @@ const ArticleDetailsPage = ({
 		authorId: article.authorId,
 	}
 
-	const methods = useForm<UpdateArticleType>({
-		resolver: zodResolver(UpdateArticleSchema),
+	const methods = useForm<ArticleUpdateType>({
+		resolver: zodResolver(articleUpdateSchema),
 		defaultValues,
 	})
 
-	const onValidSubmit: SubmitHandler<UpdateArticleType> = (data) => {
+	const onValidSubmit: SubmitHandler<ArticleUpdateType> = (data) => {
 		updateArticle(data)
 	}
 

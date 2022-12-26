@@ -15,8 +15,8 @@ import {Button} from 'components/button'
 import {PencilIcon} from '@heroicons/react/24/solid'
 
 import {
-	CreateArticleSchema,
-	type CreateArticleType,
+	articleCreateSchema,
+	type ArticleCreateType,
 	type ArticleType,
 } from 'types/article'
 
@@ -95,9 +95,9 @@ const Card = ({slug, title, content, createdAt, author}: ArticleType) => {
 }
 
 const CreateArticleForm = ({refetchList}: {refetchList: () => void}) => {
-	const methods = useForm<CreateArticleType>({
+	const methods = useForm<ArticleCreateType>({
 		mode: 'onTouched',
-		resolver: zodResolver(CreateArticleSchema),
+		resolver: zodResolver(articleCreateSchema),
 	})
 
 	const {mutate, isLoading} = trpc.article.create.useMutation({
@@ -114,7 +114,7 @@ const CreateArticleForm = ({refetchList}: {refetchList: () => void}) => {
 		},
 	})
 
-	const onValidSubmit: SubmitHandler<CreateArticleType> = (data) => {
+	const onValidSubmit: SubmitHandler<ArticleCreateType> = (data) => {
 		mutate(data)
 	}
 
