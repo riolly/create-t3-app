@@ -133,11 +133,11 @@ const CreateArticleForm = ({refetchList}: {refetchList: () => void}) => {
 					onValidSubmit={onValidSubmit}
 					className='flex flex-col gap-4'
 				>
-					<TextAreaInput
+					<TextAreaInput<ArticleCreateType>
 						name='title'
 						className='h-[5.4em] md:h-[4em] lg:h-[2.5em]'
 					/>
-					<TextAreaInput
+					<TextAreaInput<ArticleCreateType>
 						name='content'
 						className='h-[16em] md:h-[12.8em] lg:h-[10em]'
 					/>

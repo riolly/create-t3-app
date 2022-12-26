@@ -2,8 +2,8 @@ import {useFormContext} from 'react-hook-form'
 import {ErrorMessage} from '@hookform/error-message'
 import {capFirstChar} from 'utils/literal'
 
-type InputProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
-	name: string
+type InputProps<T> = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+	name: keyof T
 	label?: string
 	wrapperClassName?: string
 	labelClassName?: string
@@ -11,7 +11,7 @@ type InputProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 	errorClassName?: string
 }
 
-const TextAreaInput = ({
+const TextAreaInput = <T,>({
 	name,
 	label,
 	wrapperClassName,
@@ -19,7 +19,7 @@ const TextAreaInput = ({
 	inputClassName,
 	errorClassName,
 	...props
-}: InputProps) => {
+}: InputProps<T>) => {
 	const {
 		register,
 		formState: {errors},

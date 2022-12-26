@@ -125,8 +125,8 @@ const ArticleDetailsPage = ({
 						onValidSubmit={onValidSubmit}
 						className='col-span-full flex flex-col gap-4 md:col-span-2'
 					>
-						<TextAreaInput name='title' />
-						<TextAreaInput name='content' rows={10} />
+						<TextAreaInput<ArticleUpdateType> name='title' />
+						<TextAreaInput<ArticleUpdateType> name='content' rows={10} />
 
 						<div className='flex gap-4'>
 							<Button
