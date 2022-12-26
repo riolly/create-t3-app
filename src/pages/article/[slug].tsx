@@ -1,5 +1,4 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import {useSession} from 'next-auth/react'
 import {
@@ -13,30 +12,26 @@ import {trpc} from 'utils/trpc'
 import {extractIdFromSlug} from 'server/utils/route'
 
 import {
-	UpdateArticleSchema,
-	type UpdateArticleType,
+	articleUpdateSchema,
+	type ArticleUpdateType,
 	type ArticleType,
 } from 'types/article'
 
+import {useAutoAnimate} from '@formkit/auto-animate/react'
+
 import {useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
-import {useAutoAnimate} from '@formkit/auto-animate/react'
-import NavbarTopLayout from 'layouts/navbar-top'
+
+import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
+import TextAreaInput from 'components/textarea-input'
+import FormWrapper from 'components/form-wrapper'
+import {Button} from 'components/button'
 import {
 	PencilSquareIcon,
 	TrashIcon,
 	XMarkIcon,
 } from '@heroicons/react/24/outline'
-
-import {type FormWrapperProps} from 'components/form-wrapper'
-const FormWrapper = dynamic<FormWrapperProps<UpdateArticleType>>(
-	() => import('components/form-wrapper')
-)
-const TextAreaInput = dynamic(() => import('components/textarea-input'))
-const Button = dynamic(() =>
-	import('components/button').then((buttons) => buttons.Button)
-)
 
 export const getStaticProps: GetStaticProps<{
 	article: ArticleType
@@ -95,12 +90,12 @@ const ArticleDetailsPage = ({
 		authorId: article.authorId,
 	}
 
-	const methods = useForm<UpdateArticleType>({
-		resolver: zodResolver(UpdateArticleSchema),
+	const methods = useForm<ArticleUpdateType>({
+		resolver: zodResolver(articleUpdateSchema),
 		defaultValues,
 	})
 
-	const onValidSubmit: SubmitHandler<UpdateArticleType> = (data) => {
+	const onValidSubmit: SubmitHandler<ArticleUpdateType> = (data) => {
 		updateArticle(data)
 	}
 
@@ -130,8 +125,8 @@ const ArticleDetailsPage = ({
 						onValidSubmit={onValidSubmit}
 						className='col-span-full flex flex-col gap-4 md:col-span-2'
 					>
-						<TextAreaInput name='title' />
-						<TextAreaInput name='content' rows={10} />
+						<TextAreaInput<ArticleUpdateType> name='title' />
+						<TextAreaInput<ArticleUpdateType> name='content' rows={10} />
 
 						<div className='flex gap-4'>
 							<Button
@@ -153,21 +148,21 @@ const ArticleDetailsPage = ({
 				) : (
 					<>
 						<h1 className='text-3xl text-gray-50'>{article.title}</h1>
-						<p className='text-lg text-light-primary'>{article.content}</p>
+						<p className='text-lg text-light-head'>{article.content}</p>
 						{status === 'authenticated' && (
 							<div className='flex gap-4'>
 								<Button
 									variant='filled'
 									isLoading={isDeleteLoading}
 									onClick={() => deleteArticle(defaultValues)}
-									className='bg-bg-light text-red-500 hover:bg-red-500 hover:text-light-primary'
+									className='bg-light-bg text-red-500 hover:bg-red-500 hover:text-light-head'
 								>
 									Delete <TrashIcon className='h-4 w-4' />
 								</Button>
 								<Button
 									variant='filled'
 									onClick={() => setIsEdit(true)}
-									className='bg-bg-light text-violet-500 hover:bg-violet-500 hover:text-gray-200'
+									className='bg-light-bg text-violet-500 hover:bg-violet-500 hover:text-gray-200'
 								>
 									Update <PencilSquareIcon className='h-4 w-4' />
 								</Button>
@@ -183,5 +178,5 @@ const ArticleDetailsPage = ({
 export default ArticleDetailsPage
 
 ArticleDetailsPage.getLayout = (page: React.ReactElement) => (
-	<NavbarTopLayout>{page}</NavbarTopLayout>
+	<NavbarLayout>{page}</NavbarLayout>
 )
