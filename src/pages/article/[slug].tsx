@@ -1,5 +1,4 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import {useSession} from 'next-auth/react'
 import {
@@ -18,25 +17,21 @@ import {
 	type ArticleType,
 } from 'types/article'
 
+import {useAutoAnimate} from '@formkit/auto-animate/react'
+
 import {useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
-import {useAutoAnimate} from '@formkit/auto-animate/react'
+
 import NavbarTopLayout from 'layouts/navbar-top'
 import MetaHead from 'components/meta-head'
+import TextAreaInput from 'components/textarea-input'
+import FormWrapper from 'components/form-wrapper'
+import {Button} from 'components/button'
 import {
 	PencilSquareIcon,
 	TrashIcon,
 	XMarkIcon,
 } from '@heroicons/react/24/outline'
-
-import {type FormWrapperProps} from 'components/form-wrapper'
-const FormWrapper = dynamic<FormWrapperProps<UpdateArticleType>>(
-	() => import('components/form-wrapper')
-)
-const TextAreaInput = dynamic(() => import('components/textarea-input'))
-const Button = dynamic(() =>
-	import('components/button').then((buttons) => buttons.Button)
-)
 
 export const getStaticProps: GetStaticProps<{
 	article: ArticleType

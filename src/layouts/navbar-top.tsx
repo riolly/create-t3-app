@@ -1,11 +1,11 @@
 import React from 'react'
 import {useRouter} from 'next/router'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import {useSession, signIn, signOut} from 'next-auth/react'
 import Image from 'next/image'
 
 import MenuButton from 'components/menu-button'
+import {Button} from 'components/button'
 
 import {
 	HomeIcon as HomeOutlineIcon,
@@ -13,7 +13,6 @@ import {
 	ArrowLeftOnRectangleIcon as LoginIcon,
 	ArrowRightOnRectangleIcon as LogoutIcon,
 } from '@heroicons/react/24/outline'
-
 import {
 	HomeIcon as HomeSolidIcon,
 	DocumentTextIcon as ArticleSolidIcon,
@@ -21,10 +20,6 @@ import {
 } from '@heroicons/react/24/solid'
 
 import {capFirstChar} from 'utils/literal'
-
-const Button = dynamic(() =>
-	import('components/button').then((buttons) => buttons.Button)
-)
 
 export default function NavbarTopLayout({
 	children,
