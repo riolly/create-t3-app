@@ -8,7 +8,7 @@ import {api} from 'utils/api'
 
 import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
-import QueryWrapper from 'components/query-wrapper'
+import {QueryWrapper} from 'components/query-placeholder'
 import FormWrapper from 'components/form-wrapper'
 import TextAreaInput from 'components/textarea-input'
 import {Button} from 'components/button'
@@ -23,7 +23,7 @@ import {slugify} from 'utils/literal'
 
 export default function ArticlePage() {
 	const articlesQuery = api.article.fetchAll.useQuery(undefined, {
-		refetchOnMount: false,
+		refetchOnWindowFocus: false,
 	})
 
 	return (
@@ -36,7 +36,7 @@ export default function ArticlePage() {
 			/>
 			<main className='container mx-auto max-w-screen-lg space-y-8 px-8 pb-10 md:pb-8'>
 				<h1 className='text-3xl text-gray-50'>Articles</h1>
-				<QueryWrapper {...articlesQuery}>
+				<QueryWrapper label='articles' {...articlesQuery}>
 					{(articles) => (
 						<div className='grid grid-cols-6 gap-4'>
 							{articles.map((article) => (
