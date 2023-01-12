@@ -17,9 +17,6 @@ export const authOptions: NextAuthOptions = {
 			}
 			return session
 		},
-		// jwt({token}) {
-		// 	return token
-		// },
 	},
 	// Configure one or more authentication providers
 	adapter: PrismaAdapter(prisma),
