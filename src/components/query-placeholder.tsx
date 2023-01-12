@@ -107,7 +107,7 @@ export const QueryWrapper = <T,>({
 	const isEmpty = Array.isArray(data) && data.length === 0
 
 	return (
-		<React.Fragment>
+		<DivAnimate>
 			{isLoading || isError || isEmpty ? (
 				<DivAnimate
 					className={`flex h-96 w-full flex-col items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 p-4 ${
@@ -125,6 +125,6 @@ export const QueryWrapper = <T,>({
 			) : (
 				children(data)
 			)}
-		</React.Fragment>
+		</DivAnimate>
 	)
 }
