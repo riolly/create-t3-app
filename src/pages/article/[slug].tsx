@@ -9,7 +9,7 @@ import {
 
 import {prisma} from 'server/db'
 import {api} from 'utils/api'
-import {extractIdFromSlug} from 'server/utils/route'
+import {extractIdFromSlug, slugify} from 'utils/literal'
 
 import {
 	articleUpdateSchema,
@@ -54,8 +54,10 @@ export const getStaticProps: GetStaticProps<{
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const articles = await prisma.article.findMany({select: {slug: true}})
-	const articleSlugs = articles.map(({slug}) => ({params: {slug}}))
+	const articles = await prisma.article.findMany()
+	const articleSlugs = articles.map(({id, title}) => ({
+		params: {slug: slugify(title, id)},
+	}))
 
 	return {
 		paths: articleSlugs,

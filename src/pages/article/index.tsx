@@ -19,6 +19,7 @@ import {
 	type ArticleCreateType,
 	type ArticleType,
 } from 'schema/article'
+import {slugify} from 'utils/literal'
 
 export default function ArticlePage() {
 	const articlesQuery = api.article.fetchAll.useQuery(undefined, {
@@ -50,10 +51,10 @@ export default function ArticlePage() {
 	)
 }
 
-const Card = ({slug, title, content, createdAt, author}: ArticleType) => {
+const Card = ({id, title, content, createdAt, author}: ArticleType) => {
 	return (
 		<Link
-			href={`./article/${slug}`}
+			href={`./article/${slugify(title, id)}`}
 			className={`relative col-span-full flex h-72 flex-col overflow-hidden rounded rounded-br-3xl rounded-tl-2xl border-2 border-light-head/25 bg-light-bg bg-opacity-20 p-6 pb-4 duration-100 hover:bg-opacity-30 hover:shadow-lg hover:shadow-light-bg md:col-span-3 lg:col-span-2`}
 		>
 			<div className='absolute top-0 left-0'>

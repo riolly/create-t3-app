@@ -1,11 +1,11 @@
 import {TRPCError} from '@trpc/server'
-import cuid from 'cuid'
 import {z} from 'zod'
 
 import {createTRPCRouter, publicProcedure, protectedProcedure} from '../trpc'
-import {revalidate, slugify} from 'server/utils/route'
+import {revalidate} from 'server/utils/revalidate'
 
 import {articleCreateSchema, articleUpdateSchema} from 'schema/article'
+import {slugify} from 'utils/literal'
 
 const requiredIdSchema = z.object({id: z.string()})
 const requiredIdAuthorIdSchema = requiredIdSchema.extend({authorId: z.string()})
@@ -25,19 +25,16 @@ export const articleRouter = createTRPCRouter({
 	create: protectedProcedure
 		.input(articleCreateSchema)
 		.mutation(({ctx, input}) => {
-			const id = cuid()
 			return ctx.prisma.article.create({
 				data: {
 					...input,
-					id,
-					slug: slugify(input.title, id),
 					authorId: ctx.session.user.id,
 				},
 			})
 		}),
 	update: protectedProcedure
 		.input(articleUpdateSchema)
-		.mutation(async ({ctx, input}) => {
+		.mutation(async ({ctx, input: {id, ...input}}) => {
 			if (ctx.session.user.id !== input.authorId)
 				throw new TRPCError({
 					code: 'FORBIDDEN',
@@ -45,14 +42,11 @@ export const articleRouter = createTRPCRouter({
 				})
 			return ctx.prisma.article
 				.update({
-					where: {id: input.id},
-					data: {
-						...input,
-						slug: slugify(input.title, input.id),
-					},
+					where: {id},
+					data: input,
 				})
 				.then(async (updated) => {
-					await revalidate('article', updated.slug)
+					await revalidate('article', slugify(input.title, id))
 					return updated
 				})
 		}),
