@@ -16,7 +16,7 @@ const HomePage: NextPageWithLayout = () => {
 			/>
 			<main className='flex flex-col items-center justify-center gap-8 px-4 pb-12 md:gap-12 md:pb-16'>
 				<Link href='https://github.com/riolly/create-t3-app/' target='_blank'>
-					<h1 className='text-4xl font-extrabold text-light-head md:text-[5rem]'>
+					<h1 className='text-4xl font-extrabold md:text-[5rem]'>
 						Create&nbsp;
 						<Image
 							width={144}
@@ -29,7 +29,7 @@ const HomePage: NextPageWithLayout = () => {
 					</h1>
 				</Link>
 
-				<p className='-mt-6 text-xl text-light-body md:-mt-12 md:text-2xl'>
+				<p className='-mt-6 text-xl md:-mt-12 md:text-2xl'>
 					Riolly&apos;s opinionated version of&nbsp;
 					<Link
 						href='https://create.t3.gg/'
@@ -96,10 +96,8 @@ const TechnologyCard: React.FC<TechnologyCardProps> = ({
 			href={documentation}
 			target='_blank'
 		>
-			<h3 className='text-xl font-bold text-light-head md:text-2xl '>
-				{name} 🡵
-			</h3>
-			<p className='text-light-body md:text-lg'>{description}</p>
+			<h3 className='text-xl font-bold md:text-2xl '>{name} 🡵</h3>
+			<p className='md:text-lg'>{description}</p>
 		</Link>
 	)
 }

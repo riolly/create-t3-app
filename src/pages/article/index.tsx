@@ -62,7 +62,7 @@ const Card = ({id, title, content, createdAt, author}: ArticleType) => {
 					<div className='flex w-16 items-center justify-center'>
 						{/* <StarIcon className='text-sm text-yellow-300' /> */}
 					</div>
-					<div className='py-0.5 px-4 text-sm text-light-head'>
+					<div className='py-0.5 px-4'>
 						<time className='font-body text-sm italic'>
 							{dayjs(createdAt).format('MMM D, YYYY')}
 						</time>
@@ -89,7 +89,7 @@ const Card = ({id, title, content, createdAt, author}: ArticleType) => {
 				</div>
 			</div>
 
-			<p className='h-full overflow-hidden pt-4 text-right indent-12 leading-5 text-light-body'>
+			<p className='h-full overflow-hidden pt-4 text-right indent-12 leading-5 '>
 				{content}
 			</p>
 		</Link>
@@ -126,7 +126,7 @@ const CreateArticleForm = ({
 
 	return (
 		<div className='space-y-2'>
-			<div className='flex items-center justify-center gap-4  text-light-head'>
+			<div className='flex items-center justify-center gap-4 text-light-head'>
 				<div className='h-[1px] w-auto grow rounded-full bg-secondary-normal/50' />
 				<Triangle />
 				<p className='w-fit text-lg'>Create New Article</p>

@@ -26,10 +26,7 @@ const TextAreaInput = <T,>({
 	} = useFormContext()
 	return (
 		<div className={`flex flex-col ${wrapperClassName ?? ''}`}>
-			<label
-				htmlFor={name}
-				className={`text-light-head ${labelClassName ?? ''}`}
-			>
+			<label htmlFor={name} className={labelClassName ?? ''}>
 				{label ?? capFirstChar(name)}
 			</label>
 			<textarea

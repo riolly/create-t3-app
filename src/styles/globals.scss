@@ -13,11 +13,14 @@
 	h4,
 	h5,
 	h6 {
-		@apply font-heading;
+		@apply font-heading text-light-head;
 	}
 
-	p {
-		@apply font-body;
+	p,
+	label,
+	button,
+	time {
+		@apply font-body text-light-body;
 	}
 
 	a,
