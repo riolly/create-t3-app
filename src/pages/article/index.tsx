@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import dayjs from 'dayjs'
-import {useForm, type SubmitHandler} from 'react-hook-form'
+import {FormProvider, useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 
 import {api} from 'utils/api'
@@ -9,8 +9,7 @@ import {api} from 'utils/api'
 import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
 import {QueryWrapper} from 'components/query-placeholder'
-import FormWrapper from 'components/form-wrapper'
-import TextAreaInput from 'components/textarea-input'
+import TextAreaInput from 'components/form-textarea'
 import {Button} from 'components/button'
 import {PencilIcon} from '@heroicons/react/24/solid'
 
@@ -20,11 +19,10 @@ import {
 	type ArticleType,
 } from 'schema/article'
 import {slugify} from 'utils/literal'
+import DivAnimate from 'components/div-animate'
 
 export default function ArticlePage() {
-	const articlesQuery = api.article.fetchAll.useQuery(undefined, {
-		refetchOnWindowFocus: false,
-	})
+	const articlesQuery = api.article.fetchAll.useQuery()
 
 	return (
 		<>
@@ -38,11 +36,11 @@ export default function ArticlePage() {
 				<h1 className='text-3xl text-gray-50'>Articles</h1>
 				<QueryWrapper label='articles' {...articlesQuery}>
 					{(articles) => (
-						<div className='grid grid-cols-6 gap-4'>
+						<DivAnimate className='grid grid-cols-6 gap-4'>
 							{articles.map((article) => (
 								<Card key={article.id} {...article} />
 							))}
-						</div>
+						</DivAnimate>
 					)}
 				</QueryWrapper>
 				<CreateArticleForm refetchList={articlesQuery.refetch} />
@@ -134,17 +132,20 @@ const CreateArticleForm = ({
 				<div className='h-[1px] w-auto grow rounded-full bg-secondary-normal/50' />
 			</div>
 			<div className='mx-auto lg:w-3/4 '>
-				<FormWrapper
-					methods={methods}
-					onValidSubmit={onValidSubmit}
-					className='flex flex-col gap-4'
-				>
-					<TextAreaInput<ArticleCreateType> name='title' />
-					<TextAreaInput<ArticleCreateType> name='content' rows={5} />
-					<Button type='submit' variant='outlined' isLoading={isLoading}>
-						Create <PencilIcon className='h-4 w-4' />
-					</Button>
-				</FormWrapper>
+				<FormProvider {...methods}>
+					<form
+						onSubmit={(...args) =>
+							void methods.handleSubmit(onValidSubmit)(...args)
+						}
+						className='flex flex-col gap-4'
+					>
+						<TextAreaInput<ArticleCreateType> name='title' />
+						<TextAreaInput<ArticleCreateType> name='content' rows={5} />
+						<Button type='submit' variant='outlined' isLoading={isLoading}>
+							Create <PencilIcon className='h-4 w-4' />
+						</Button>
+					</form>
+				</FormProvider>
 			</div>
 		</div>
 	)

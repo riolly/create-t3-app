@@ -19,13 +19,12 @@ import {
 
 import {useAutoAnimate} from '@formkit/auto-animate/react'
 
-import {useForm, type SubmitHandler} from 'react-hook-form'
+import {FormProvider, useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 
 import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
-import TextAreaInput from 'components/textarea-input'
-import FormWrapper from 'components/form-wrapper'
+import TextAreaInput from 'components/form-textarea'
 import {Button} from 'components/button'
 import {
 	PencilSquareIcon,
@@ -123,31 +122,34 @@ const ArticleDetailsPage = ({
 				ref={toggleAnimation}
 			>
 				{isEdit ? (
-					<FormWrapper
-						methods={methods}
-						onValidSubmit={onValidSubmit}
-						className='col-span-full flex flex-col gap-4 md:col-span-2'
-					>
-						<TextAreaInput<ArticleUpdateType> name='title' />
-						<TextAreaInput<ArticleUpdateType> name='content' rows={10} />
+					<FormProvider {...methods}>
+						<form
+							onSubmit={(...args) =>
+								void methods.handleSubmit(onValidSubmit)(...args)
+							}
+							className='col-span-full flex flex-col gap-4 md:col-span-2'
+						>
+							<TextAreaInput<ArticleUpdateType> name='title' />
+							<TextAreaInput<ArticleUpdateType> name='content' rows={10} />
 
-						<div className='flex gap-4'>
-							<Button
-								type='submit'
-								variant='filled'
-								isLoading={isUpdateLoading}
-							>
-								Update <PencilSquareIcon className='h-4 w-4' />
-							</Button>
-							<Button
-								variant='outlined'
-								type='reset'
-								onClick={() => onCancel()}
-							>
-								Cancel <XMarkIcon className='h-4 w-4' />
-							</Button>
-						</div>
-					</FormWrapper>
+							<div className='flex gap-4'>
+								<Button
+									type='submit'
+									variant='filled'
+									isLoading={isUpdateLoading}
+								>
+									Update <PencilSquareIcon className='h-4 w-4' />
+								</Button>
+								<Button
+									variant='outlined'
+									type='reset'
+									onClick={() => onCancel()}
+								>
+									Cancel <XMarkIcon className='h-4 w-4' />
+								</Button>
+							</div>
+						</form>
+					</FormProvider>
 				) : (
 					<>
 						<h1 className='text-3xl text-gray-50'>{article.title}</h1>
