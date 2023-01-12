@@ -18,6 +18,7 @@ specifiers:
   '@trpc/react-query': ^10.7.0
   '@trpc/server': ^10.7.0
   '@types/node': ^18.11.17
+  '@types/prettier': ^2.7.2
   '@types/react': ^18.0.26
   '@types/react-dom': ^18.0.10
   '@typescript-eslint/eslint-plugin': ^5.47.0
@@ -80,6 +81,7 @@ devDependencies:
   '@next/bundle-analyzer': 13.1.1
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.4
   '@types/node': 18.11.17
+  '@types/prettier': 2.7.2
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.10
   '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
@@ -908,6 +910,10 @@ packages:
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
+    dev: true
+
+  /@types/prettier/2.7.2:
+    resolution: {integrity: sha512-KufADq8uQqo1pYKVIYzfKbJfBAc0sOeXqGbFaSpv8MRmC/zXgowNZmFcbngndGk922QDmOASEXUZCaY48gs4cg==}
     dev: true
 
   /@types/prop-types/15.7.5:
