@@ -114,7 +114,7 @@ function AuthButton({className}: {className?: string}) {
 				<Button
 					variant='filled'
 					className='rounded-lg bg-transparent px-2 py-1 text-sm font-medium'
-					onClick={() => signIn()}
+					onClick={() => void signIn()}
 				>
 					<span className='hidden md:block'>Signin</span>
 					<LoginIcon className='h-7 w-7 rotate-180 text-xl md:h-6 md:w-6' />

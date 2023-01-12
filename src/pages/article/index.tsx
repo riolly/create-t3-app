@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import {useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 
-import {trpc} from 'utils/trpc'
+import {api} from 'utils/api'
 
 import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
@@ -18,10 +18,10 @@ import {
 	articleCreateSchema,
 	type ArticleCreateType,
 	type ArticleType,
-} from 'types/article'
+} from 'schema/article'
 
 export default function ArticlePage() {
-	const articlesQuery = trpc.article.fetchAll.useQuery(undefined, {
+	const articlesQuery = api.article.fetchAll.useQuery(undefined, {
 		refetchOnMount: false,
 	})
 
@@ -100,7 +100,7 @@ const CreateArticleForm = ({refetchList}: {refetchList: () => void}) => {
 		resolver: zodResolver(articleCreateSchema),
 	})
 
-	const {mutate, isLoading} = trpc.article.create.useMutation({
+	const {mutate, isLoading} = api.article.create.useMutation({
 		onError: (error) => {
 			let message = error.message
 			if (error.data?.code === 'UNAUTHORIZED') {

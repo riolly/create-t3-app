@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from 'react'
 import {type DefaultErrorShape} from '@trpc/server'
 import {type DefaultErrorData} from '@trpc/server/dist/error/formatter'
 import {type UseTRPCQueryResult} from '@trpc/react-query/shared'
+
 import {useAutoAnimate} from '@formkit/auto-animate/react'
 
 type ErrorType = {
@@ -37,7 +39,7 @@ const QueryWrapper = <T,>({
 		// TODO: Find a better way to handle animation after redirect
 		const timer = setTimeout(() => {
 			if (!isInitialLoading) {
-				refetch()
+				void refetch()
 			}
 		}, duration)
 		return () => clearTimeout(timer)
@@ -55,6 +57,7 @@ const QueryWrapper = <T,>({
 			) : (
 				<React.Fragment />
 			)}
+			{/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
 			<div className={children([]).props.className} ref={listRef}>
 				{data && children(data).props.children}
 			</div>
@@ -72,7 +75,7 @@ const Error = ({
 }: {
 	error: ErrorType
 	CustomError?: (error: ErrorType) => JSX.Element
-	refetch: () => void
+	refetch: () => Promise<unknown>
 }) =>
 	CustomError ? (
 		CustomError(error)
@@ -85,7 +88,9 @@ const Error = ({
 			)}
 			<pre className='text-gray-200'>{error.message}</pre>
 			<button
-				onClick={() => refetch()}
+				onClick={() => {
+					void refetch()
+				}}
 				className='mt-2 rounded border px-2 text-gray-200'
 			>
 				Retry

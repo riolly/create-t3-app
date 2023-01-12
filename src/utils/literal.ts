@@ -1,4 +1,5 @@
 export function capFirstChar(str: string): string {
+	// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
 	return str[0]?.toUpperCase() + str.slice(1)
 }
 

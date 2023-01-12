@@ -1,16 +1,16 @@
+import {TRPCError} from '@trpc/server'
 import cuid from 'cuid'
 import {z} from 'zod'
 
-import {router, publicProcedure, protectedProcedure} from '../trpc'
+import {createTRPCRouter, publicProcedure, protectedProcedure} from '../trpc'
 import {revalidate, slugify} from 'server/utils/route'
 
-import {articleCreateSchema, articleUpdateSchema} from 'types/article'
-import {TRPCError} from '@trpc/server'
+import {articleCreateSchema, articleUpdateSchema} from 'schema/article'
 
 const requiredIdSchema = z.object({id: z.string()})
 const requiredIdAuthorIdSchema = requiredIdSchema.extend({authorId: z.string()})
 
-export const articleRouter = router({
+export const articleRouter = createTRPCRouter({
 	fetchAll: publicProcedure.query(({ctx}) =>
 		ctx.prisma.article.findMany({
 			include: {author: {select: {name: true, image: true}}},
@@ -52,7 +52,6 @@ export const articleRouter = router({
 					},
 				})
 				.then(async (updated) => {
-					// TODO: Revert update on revalidation error
 					await revalidate('article', updated.slug)
 					return updated
 				})

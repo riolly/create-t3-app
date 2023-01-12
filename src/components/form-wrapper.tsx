@@ -28,6 +28,7 @@ const FormWrapper = <T extends FieldValues>({
 	return (
 		<FormProvider {...methods}>
 			<form
+				// eslint-disable-next-line @typescript-eslint/no-misused-promises
 				onSubmit={methods.handleSubmit(
 					onValidSubmit,
 					onInvalidSubmit ?? defaultOnInValidSubmit

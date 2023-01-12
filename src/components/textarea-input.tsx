@@ -25,22 +25,27 @@ const TextAreaInput = <T,>({
 		formState: {errors},
 	} = useFormContext()
 	return (
-		<div className={`flex flex-col ${wrapperClassName}`}>
-			<label htmlFor={name} className={`text-light-head ${labelClassName}`}>
+		<div className={`flex flex-col ${wrapperClassName ?? ''}`}>
+			<label
+				htmlFor={name}
+				className={`text-light-head ${labelClassName ?? ''}`}
+			>
 				{label ?? capFirstChar(name)}
 			</label>
 			<textarea
 				id={name}
 				{...register(name)}
 				{...props}
-				className={`rounded bg-light-bg/80 py-2 px-4 ${inputClassName}`}
+				className={`rounded bg-light-bg/80 py-2 px-4 ${inputClassName ?? ''}`}
 			/>
 			<ErrorMessage
 				name={name}
 				errors={errors}
 				render={({message}) => (
 					<small
-						className={`mt-0.5 font-medium text-red-500 ${errorClassName}`}
+						className={`mt-0.5 font-medium text-red-500 ${
+							errorClassName ?? ''
+						}`}
 					>
 						{message}
 					</small>

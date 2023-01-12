@@ -1,3 +1,4 @@
+import {type RevalidateRes} from '@api/revalidate'
 import {encrypt} from './crypto'
 
 export const BASE_URL = process.env.VERCEL_URL
@@ -16,10 +17,12 @@ export async function revalidate(
 	return fetch(`${BASE_URL}/api/revalidate`, {
 		method: 'POST',
 		body: JSON.stringify(encryptedPath),
-	}).then(async (response) => {
-		await fetch(`${BASE_URL}/${page}/${urlParam ?? ''}`)
-		return response.json()
 	})
+		.then(async (response) => {
+			await fetch(`${BASE_URL}/${page}/${urlParam ?? ''}`)
+			return response.json()
+		})
+		.then((data) => data as RevalidateRes)
 }
 
 export const slugify = (title: string, id?: string) => {

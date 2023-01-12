@@ -1,15 +1,20 @@
-import {decrypt, type encrypt} from 'server/utils/crypto'
-import {NextApiRequest, NextApiResponse} from 'next'
+import {decrypt} from 'server/utils/crypto'
+
+import {type NextApiRequest, type NextApiResponse} from 'next'
+import {type encrypt} from 'server/utils/crypto'
+
+export type RevalidateRes = {
+	revalidated: boolean
+	path: string
+	message?: string
+	error?: unknown
+}
 
 export default async function handler(
 	req: NextApiRequest,
-	res: NextApiResponse<{
-		revalidated: boolean
-		path: string
-		message?: string
-		error?: unknown
-	}>
+	res: NextApiResponse<RevalidateRes>
 ) {
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 	const body = JSON.parse(req.body) as ReturnType<typeof encrypt>
 	const decryptedPath = decrypt(body)
 

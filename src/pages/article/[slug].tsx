@@ -7,15 +7,15 @@ import {
 	type InferGetStaticPropsType,
 } from 'next'
 
-import {prisma} from 'server/db/client'
-import {trpc} from 'utils/trpc'
+import {prisma} from 'server/db'
+import {api} from 'utils/api'
 import {extractIdFromSlug} from 'server/utils/route'
 
 import {
 	articleUpdateSchema,
 	type ArticleUpdateType,
 	type ArticleType,
-} from 'types/article'
+} from 'schema/article'
 
 import {useAutoAnimate} from '@formkit/auto-animate/react'
 
@@ -70,13 +70,13 @@ const ArticleDetailsPage = ({
 	const [isEdit, setIsEdit] = React.useState(false)
 
 	const {mutate: deleteArticle, isLoading: isDeleteLoading} =
-		trpc.article.delete.useMutation({
+		api.article.delete.useMutation({
 			onError: (err) => alert(err.message),
 			onSuccess: () => router.push('/article'),
 		})
 
 	const {mutate: updateArticle, isLoading: isUpdateLoading} =
-		trpc.article.update.useMutation({
+		api.article.update.useMutation({
 			onError: (err) => alert(err.message),
 			onSuccess: () => {
 				router.push('/article')

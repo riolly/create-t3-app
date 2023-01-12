@@ -1,18 +1,17 @@
 import {SessionProvider} from 'next-auth/react'
-import {trpc} from 'utils/trpc'
 
-import 'styles/globals.scss'
+import {api} from 'utils/api'
 
+import '../styles/globals.scss'
+
+import {type NextPage} from 'next'
 import {type AppProps, type AppType} from 'next/app'
 import {type Session} from 'next-auth'
-import {type NextPage} from 'next/types'
 
 export type NextPageWithLayout<P = Record<string, unknown>, IP = P> = NextPage<
 	P,
 	IP
-> & {
-	getLayout?: (page: React.ReactElement) => React.ReactNode
-}
+> & {getLayout?: (page: React.ReactElement) => React.ReactNode}
 
 type AppPropsWithLayout = AppProps & {
 	Component: NextPageWithLayout
@@ -31,4 +30,4 @@ const MyApp: AppType<{session: Session | null}> = ({
 	)
 }
 
-export default trpc.withTRPC(MyApp)
+export default api.withTRPC(MyApp)
