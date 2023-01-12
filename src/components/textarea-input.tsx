@@ -1,3 +1,4 @@
+import React from 'react'
 import {useFormContext} from 'react-hook-form'
 import {ErrorMessage} from '@hookform/error-message'
 import {capFirstChar} from 'utils/literal'
@@ -24,6 +25,20 @@ const TextAreaInput = <T,>({
 		register,
 		formState: {errors},
 	} = useFormContext()
+
+	React.useEffect(() => {
+		const textarea = document.querySelector(`#${name}`) as HTMLTextAreaElement
+		const resizeHeight = () => {
+			textarea.style.height = 'auto'
+			textarea.style.height = `${textarea.scrollHeight}px`
+		}
+
+		textarea.addEventListener('input', resizeHeight)
+		return () => {
+			textarea.removeEventListener('input', resizeHeight)
+		}
+	}, [name])
+
 	return (
 		<div className={`flex flex-col ${wrapperClassName ?? ''}`}>
 			<label htmlFor={name} className={labelClassName ?? ''}>
@@ -33,7 +48,9 @@ const TextAreaInput = <T,>({
 				id={name}
 				{...register(name)}
 				{...props}
-				className={`rounded bg-light-bg/80 py-2 px-4 ${inputClassName ?? ''}`}
+				className={`resize-none overflow-hidden rounded bg-light-bg/80 py-2 px-4 ${
+					inputClassName ?? ''
+				}`}
 			/>
 			<ErrorMessage
 				name={name}
