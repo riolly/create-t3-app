@@ -79,7 +79,7 @@ const ArticleDetailsPage = ({
 		api.article.update.useMutation({
 			onError: (err) => alert(err.message),
 			onSuccess: () => {
-				router.push('/article')
+				void router.push('/article')
 			},
 		})
 
@@ -113,6 +113,7 @@ const ArticleDetailsPage = ({
 			<MetaHead
 				title={article.title}
 				description={article.content}
+				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 				imageUrl={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/articles.jpg`}
 			/>
 			<main

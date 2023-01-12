@@ -11,6 +11,7 @@ const HomePage: NextPageWithLayout = () => {
 			<MetaHead
 				title='Create T3 App | Riolly'
 				description='The best way to scaffold fullstack app with the power of extended T3 stack'
+				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 				imageUrl={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/home.jpg`}
 			/>
 			<main className='flex flex-col items-center justify-center gap-8 px-4 pb-12 md:gap-12 md:pb-16'>

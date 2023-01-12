@@ -30,6 +30,7 @@ export default function ArticlePage() {
 			<MetaHead
 				title='Articles (example) | Create T3 App'
 				description='Example on how to build full stack app using extended T3 stack'
+				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 				imageUrl={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/articles.jpg`}
 			/>
 			<main className='container mx-auto max-w-screen-lg space-y-8 px-8 pb-10 md:pb-8'>
@@ -94,7 +95,11 @@ const Card = ({slug, title, content, createdAt, author}: ArticleType) => {
 	)
 }
 
-const CreateArticleForm = ({refetchList}: {refetchList: () => void}) => {
+const CreateArticleForm = ({
+	refetchList,
+}: {
+	refetchList: () => Promise<unknown>
+}) => {
 	const methods = useForm<ArticleCreateType>({
 		mode: 'onTouched',
 		resolver: zodResolver(articleCreateSchema),
@@ -109,7 +114,7 @@ const CreateArticleForm = ({refetchList}: {refetchList: () => void}) => {
 			alert(message)
 		},
 		onSuccess: () => {
-			refetchList()
+			void refetchList()
 			methods.reset()
 		},
 	})
@@ -151,7 +156,7 @@ const CreateArticleForm = ({refetchList}: {refetchList: () => void}) => {
 }
 
 const Triangle = ({className}: {className?: string}) => {
-	return <span className={`${className} text-secondary-lighter`}>⨞</span>
+	return <span className={`${className ?? ''} text-secondary-lighter`}>⨞</span>
 }
 
 ArticlePage.getLayout = function getLayout(page: React.ReactElement) {
