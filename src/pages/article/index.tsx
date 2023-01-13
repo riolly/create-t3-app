@@ -32,9 +32,13 @@ export default function ArticlePage() {
 				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 				imageUrl={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/articles.jpg`}
 			/>
-			<main className='container mx-auto max-w-screen-lg space-y-8 px-8 pb-10 md:pb-8'>
+			<main className='container mx-auto max-w-screen-lg space-y-8 px-8'>
 				<h1 className='text-3xl text-gray-50'>Articles</h1>
-				<QueryWrapper label='articles' {...articlesQuery}>
+				<QueryWrapper
+					label='articles'
+					{...articlesQuery}
+					className='h-64 md:h-96'
+				>
 					{(articles) => (
 						<DivAnimate className='grid grid-cols-6 gap-4'>
 							{articles.map((article) => (

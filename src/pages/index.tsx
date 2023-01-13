@@ -14,7 +14,7 @@ const HomePage: NextPageWithLayout = () => {
 				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 				imageUrl={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/home.jpg`}
 			/>
-			<main className='flex flex-col items-center justify-center gap-8 px-4 pb-12 md:gap-12 md:pb-16'>
+			<main className='flex flex-col items-center justify-center gap-8 px-4 md:gap-12'>
 				<Link href='https://github.com/riolly/create-t3-app/' target='_blank'>
 					<h1 className='text-4xl font-extrabold md:text-[5rem]'>
 						Create&nbsp;
