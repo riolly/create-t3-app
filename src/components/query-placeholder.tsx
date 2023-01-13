@@ -43,13 +43,15 @@ export const ErrorPlaceholder = ({
 				<ExclamationTriangleIcon className='w-12 text-light-head' />
 			</div>
 			<p>Error while fetching {label ?? 'data'}</p>
-			<div className='overflow-y-auto rounded bg-dark-bg/20 px-4 py-2'>
+			<div className='max-w-full overflow-auto rounded bg-dark-bg/20 px-4 py-2'>
 				{error.data && (
 					<p>
 						[{error.data.httpStatus}] {error.data.code} at {error.data.path}
 					</p>
 				)}
-				<pre className='text-xs text-light-body'>{error.message}</pre>
+				<p className='whitespace-pre-wrap break-all text-xs text-light-body'>
+					{error.message}
+				</p>
 			</div>
 			<button
 				onClick={() => {
@@ -110,7 +112,7 @@ export const QueryWrapper = <T,>({
 		<DivAnimate>
 			{isLoading || isError || isEmpty ? (
 				<DivAnimate
-					className={`flex h-96 w-full flex-col items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 p-4 ${
+					className={`flex h-96 w-full flex-col items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 py-4 px-8 ${
 						className ?? ''
 					}`}
 				>
