@@ -57,7 +57,7 @@ const Card = ({id, title, content, createdAt, author}: ArticleType) => {
 	return (
 		<Link
 			href={`./article/${slugify(title, id)}`}
-			className={`relative col-span-full flex h-72 flex-col overflow-hidden rounded rounded-br-3xl rounded-tl-2xl border-2 border-light-head/25 bg-light-bg bg-opacity-20 p-6 pb-4 duration-100 hover:bg-opacity-30 hover:shadow-lg hover:shadow-light-bg md:col-span-3 lg:col-span-2`}
+			className={`relative col-span-full flex h-64 flex-col overflow-hidden rounded rounded-br-3xl rounded-tl-2xl border-[1px] border-light-head/25 bg-opacity-20 bg-gradient-to-br from-light-bg/30 to-light-bg/10 p-6 pb-4 duration-100 hover:bg-opacity-30 hover:shadow-lg hover:shadow-light-bg/25 md:col-span-3 lg:col-span-2`}
 		>
 			<div className='absolute top-0 left-0'>
 				<div className='flex rounded-br-xl bg-dark-bg/30 shadow'>
@@ -84,14 +84,14 @@ const Card = ({id, title, content, createdAt, author}: ArticleType) => {
 			</div>
 			<div className='mt-1 h-fit w-full text-xl text-light-head'>
 				{author.image && <div className='float-left mr-2 h-12 w-12' />}
-				<h2 className=''>{title}</h2>
+				<h2 className='mt-1 max-h-[5rem] overflow-clip'>{title}</h2>
 				<div className='mt-0.5 flex h-1 items-center gap-2'>
 					<div className='h-[1px] w-auto grow rounded-full bg-secondary-normal/50' />
 					<Triangle className='' />
 				</div>
 			</div>
 
-			<p className='h-full overflow-hidden pt-4 text-right indent-12 leading-5 '>
+			<p className='overflow-hidden pt-4 text-right indent-12 leading-5 line-clamp-6'>
 				{content}
 			</p>
 		</Link>
