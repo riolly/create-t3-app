@@ -1,5 +1,5 @@
 import {z} from 'zod'
-import {RouterOutputs} from 'utils/trpc'
+import {type RouterOutputs} from 'utils/api'
 
 export const articleCreateSchema = z.object({
 	title: z

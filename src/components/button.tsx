@@ -1,10 +1,12 @@
-import Link, {LinkProps} from 'next/link'
-import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react'
+import Link from 'next/link'
+import React from 'react'
 import {ArrowPathIcon as LoadingIcon} from '@heroicons/react/24/outline'
 
+import {type LinkProps} from 'next/link'
+
 export interface NativeButtonProps
-	extends DetailedHTMLProps<
-			ButtonHTMLAttributes<HTMLButtonElement>,
+	extends React.DetailedHTMLProps<
+			React.ButtonHTMLAttributes<HTMLButtonElement>,
 			HTMLButtonElement
 		>,
 		React.AriaAttributes {}
@@ -69,7 +71,7 @@ export function Button({
 		<button
 			{...props}
 			disabled={isLoading}
-			className={`${className} ${base} ${variantClass}`}
+			className={`${className ?? ''} ${base} ${variantClass}`}
 		>
 			<Children isLoading={isLoading}>{children}</Children>
 		</button>
@@ -86,7 +88,7 @@ export function LinkButton({
 	const variantClass = variant === 'outlined' ? outlined : filled
 
 	return (
-		<Link {...props} className={`${className} ${base} ${variantClass}`}>
+		<Link {...props} className={`${className ?? ''} ${base} ${variantClass}`}>
 			<Children isLoading={isLoading}>{children}</Children>
 		</Link>
 	)
