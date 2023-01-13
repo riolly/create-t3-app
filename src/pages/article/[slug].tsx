@@ -7,25 +7,24 @@ import {
 	type InferGetStaticPropsType,
 } from 'next'
 
-import {prisma} from 'server/db/client'
-import {trpc} from 'utils/trpc'
-import {extractIdFromSlug} from 'server/utils/route'
+import {prisma} from 'server/db'
+import {api} from 'utils/api'
+import {extractIdFromSlug, slugify} from 'utils/literal'
 
 import {
 	articleUpdateSchema,
 	type ArticleUpdateType,
 	type ArticleType,
-} from 'types/article'
+} from 'schema/article'
 
 import {useAutoAnimate} from '@formkit/auto-animate/react'
 
-import {useForm, type SubmitHandler} from 'react-hook-form'
+import {FormProvider, useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 
 import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
-import TextAreaInput from 'components/textarea-input'
-import FormWrapper from 'components/form-wrapper'
+import TextAreaInput from 'components/form-textarea'
 import {Button} from 'components/button'
 import {
 	PencilSquareIcon,
@@ -54,8 +53,10 @@ export const getStaticProps: GetStaticProps<{
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const articles = await prisma.article.findMany({select: {slug: true}})
-	const articleSlugs = articles.map(({slug}) => ({params: {slug}}))
+	const articles = await prisma.article.findMany()
+	const articleSlugs = articles.map(({id, title}) => ({
+		params: {slug: slugify(title, id)},
+	}))
 
 	return {
 		paths: articleSlugs,
@@ -70,16 +71,16 @@ const ArticleDetailsPage = ({
 	const [isEdit, setIsEdit] = React.useState(false)
 
 	const {mutate: deleteArticle, isLoading: isDeleteLoading} =
-		trpc.article.delete.useMutation({
+		api.article.delete.useMutation({
 			onError: (err) => alert(err.message),
 			onSuccess: () => router.push('/article'),
 		})
 
 	const {mutate: updateArticle, isLoading: isUpdateLoading} =
-		trpc.article.update.useMutation({
+		api.article.update.useMutation({
 			onError: (err) => alert(err.message),
 			onSuccess: () => {
-				router.push('/article')
+				void router.push('/article')
 			},
 		})
 
@@ -113,6 +114,7 @@ const ArticleDetailsPage = ({
 			<MetaHead
 				title={article.title}
 				description={article.content}
+				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 				imageUrl={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/articles.jpg`}
 			/>
 			<main
@@ -120,31 +122,34 @@ const ArticleDetailsPage = ({
 				ref={toggleAnimation}
 			>
 				{isEdit ? (
-					<FormWrapper
-						methods={methods}
-						onValidSubmit={onValidSubmit}
-						className='col-span-full flex flex-col gap-4 md:col-span-2'
-					>
-						<TextAreaInput<ArticleUpdateType> name='title' />
-						<TextAreaInput<ArticleUpdateType> name='content' rows={10} />
+					<FormProvider {...methods}>
+						<form
+							onSubmit={(...args) =>
+								void methods.handleSubmit(onValidSubmit)(...args)
+							}
+							className='col-span-full flex flex-col gap-4 md:col-span-2'
+						>
+							<TextAreaInput<ArticleUpdateType> name='title' />
+							<TextAreaInput<ArticleUpdateType> name='content' rows={10} />
 
-						<div className='flex gap-4'>
-							<Button
-								type='submit'
-								variant='filled'
-								isLoading={isUpdateLoading}
-							>
-								Update <PencilSquareIcon className='h-4 w-4' />
-							</Button>
-							<Button
-								variant='outlined'
-								type='reset'
-								onClick={() => onCancel()}
-							>
-								Cancel <XMarkIcon className='h-4 w-4' />
-							</Button>
-						</div>
-					</FormWrapper>
+							<div className='flex gap-4'>
+								<Button
+									type='submit'
+									variant='filled'
+									isLoading={isUpdateLoading}
+								>
+									Update <PencilSquareIcon className='h-4 w-4' />
+								</Button>
+								<Button
+									variant='outlined'
+									type='reset'
+									onClick={() => onCancel()}
+								>
+									Cancel <XMarkIcon className='h-4 w-4' />
+								</Button>
+							</div>
+						</form>
+					</FormProvider>
 				) : (
 					<>
 						<h1 className='text-3xl text-gray-50'>{article.title}</h1>

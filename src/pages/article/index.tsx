@@ -1,16 +1,15 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import dayjs from 'dayjs'
-import {useForm, type SubmitHandler} from 'react-hook-form'
+import {FormProvider, useForm, type SubmitHandler} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 
-import {trpc} from 'utils/trpc'
+import {api} from 'utils/api'
 
 import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
-import QueryWrapper from 'components/query-wrapper'
-import FormWrapper from 'components/form-wrapper'
-import TextAreaInput from 'components/textarea-input'
+import {QueryWrapper} from 'components/query-placeholder'
+import TextAreaInput from 'components/form-textarea'
 import {Button} from 'components/button'
 import {PencilIcon} from '@heroicons/react/24/solid'
 
@@ -18,29 +17,34 @@ import {
 	articleCreateSchema,
 	type ArticleCreateType,
 	type ArticleType,
-} from 'types/article'
+} from 'schema/article'
+import {slugify} from 'utils/literal'
+import DivAnimate from 'components/div-animate'
 
 export default function ArticlePage() {
-	const articlesQuery = trpc.article.fetchAll.useQuery(undefined, {
-		refetchOnMount: false,
-	})
+	const articlesQuery = api.article.fetchAll.useQuery()
 
 	return (
 		<>
 			<MetaHead
 				title='Articles (example) | Create T3 App'
 				description='Example on how to build full stack app using extended T3 stack'
+				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 				imageUrl={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/articles.jpg`}
 			/>
-			<main className='container mx-auto max-w-screen-lg space-y-8 px-8 pb-10 md:pb-8'>
+			<main className='container mx-auto max-w-screen-lg space-y-8 px-8'>
 				<h1 className='text-3xl text-gray-50'>Articles</h1>
-				<QueryWrapper {...articlesQuery}>
+				<QueryWrapper
+					label='articles'
+					{...articlesQuery}
+					className='h-64 md:h-96'
+				>
 					{(articles) => (
-						<div className='grid grid-cols-6 gap-4'>
+						<DivAnimate className='grid grid-cols-6 gap-4'>
 							{articles.map((article) => (
 								<Card key={article.id} {...article} />
 							))}
-						</div>
+						</DivAnimate>
 					)}
 				</QueryWrapper>
 				<CreateArticleForm refetchList={articlesQuery.refetch} />
@@ -49,10 +53,10 @@ export default function ArticlePage() {
 	)
 }
 
-const Card = ({slug, title, content, createdAt, author}: ArticleType) => {
+const Card = ({id, title, content, createdAt, author}: ArticleType) => {
 	return (
 		<Link
-			href={`./article/${slug}`}
+			href={`./article/${slugify(title, id)}`}
 			className={`relative col-span-full flex h-72 flex-col overflow-hidden rounded rounded-br-3xl rounded-tl-2xl border-2 border-light-head/25 bg-light-bg bg-opacity-20 p-6 pb-4 duration-100 hover:bg-opacity-30 hover:shadow-lg hover:shadow-light-bg md:col-span-3 lg:col-span-2`}
 		>
 			<div className='absolute top-0 left-0'>
@@ -60,7 +64,7 @@ const Card = ({slug, title, content, createdAt, author}: ArticleType) => {
 					<div className='flex w-16 items-center justify-center'>
 						{/* <StarIcon className='text-sm text-yellow-300' /> */}
 					</div>
-					<div className='py-0.5 px-4 text-sm text-light-head'>
+					<div className='py-0.5 px-4'>
 						<time className='font-body text-sm italic'>
 							{dayjs(createdAt).format('MMM D, YYYY')}
 						</time>
@@ -87,20 +91,24 @@ const Card = ({slug, title, content, createdAt, author}: ArticleType) => {
 				</div>
 			</div>
 
-			<p className='h-full overflow-hidden pt-4 text-right indent-12 leading-5 text-light-body'>
+			<p className='h-full overflow-hidden pt-4 text-right indent-12 leading-5 '>
 				{content}
 			</p>
 		</Link>
 	)
 }
 
-const CreateArticleForm = ({refetchList}: {refetchList: () => void}) => {
+const CreateArticleForm = ({
+	refetchList,
+}: {
+	refetchList: () => Promise<unknown>
+}) => {
 	const methods = useForm<ArticleCreateType>({
 		mode: 'onTouched',
 		resolver: zodResolver(articleCreateSchema),
 	})
 
-	const {mutate, isLoading} = trpc.article.create.useMutation({
+	const {mutate, isLoading} = api.article.create.useMutation({
 		onError: (error) => {
 			let message = error.message
 			if (error.data?.code === 'UNAUTHORIZED') {
@@ -109,7 +117,7 @@ const CreateArticleForm = ({refetchList}: {refetchList: () => void}) => {
 			alert(message)
 		},
 		onSuccess: () => {
-			refetchList()
+			void refetchList()
 			methods.reset()
 		},
 	})
@@ -120,7 +128,7 @@ const CreateArticleForm = ({refetchList}: {refetchList: () => void}) => {
 
 	return (
 		<div className='space-y-2'>
-			<div className='flex items-center justify-center gap-4  text-light-head'>
+			<div className='flex items-center justify-center gap-4 text-light-head'>
 				<div className='h-[1px] w-auto grow rounded-full bg-secondary-normal/50' />
 				<Triangle />
 				<p className='w-fit text-lg'>Create New Article</p>
@@ -128,30 +136,27 @@ const CreateArticleForm = ({refetchList}: {refetchList: () => void}) => {
 				<div className='h-[1px] w-auto grow rounded-full bg-secondary-normal/50' />
 			</div>
 			<div className='mx-auto lg:w-3/4 '>
-				<FormWrapper
-					methods={methods}
-					onValidSubmit={onValidSubmit}
-					className='flex flex-col gap-4'
-				>
-					<TextAreaInput<ArticleCreateType>
-						name='title'
-						className='h-[5.4em] md:h-[4em] lg:h-[2.5em]'
-					/>
-					<TextAreaInput<ArticleCreateType>
-						name='content'
-						className='h-[16em] md:h-[12.8em] lg:h-[10em]'
-					/>
-					<Button type='submit' variant='outlined' isLoading={isLoading}>
-						Create <PencilIcon className='h-4 w-4' />
-					</Button>
-				</FormWrapper>
+				<FormProvider {...methods}>
+					<form
+						onSubmit={(...args) =>
+							void methods.handleSubmit(onValidSubmit)(...args)
+						}
+						className='flex flex-col gap-4'
+					>
+						<TextAreaInput<ArticleCreateType> name='title' />
+						<TextAreaInput<ArticleCreateType> name='content' rows={5} />
+						<Button type='submit' variant='outlined' isLoading={isLoading}>
+							Create <PencilIcon className='h-4 w-4' />
+						</Button>
+					</form>
+				</FormProvider>
 			</div>
 		</div>
 	)
 }
 
 const Triangle = ({className}: {className?: string}) => {
-	return <span className={`${className} text-secondary-lighter`}>⨞</span>
+	return <span className={`${className ?? ''} text-secondary-lighter`}>⨞</span>
 }
 
 ArticlePage.getLayout = function getLayout(page: React.ReactElement) {
