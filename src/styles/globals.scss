@@ -5,6 +5,7 @@
 @layer base {
 	html {
 		-webkit-tap-highlight-color: transparent;
+		@apply bg-dark-bg;
 	}
 
 	h1,
