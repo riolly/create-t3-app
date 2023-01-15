@@ -43,3 +43,7 @@ yarn-error.log*
 
 # sass watch output
 /css
+
+# database
+database
+pscale_dump_*
