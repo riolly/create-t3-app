@@ -1,27 +1,16 @@
 import React from 'react'
 import {useRouter} from 'next/router'
 import {useSession} from 'next-auth/react'
-import {
-	type GetStaticPaths,
-	type GetStaticProps,
-	type InferGetStaticPropsType,
-} from 'next'
 import dayjs from 'dayjs'
+
+import {useForm} from 'react-hook-form'
+import {zodResolver} from '@hookform/resolvers/zod'
+import {useAutoAnimate} from '@formkit/auto-animate/react'
 
 import {prisma} from 'server/db'
 import {api} from 'utils/api'
 import {extractIdFromSlug, slugify} from 'utils/literal'
-
-import {
-	articleUpdateSchema,
-	type ArticleUpdateType,
-	type ArticleType,
-} from 'schema/article'
-
-import {useAutoAnimate} from '@formkit/auto-animate/react'
-
-import {FormProvider, useForm, type SubmitHandler} from 'react-hook-form'
-import {zodResolver} from '@hookform/resolvers/zod'
+import {articleUpdateSchema} from 'schema/article'
 
 import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
@@ -32,6 +21,14 @@ import {
 	TrashIcon,
 	XMarkIcon,
 } from '@heroicons/react/24/outline'
+
+import {
+	type GetStaticPaths,
+	type GetStaticProps,
+	type InferGetStaticPropsType,
+} from 'next'
+import {type SubmitHandler} from 'react-hook-form'
+import {type ArticleUpdateType, type ArticleType} from 'schema/article'
 
 export const getStaticProps: GetStaticProps<{
 	article: ArticleType
@@ -92,17 +89,23 @@ const ArticleDetailsPage = ({
 		authorId: article.authorId,
 	}
 
-	const methods = useForm<ArticleUpdateType>({
+	const {
+		register,
+		formState: {errors},
+		reset,
+		handleSubmit,
+	} = useForm<ArticleUpdateType>({
 		resolver: zodResolver(articleUpdateSchema),
 		defaultValues,
 	})
+	const formProps = {register, errors}
 
 	const onValidSubmit: SubmitHandler<ArticleUpdateType> = (data) => {
 		updateArticle(data)
 	}
 
 	const onCancel = () => {
-		methods.reset()
+		reset()
 		setIsEdit(false)
 	}
 
@@ -123,34 +126,30 @@ const ArticleDetailsPage = ({
 				ref={toggleAnimation}
 			>
 				{isEdit ? (
-					<FormProvider {...methods}>
-						<form
-							onSubmit={(...args) =>
-								void methods.handleSubmit(onValidSubmit)(...args)
-							}
-							className='col-span-full flex flex-col gap-4 md:col-span-2'
-						>
-							<TextAreaInput<ArticleUpdateType> name='title' />
-							<TextAreaInput<ArticleUpdateType> name='content' rows={10} />
+					<form
+						onSubmit={(...args) => void handleSubmit(onValidSubmit)(...args)}
+						className='col-span-full flex flex-col gap-4 md:col-span-2'
+					>
+						<TextAreaInput name='title' {...formProps} />
+						<TextAreaInput name='content' rows={10} {...formProps} />
 
-							<div className='flex gap-4'>
-								<Button
-									type='submit'
-									variant='filled'
-									isLoading={isUpdateLoading}
-								>
-									Update <PencilSquareIcon className='h-4 w-4' />
-								</Button>
-								<Button
-									variant='outlined'
-									type='reset'
-									onClick={() => onCancel()}
-								>
-									Cancel <XMarkIcon className='h-4 w-4' />
-								</Button>
-							</div>
-						</form>
-					</FormProvider>
+						<div className='flex gap-4'>
+							<Button
+								type='submit'
+								variant='filled'
+								isLoading={isUpdateLoading}
+							>
+								Update <PencilSquareIcon className='h-4 w-4' />
+							</Button>
+							<Button
+								variant='outlined'
+								type='reset'
+								onClick={() => onCancel()}
+							>
+								Cancel <XMarkIcon className='h-4 w-4' />
+							</Button>
+						</div>
+					</form>
 				) : (
 					<>
 						<div>

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import dayjs from 'dayjs'
 import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
+import cN from 'clsx'
 
 import {api} from 'utils/api'
 
@@ -56,7 +57,12 @@ const Card = ({id, title, content, createdAt, author}: ArticleType) => {
 	return (
 		<Link
 			href={`./article/${slugify(title, id)}`}
-			className={`relative col-span-full flex h-64 flex-col overflow-hidden rounded rounded-br-3xl rounded-tl-2xl border-[1px] border-light-head/25 bg-opacity-20 bg-gradient-to-br from-light-bg/30 to-light-bg/10 p-6 pb-4 duration-100 hover:bg-opacity-30 hover:shadow-lg hover:shadow-light-bg/25 md:col-span-3 lg:col-span-2`}
+			className={cN(
+				'relative col-span-full flex h-64 flex-col overflow-hidden p-6 pb-4',
+				'rounded rounded-br-3xl rounded-tl-2xl border border-light-head/25 bg-opacity-20 bg-gradient-to-br from-light-bg/30 to-light-bg/10',
+				'md:col-span-3 lg:col-span-2',
+				'hover:bg-opacity-30 hover:shadow-lg hover:shadow-light-bg/25 '
+			)}
 		>
 			<div className='absolute top-0 left-0'>
 				<div className='flex rounded-br-xl bg-dark-bg/30 shadow'>
@@ -86,7 +92,7 @@ const Card = ({id, title, content, createdAt, author}: ArticleType) => {
 				<h2 className='mt-1 max-h-[5rem] overflow-clip'>{title}</h2>
 				<div className='mt-0.5 flex h-1 items-center gap-2'>
 					<div className='h-[1px] w-auto grow rounded-full bg-secondary-normal/50' />
-					<Triangle className='' />
+					<Triangle />
 				</div>
 			</div>
 
@@ -135,13 +141,13 @@ const CreateArticleForm = ({
 	return (
 		<div className='space-y-2'>
 			<div className='flex items-center justify-center gap-4 text-light-head'>
-				<div className='h-[1px] w-auto grow rounded-full bg-secondary-normal/50' />
+				<div className='h-px w-auto grow rounded-full bg-secondary-normal/50' />
 				<Triangle />
 				<p className='w-fit text-lg'>Create New Article</p>
 				<Triangle className='rotate-180' />
 				<div className='h-[1px] w-auto grow rounded-full bg-secondary-normal/50' />
 			</div>
-			<div className='mx-auto lg:w-3/4 '>
+			<div className='mx-auto lg:w-3/4'>
 				<form
 					onSubmit={(...args) => void handleSubmit(onValidSubmit)(...args)}
 					className='flex flex-col gap-4'
@@ -158,7 +164,7 @@ const CreateArticleForm = ({
 }
 
 const Triangle = ({className}: {className?: string}) => {
-	return <span className={`${className ?? ''} text-secondary-lighter`}>⨞</span>
+	return <span className={cN('text-secondary-lighter', className)}>⨞</span>
 }
 
 ArticlePage.getLayout = function getLayout(page: React.ReactElement) {

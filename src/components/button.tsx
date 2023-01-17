@@ -1,5 +1,7 @@
-import Link from 'next/link'
 import React from 'react'
+import Link from 'next/link'
+import cN from 'clsx'
+
 import {ArrowPathIcon as LoadingIcon} from '@heroicons/react/24/outline'
 
 import {type LinkProps} from 'next/link'
@@ -39,18 +41,18 @@ function Children({
 	return (
 		<>
 			<span
-				className={`
-					flex items-center gap-2
-					${isLoading ? 'invisible' : 'visible'}
-				`}
+				className={cN(
+					`flex items-center gap-2`,
+					isLoading ? 'invisible' : 'visible'
+				)}
 			>
 				{children}
 			</span>
 			<span
-				className={`
-					absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-					${isLoading ? 'visible' : 'invisible'} 
-				`}
+				className={cN(
+					'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
+					isLoading ? 'visible' : 'invisible'
+				)}
 			>
 				<LoadingIcon className='h-6 w-6 animate-spin text-light-head' />
 			</span>
@@ -71,7 +73,7 @@ export function Button({
 		<button
 			{...props}
 			disabled={isLoading}
-			className={`${className ?? ''} ${base} ${variantClass}`}
+			className={cN(base, variantClass, className)}
 		>
 			<Children isLoading={isLoading}>{children}</Children>
 		</button>
@@ -88,7 +90,7 @@ export function LinkButton({
 	const variantClass = variant === 'outlined' ? outlined : filled
 
 	return (
-		<Link {...props} className={`${className ?? ''} ${base} ${variantClass}`}>
+		<Link {...props} className={cN(base, variantClass, className)}>
 			<Children isLoading={isLoading}>{children}</Children>
 		</Link>
 	)

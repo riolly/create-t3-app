@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from 'react'
+import cN from 'clsx'
 
 import DivAnimate from './div-animate'
 import {
@@ -112,9 +113,10 @@ export const QueryWrapper = <T,>({
 		<DivAnimate>
 			{isLoading || isError || isEmpty ? (
 				<DivAnimate
-					className={`flex h-96 w-full flex-col items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 py-4 px-8 ${
-						className ?? ''
-					}`}
+					className={cN(
+						'flex h-96 w-full flex-col items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 py-4 px-8',
+						className
+					)}
 				>
 					{isLoading ? (
 						<LoadingPlaceholder label={label} />

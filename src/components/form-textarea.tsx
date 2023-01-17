@@ -1,5 +1,7 @@
 import React from 'react'
 import {ErrorMessage} from '@hookform/error-message'
+import cN from 'clsx'
+
 import {capFirstChar} from 'utils/literal'
 
 import {
@@ -32,7 +34,7 @@ const TextAreaInput = <T extends FieldValues>({
 	errors,
 	wrapperClassName,
 	labelClassName,
-	inputClassName,
+	inputClassName = '',
 	errorClassName,
 	...props
 }: InputProps<T>) => {
@@ -50,26 +52,25 @@ const TextAreaInput = <T extends FieldValues>({
 	}, [name])
 
 	return (
-		<div className={`flex flex-col ${wrapperClassName ?? ''}`}>
-			<label htmlFor={name} className={labelClassName ?? ''}>
+		<div className={cN('flex flex-col', wrapperClassName)}>
+			<label htmlFor={name} className={labelClassName}>
 				{label ?? capFirstChar(name)}
 			</label>
 			<textarea
 				id={name}
 				{...register(name)}
 				{...props}
-				className={`resize-none overflow-hidden rounded bg-light-bg/80 py-2 px-4 ${
-					inputClassName ?? ''
-				}`}
+				className={cN(
+					'resize-none overflow-hidden rounded bg-light-bg/80 py-2 px-4',
+					inputClassName
+				)}
 			/>
 			<ErrorMessage
 				name={name as FieldName<FieldValuesFromFieldErrors<Errors<T>>>}
 				errors={errors}
 				render={({message}) => (
 					<small
-						className={`mt-0.5 font-medium text-red-500 ${
-							errorClassName ?? ''
-						}`}
+						className={cN('mt-0.5 font-medium text-red-500', errorClassName)}
 					>
 						{message}
 					</small>
