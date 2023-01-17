@@ -1,31 +1,41 @@
 import React from 'react'
-import {useFormContext} from 'react-hook-form'
 import {ErrorMessage} from '@hookform/error-message'
 import {capFirstChar} from 'utils/literal'
 
-type InputProps<T> = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
-	name: keyof T
-	label?: string
-	wrapperClassName?: string
-	labelClassName?: string
-	inputClassName?: string
-	errorClassName?: string
-}
+import {
+	type FieldValues,
+	type Path,
+	type UseFormRegister,
+	type FieldErrorsImpl,
+	type FieldName,
+} from 'react-hook-form'
+import {type FieldValuesFromFieldErrors} from '@hookform/error-message'
 
-const TextAreaInput = <T,>({
+type Errors<T extends FieldValues> = Partial<FieldErrorsImpl<T>>
+
+type InputProps<T extends FieldValues> =
+	React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+		name: Path<T>
+		register: UseFormRegister<T>
+		errors: Errors<T>
+		label?: string
+		wrapperClassName?: string
+		labelClassName?: string
+		inputClassName?: string
+		errorClassName?: string
+	}
+
+const TextAreaInput = <T extends FieldValues>({
 	name,
 	label,
+	register,
+	errors,
 	wrapperClassName,
 	labelClassName,
 	inputClassName,
 	errorClassName,
 	...props
 }: InputProps<T>) => {
-	const {
-		register,
-		formState: {errors},
-	} = useFormContext()
-
 	React.useEffect(() => {
 		const textarea = document.querySelector(`#${name}`) as HTMLTextAreaElement
 		const resizeHeight = () => {
@@ -53,7 +63,7 @@ const TextAreaInput = <T,>({
 				}`}
 			/>
 			<ErrorMessage
-				name={name}
+				name={name as FieldName<FieldValuesFromFieldErrors<Errors<T>>>}
 				errors={errors}
 				render={({message}) => (
 					<small

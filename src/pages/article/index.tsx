@@ -1,25 +1,24 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import dayjs from 'dayjs'
-import {FormProvider, useForm, type SubmitHandler} from 'react-hook-form'
+import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 
 import {api} from 'utils/api'
 
 import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
+import DivAnimate from 'components/div-animate'
 import {QueryWrapper} from 'components/query-placeholder'
 import TextAreaInput from 'components/form-textarea'
 import {Button} from 'components/button'
 import {PencilIcon} from '@heroicons/react/24/solid'
 
-import {
-	articleCreateSchema,
-	type ArticleCreateType,
-	type ArticleType,
-} from 'schema/article'
 import {slugify} from 'utils/literal'
-import DivAnimate from 'components/div-animate'
+import {articleCreateSchema} from 'schema/article'
+
+import {type SubmitHandler} from 'react-hook-form'
+import {type ArticleCreateType, type ArticleType} from 'schema/article'
 
 export default function ArticlePage() {
 	const articlesQuery = api.article.fetchAll.useQuery()
@@ -36,8 +35,8 @@ export default function ArticlePage() {
 				<h1 className='text-3xl text-gray-50'>Articles</h1>
 				<QueryWrapper
 					label='articles'
-					{...articlesQuery}
 					className='h-64 md:h-96'
+					{...articlesQuery}
 				>
 					{(articles) => (
 						<DivAnimate className='grid grid-cols-6 gap-4'>
@@ -103,10 +102,17 @@ const CreateArticleForm = ({
 }: {
 	refetchList: () => Promise<unknown>
 }) => {
-	const methods = useForm<ArticleCreateType>({
+	const {
+		register,
+		formState: {errors},
+		reset,
+		handleSubmit,
+	} = useForm<ArticleCreateType>({
 		mode: 'onTouched',
 		resolver: zodResolver(articleCreateSchema),
 	})
+
+	const formProps = {register, errors}
 
 	const {mutate, isLoading} = api.article.create.useMutation({
 		onError: (error) => {
@@ -118,7 +124,7 @@ const CreateArticleForm = ({
 		},
 		onSuccess: () => {
 			void refetchList()
-			methods.reset()
+			reset()
 		},
 	})
 
@@ -136,20 +142,16 @@ const CreateArticleForm = ({
 				<div className='h-[1px] w-auto grow rounded-full bg-secondary-normal/50' />
 			</div>
 			<div className='mx-auto lg:w-3/4 '>
-				<FormProvider {...methods}>
-					<form
-						onSubmit={(...args) =>
-							void methods.handleSubmit(onValidSubmit)(...args)
-						}
-						className='flex flex-col gap-4'
-					>
-						<TextAreaInput<ArticleCreateType> name='title' />
-						<TextAreaInput<ArticleCreateType> name='content' rows={5} />
-						<Button type='submit' variant='outlined' isLoading={isLoading}>
-							Create <PencilIcon className='h-4 w-4' />
-						</Button>
-					</form>
-				</FormProvider>
+				<form
+					onSubmit={(...args) => void handleSubmit(onValidSubmit)(...args)}
+					className='flex flex-col gap-4'
+				>
+					<TextAreaInput name='title' {...formProps} />
+					<TextAreaInput name='content' rows={5} {...formProps} />
+					<Button type='submit' variant='outlined' isLoading={isLoading}>
+						Create <PencilIcon className='h-4 w-4' />
+					</Button>
+				</form>
 			</div>
 		</div>
 	)
