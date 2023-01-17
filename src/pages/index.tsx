@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import {type NextPageWithLayout} from './_app'
 import NavbarLayout from 'layouts/navbar'
 import MetaHead from 'components/meta-head'
+
+import {type NextPageWithLayout} from './_app'
 
 const HomePage: NextPageWithLayout = () => {
 	return (
@@ -96,7 +97,7 @@ const TechnologyCard: React.FC<TechnologyCardProps> = ({
 			href={documentation}
 			target='_blank'
 		>
-			<h3 className='text-xl font-bold md:text-2xl '>{name} 🡵</h3>
+			<h3 className='text-xl font-bold md:text-2xl'>{name} 🡵</h3>
 			<p className='md:text-lg'>{description}</p>
 		</Link>
 	)

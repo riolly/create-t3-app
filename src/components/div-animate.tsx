@@ -1,7 +1,7 @@
 import {useAutoAnimate} from '@formkit/auto-animate/react'
 
 const DivAnimate = ({
-	className,
+	className = '',
 	children,
 	...props
 }: {

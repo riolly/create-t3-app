@@ -1,31 +1,43 @@
 import React from 'react'
-import {useFormContext} from 'react-hook-form'
 import {ErrorMessage} from '@hookform/error-message'
+import cN from 'clsx'
+
 import {capFirstChar} from 'utils/literal'
 
-type InputProps<T> = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
-	name: keyof T
-	label?: string
-	wrapperClassName?: string
-	labelClassName?: string
-	inputClassName?: string
-	errorClassName?: string
-}
+import {
+	type FieldValues,
+	type Path,
+	type UseFormRegister,
+	type FieldErrorsImpl,
+	type FieldName,
+} from 'react-hook-form'
+import {type FieldValuesFromFieldErrors} from '@hookform/error-message'
 
-const TextAreaInput = <T,>({
+type Errors<T extends FieldValues> = Partial<FieldErrorsImpl<T>>
+
+type InputProps<T extends FieldValues> =
+	React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+		name: Path<T>
+		register: UseFormRegister<T>
+		errors: Errors<T>
+		label?: string
+		wrapperClassName?: string
+		labelClassName?: string
+		inputClassName?: string
+		errorClassName?: string
+	}
+
+const TextAreaInput = <T extends FieldValues>({
 	name,
 	label,
+	register,
+	errors,
 	wrapperClassName,
 	labelClassName,
-	inputClassName,
+	inputClassName = '',
 	errorClassName,
 	...props
 }: InputProps<T>) => {
-	const {
-		register,
-		formState: {errors},
-	} = useFormContext()
-
 	React.useEffect(() => {
 		const textarea = document.querySelector(`#${name}`) as HTMLTextAreaElement
 		const resizeHeight = () => {
@@ -40,26 +52,25 @@ const TextAreaInput = <T,>({
 	}, [name])
 
 	return (
-		<div className={`flex flex-col ${wrapperClassName ?? ''}`}>
-			<label htmlFor={name} className={labelClassName ?? ''}>
+		<div className={cN('flex flex-col', wrapperClassName)}>
+			<label htmlFor={name} className={labelClassName}>
 				{label ?? capFirstChar(name)}
 			</label>
 			<textarea
 				id={name}
 				{...register(name)}
 				{...props}
-				className={`resize-none overflow-hidden rounded bg-light-bg/80 py-2 px-4 ${
-					inputClassName ?? ''
-				}`}
+				className={cN(
+					'resize-none overflow-hidden rounded bg-light-bg/80 py-2 px-4',
+					inputClassName
+				)}
 			/>
 			<ErrorMessage
-				name={name}
+				name={name as FieldName<FieldValuesFromFieldErrors<Errors<T>>>}
 				errors={errors}
 				render={({message}) => (
 					<small
-						className={`mt-0.5 font-medium text-red-500 ${
-							errorClassName ?? ''
-						}`}
+						className={cN('mt-0.5 font-medium text-red-500', errorClassName)}
 					>
 						{message}
 					</small>
